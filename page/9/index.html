@@ -2045,7 +2045,7 @@ public class Test &#123;    public Object instance = null;    public static void
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/553472470/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/215077640/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="boris">
@@ -2065,7 +2065,7 @@ public class Test &#123;    public Object instance = null;    public static void
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/a/553472470/" class="post-title-link" itemprop="url">运行时数据区域</a>
+                <a href="/a/215077640/" class="post-title-link" itemprop="url">类加载机制</a>
               
             
           </h2>
@@ -2164,24 +2164,33 @@ public class Test &#123;    public Object instance = null;    public static void
         
           
             <p>
-              程序计数器记录正在执行的虚拟机字节码指令的地址，如果正在执行的是本地方法则为空 (Undefined)。
-Java 虚拟机栈每个 Java 方法在执行的同时会创建一个栈帧用于存储局部变量表、操作数栈、常量池引用等信息。从方法调用直至执行完成的过程，就对应着一个栈帧在 Java 虚拟机栈中入栈和出栈的过程。
+              类是在运行期间第一次使用时动态加载的，而不是一次性加载。因为如果一次性加载，那么会占用很多的内存。
+类的声明周期
+包括以下 7 个阶段：
 
-可以通过 -Xss 这个虚拟机参数来指定每个线程的 Java 虚拟机栈内存大小：
-java -Xss512M HackTheJava
+加载（Loading）
+验证（Verification）
+准备（Preparation）
+解析（Resolution）
+初始化（Initialization）
+使用（Using）
+卸载（Unloading）
 
-该区域可能抛出以下异常：
+类加载过程包含了加载、验证、准备、解析和初始化这 5 个阶段。
+加载加载是类加载的一个阶段，注意不要混淆。
+加载过程完成以下三件事：
 
-当线程请求的栈深度超过最大值，会抛出 StackOverflowError 异常；
-栈进行动态扩展时如果无法申请到足够内存，会抛出 OutOfMemoryError 异常。
+通过类的完全限定名称获取定义该类的二进制字节流。
+将该字节流表示的静态存储结构转换为方法区的运行时存储结构。
+在内存中生成一个代表该类的 Class 对象，作为方法区中该类各种数据的访问入口。
 
-本地方法栈本地方法栈与 Java 虚拟机栈类似，它
+其中二进制字节流可
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/a/553472470/#more" rel="contents">
+              <a class="btn" href="/a/215077640/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

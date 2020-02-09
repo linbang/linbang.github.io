@@ -339,7 +339,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/597933426/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/3126418019/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="boris">
@@ -359,7 +359,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/a/597933426/" class="post-title-link" itemprop="url">异常</a>
+                <a href="/a/3126418019/" class="post-title-link" itemprop="url">数据类型</a>
               
             
           </h2>
@@ -458,16 +458,28 @@
         
           
             <p>
-              什么是Java异常异常是发生在程序执行过程中阻碍程序正常执行的错误事件。比如：用户输入错误数据、硬件故障、网络阻塞等都会导致出现异常。 只要在Java语句执行中产生了异常，一个异常对象就会被创建，JRE就会试图寻找异常处理程序来处理异常。如果有合适的异常处理程序，异常对象就会被异常处理程序接管，否则，将引发运行环境异常，JRE终止程序执行。 Java异常处理框架只能处理运行时错误，编译错误不在其考虑范围之内。
-Java异常的层级结构Throwable 可以用来表示任何可以作为异常抛出的类，分为两种： Error 和 Exception。其中 Error 用来表示 JVM 无法处理的错误，而Exception 分为两种：
+              基本类型
+byte/8位/1字节
+char/16位/2字节
+short/16位/2字节
+int/32位/4字节
+float/32位/4字节
+long/64位/8字节
+double/64位/8字节
+boolean/~
 
-受检异常 ：需要用 try…catch… 语句捕获并进行处理，并且可以
+boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是具体大小没有明确规定。JVM 会在编译时期将 boolean 类型的数据转换为 int，使用 1 来表示 true，0 表示 false。JVM 并不支持 boolean 数组，而是使用 byte 数组来表示 int 数组来表示。
+
+Primitive Data Types
+The Java® Virtual Machine Specification
+
+包装类型基本类型都有对应的包装类型，基本
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/a/597933426/#more" rel="contents">
+              <a class="btn" href="/a/3126418019/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
