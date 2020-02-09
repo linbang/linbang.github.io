@@ -112,7 +112,7 @@
 <meta name="keywords" content="博客,机器学习,Java,Python">
 <meta property="og:type" content="website">
 <meta property="og:title" content="切克闹">
-<meta property="og:url" content="http://yoursite.com/page/9/index.html">
+<meta property="og:url" content="http://www.lbblog.com/page/9/index.html">
 <meta property="og:site_name" content="切克闹">
 <meta property="og:description" content="无穷的远方，无数的人们，都与我有关。">
 <meta property="og:locale" content="zh-CN">
@@ -126,7 +126,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/page/9/">
+  <link rel="canonical" href="http://www.lbblog.com/page/9/">
 
 
 
@@ -339,7 +339,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/2218520205/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/2218520205/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="boris">
@@ -528,7 +528,7 @@ public boolean add(E e) &#123;    final ReentrantLock lock = this.lock;    lock.
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/1029785637/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/1029785637/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="boris">
@@ -718,7 +718,7 @@ static class Entry&lt;K,V&gt; implements Map.Entry&lt;K,V&gt; &#123;    final K 
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/1413842691/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/1413842691/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="boris">
@@ -906,7 +906,192 @@ public class LinkedHashMap&lt;K,V&gt; extends HashMap&lt;K,V&gt; implements Map&
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/707384687/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/482495853/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="boris">
+      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
+      <meta itemprop="image" content="/uploads/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切克闹">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/a/482495853/" class="post-title-link" itemprop="url">Vector</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-12 10:59:44" itemprop="dateCreated datePublished" datetime="2019-03-12T10:59:44+08:00">2019-03-12</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-09 19:12:56" itemprop="dateModified" datetime="2020-02-09T19:12:56+08:00">2020-02-09</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/JAVA容器/" itemprop="url" rel="index"><span itemprop="name">JAVA容器</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              同步它的实现与 ArrayList 类似，但是使用了 synchronized 进行同步。
+public synchronized boolean add(E e) &#123;    modCount++;    ensureCapacityHelper(elementCount + 1);    elementData[elementCount++] = e;    return true;&#125;public synchronized E get(int index) &#123;    if (index &gt;= elementCount)        throw new ArrayIndexOutOfBoundsException(index);    return el
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/a/482495853/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/707384687/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="boris">
@@ -1103,380 +1288,7 @@ LinkedList 在任意位置添加删除元素更快。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/482495853/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
-      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
-      <meta itemprop="image" content="/uploads/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/a/482495853/" class="post-title-link" itemprop="url">Vector</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-12 10:59:44" itemprop="dateCreated datePublished" datetime="2019-03-12T10:59:44+08:00">2019-03-12</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-02-09 19:12:56" itemprop="dateModified" datetime="2020-02-09T19:12:56+08:00">2020-02-09</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/JAVA容器/" itemprop="url" rel="index"><span itemprop="name">JAVA容器</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              同步它的实现与 ArrayList 类似，但是使用了 synchronized 进行同步。
-public synchronized boolean add(E e) &#123;    modCount++;    ensureCapacityHelper(elementCount + 1);    elementData[elementCount++] = e;    return true;&#125;public synchronized E get(int index) &#123;    if (index &gt;= elementCount)        throw new ArrayIndexOutOfBoundsException(index);    return el
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/a/482495853/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/1800931374/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
-      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
-      <meta itemprop="image" content="/uploads/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/a/1800931374/" class="post-title-link" itemprop="url">WeakHashMap</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-12 10:59:44" itemprop="dateCreated datePublished" datetime="2019-03-12T10:59:44+08:00">2019-03-12</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-02-09 19:12:56" itemprop="dateModified" datetime="2020-02-09T19:12:56+08:00">2020-02-09</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/JAVA容器/" itemprop="url" rel="index"><span itemprop="name">JAVA容器</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              存储结构WeakHashMap 的 Entry 继承自 WeakReference，被 WeakReference 关联的对象在下一次垃圾回收时会被回收 (而HashMap 中由于每个元素都有一个桶去引用，因此不会被垃圾回收器回收)。
-WeakHashMap 主要用来实现缓存，通过使用 WeakHashMap 来引用缓存对象，由 JVM 对这部分缓存进行回收。
-private static class Entry&lt;K,V&gt; extends WeakReference&lt;Object&gt; implements Map.Entry&lt;K,V&gt;
-
-Tomcat 中的 ConcurrentCache (*)Tomcat 中的 ConcurrentCache 使用了 We
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/a/1800931374/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/2816918426/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/2816918426/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="boris">
@@ -1667,7 +1479,7 @@ ArrayList
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/1947257592/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/1947257592/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="boris">
@@ -1858,7 +1670,7 @@ Full GC：回收老年代和新生代，老年代对象其存活时间长，因�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/3115023810/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3115023810/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="boris">
@@ -2045,7 +1857,7 @@ public class Test &#123;    public Object instance = null;    public static void
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/215077640/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/215077640/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="boris">
@@ -2191,6 +2003,201 @@ public class Test &#123;    public Object instance = null;    public static void
           
             <div class="post-button text-center">
               <a class="btn" href="/a/215077640/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/553472470/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="boris">
+      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
+      <meta itemprop="image" content="/uploads/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切克闹">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/a/553472470/" class="post-title-link" itemprop="url">运行时数据区域</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-12 10:59:44" itemprop="dateCreated datePublished" datetime="2019-03-12T10:59:44+08:00">2019-03-12</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-09 19:12:58" itemprop="dateModified" datetime="2020-02-09T19:12:58+08:00">2020-02-09</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/JAVA虚拟机/" itemprop="url" rel="index"><span itemprop="name">JAVA虚拟机</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              程序计数器记录正在执行的虚拟机字节码指令的地址，如果正在执行的是本地方法则为空 (Undefined)。
+Java 虚拟机栈每个 Java 方法在执行的同时会创建一个栈帧用于存储局部变量表、操作数栈、常量池引用等信息。从方法调用直至执行完成的过程，就对应着一个栈帧在 Java 虚拟机栈中入栈和出栈的过程。
+
+可以通过 -Xss 这个虚拟机参数来指定每个线程的 Java 虚拟机栈内存大小：
+java -Xss512M HackTheJava
+
+该区域可能抛出以下异常：
+
+当线程请求的栈深度超过最大值，会抛出 StackOverflowError 异常；
+栈进行动态扩展时如果无法申请到足够内存，会抛出 OutOfMemoryError 异常。
+
+本地方法栈本地方法栈与 Java 虚拟机栈类似，它
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/a/553472470/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
