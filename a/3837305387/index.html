@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/uploads/logo.png?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+
+
+
+  
+  
+    
+      
+    
+    
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css?v=1.0.2">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="本文主要介绍Transformer模型，思想来源于Google的《Attention is all you need》 Transformer模型为了解决seq2seq的问题，本质还是一个Encoder-Decoder的模型。 Transformer概览论文结构 上面左图是一个attention模型，右边是一个multi-head attention模型，所谓multi-head实际上就是将输入的">
+<meta name="keywords" content="博客,机器学习,Java,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transformer模型">
+<meta property="og:url" content="http://yoursite.com/a/3837305387/index.html">
+<meta property="og:site_name" content="切克闹">
+<meta property="og:description" content="本文主要介绍Transformer模型，思想来源于Google的《Attention is all you need》 Transformer模型为了解决seq2seq的问题，本质还是一个Encoder-Decoder的模型。 Transformer概览论文结构 上面左图是一个attention模型，右边是一个multi-head attention模型，所谓multi-head实际上就是将输入的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:updated_time" content="2020-02-09T11:12:58.695Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Transformer模型">
+<meta name="twitter:description" content="本文主要介绍Transformer模型，思想来源于Google的《Attention is all you need》 Transformer模型为了解决seq2seq的问题，本质还是一个Encoder-Decoder的模型。 Transformer概览论文结构 上面左图是一个attention模型，右边是一个multi-head attention模型，所谓multi-head实际上就是将输入的">
+<meta name="twitter:image" content="http://yoursite.com/uploads/loading.gif">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/a/3837305387/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>Transformer模型 | 切克闹</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切克闹</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+      <a>
+        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+      </a>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">121</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">20</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">24</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/3837305387/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="boris">
+      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
+      <meta itemprop="image" content="/uploads/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切克闹">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Transformer模型
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-11 09:54:24" itemprop="dateCreated datePublished" datetime="2019-03-11T09:54:24+08:00">2019-03-11</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-09 19:12:58" itemprop="dateModified" datetime="2020-02-09T19:12:58+08:00">2020-02-09</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/自然语言处理/" itemprop="url" rel="index"><span itemprop="name">自然语言处理</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+               <!--  阅读次数：  -->
+               本文已被戳过 <span class="busuanzi-value" id="busuanzi_value_page_pv"></span> 次了
+              </span>
+            </span>
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">4.2k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">4 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要介绍Transformer模型，思想来源于Google的<span class="exturl" data-url="aHR0cHM6Ly9hcnhpdi5vcmcvcGRmLzE3MDYuMDM3NjIucGRm" title="https://arxiv.org/pdf/1706.03762.pdf">《Attention is all you need》<i class="fa fa-external-link"></i></span></p>
+<p>Transformer模型为了解决seq2seq的问题，本质还是一个Encoder-Decoder的模型。</p>
+<h1 id="Transformer概览"><a href="#Transformer概览" class="headerlink" title="Transformer概览"></a>Transformer概览</h1><h2 id="论文结构"><a href="#论文结构" class="headerlink" title="论文结构"></a>论文结构</h2><p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/02-multi-head-attention.png" alt="img"></p>
+<p>上面左图是一个attention模型，右边是一个multi-head attention模型，所谓multi-head实际上就是将输入的所有单词拆成h份，然后将这h个输出concate到一起。在论文中h=8。</p>
+<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/01-transformer.png" alt="img"></p>
+<p>上图就是Transformer架构，左半部分就是Encdoer模型，右边是Decoder模型。</p>
+<h2 id="总览结构"><a href="#总览结构" class="headerlink" title="总览结构"></a>总览结构</h2><p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552269798148.png" alt="1552269798148"></p>
+<p>上图显示了Transformer模型的具体情况。一个Encoder是由6个encoder块组成的，每一个encoder块有两层，一层是多头的self-attention，第二层是一个feed-forward层。同时在每两层之间，设计了一个残差连接用于加快训练速度。然后过一个norm层，所以每一块的输出就是$norm(x+f(x))$，其中$f(x)$就是经过self-attention和feed-forward层的输出。所有</p>
+<p>下面我们分别总结各个模块。</p>
+<h2 id="图解总览"><a href="#图解总览" class="headerlink" title="图解总览"></a>图解总览</h2><p>本质也就是一个Encoder-Decoder的翻译模型。</p>
+<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/04-The_transformer_encoders_decoders.png" alt="img"></p>
+<p>普通的一半都是用RNN/LSTM为输入进行编码，然后用LSTM对编码结果进行解码。但是在Transformer中，encoder单元变成了self-attention，不再借助其他的模型。</p>
+<p>下面我们详细看encoder的结构和decoder的结构</p>
+<h2 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h2><p>一个Encoder是由Self-Attention和FFN组成：</p>
+<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/06-Transformer_encoder.png" alt="img"></p>
+<p>encoder由 6 层相同的层组成，每一层分别由两部分组成：</p>
+<ul>
+<li>第一部分是 multi-head self-attention</li>
+<li>第二部分是 position-wise feed-forward network，是一个全连接层</li>
+</ul>
+<p>两个部分，都有一个残差连接(residual connection)，然后接着一个 Layer Normalization。</p>
+<h3 id="self-attention"><a href="#self-attention" class="headerlink" title="self-attention"></a>self-attention</h3><p>1、每个单词的embedding输入，乘以三个参数矩阵，得到三个向量：Query、Key、Value</p>
+<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/12-transformer_self_attention_vectors.png" alt="img"></p>
+<p>如图所示，输入是1X4的向量，假设参数矩阵都是4x3矩阵，那么我们得到的q、k、v编码就是1X3的向量。而我们的目标就是要训练这三个参数矩阵。</p>
+<p>2、计算和每个单词的score</p>
+<p>在编码每个单词的时候，会计算它与句子中其他单词的得分，得到每个单词对于当前单词的关注程度。也就是将当前单词的query去遍历所有的key，得到cos相似度。</p>
+<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/13-transformer_self_attention_score.png" alt="img"></p>
+<p>3、归一化和softmax得到概率，加权求平均得到每个词的表达向量</p>
+<p>上一步我们得到了当前单词与所有单词的相似度，我们对相似度做归一化，得到概率值。然后将概率值与value值相乘，也就是对所有的单词进行加权求平均。</p>
+<p>注意这里的归一化是层归一化，在每个样本上计算均值和方差，而不是BN那种在一批数据上对每个特征进行归一化！！</p>
+<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=LN%28x_i%29+%3D+%5Calpha%5Ctimes%5Cfrac%7Bx_i+-+%5Cmu_L%7D%7B%5Csqrt%7B%5Csigma_L%5E2+%2B+%5Cepsilon%7D%7D+%2B+%5Cbeta" alt="LN(x_i) = \alpha\times\frac{x_i - \mu_L}{\sqrt{\sigma_L^2 + \epsilon}} + \beta"></p>
+<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/15-self-attention-output.png" alt="img"></p>
+<p>所以我们可以用矩阵形式来描述self-attention：</p>
+<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/16-self-attention-matrix-calculation.png" alt="img"></p>
+<p>公式：</p>
+<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/17-self-attention-matrix-calculation-2.png" alt="img"></p>
+<p>详解这个公式：</p>
+<p>1、$Q*K^T$目的就是两两计算相似度。</p>
+<p>2、除以$\sqrt{d_k}$是因为Transformer使用scaled dot-product attention来计算，也就是加了一个缩放因子$\frac{1}{\sqrt(d_k)}$。$d_k$表示key的维度，默认使用64。解释：<strong>对于维度很大的时候，点积得到的结果很大，使得结果在softmax函数梯度很小的区域。加上这个缩放因子之后，就将值限定在softmax函数梯度比较大的区域了。</strong>下面我们来看一下为什么？</p>
+<blockquote>
+<p>$softmax(i)=\frac{e^{z_i}}{\sum_{j}e^{z_j}}$</p>
+<p>下面我们将softmax对$z_i$进行求偏导之后，发现是和sigmoid一样的二元函数，开口向下，并且无限接近x轴。所以如果不归一化，就回落在梯度比较小的区域了。</p>
+<p>具体的数学解释：假设q和k都是独立的随机变量，均值是0，方差是1，我们计算$qk=\sum_{i=1}^{d_k}q_ik_i$的均值是0，方差是$d_k$，因此我们需要除以$\sqrt{d_k}$来进行修正。</p>
+<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554558854336.png" alt="1554558854336"></p>
+</blockquote>
+<h3 id="multi-attention"><a href="#multi-attention" class="headerlink" title="multi-attention"></a>multi-attention</h3><p>多头注意力机制，在transformer模型中使用的是multi-attention替代了self-attention。其实就是多k，v注意力。</p>
+<p>主要从两个方向提升了attention的优点：</p>
+<ul>
+<li>让模型能够学习到句子中不同位置的信息</li>
+<li>attention layer可以有多个不同的表示子空间</li>
+</ul>
+<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/18-transformer_attention_heads_qkv.png" alt="img"></p>
+<p>上图现实了两个multy-head attention的模型，思路是这样的，论文中输入单词的embedding维度是512，如果multi-attention的大小h设置为8，那么就相当于将词向量分成8份来考虑，每一份就是64维度大小的词向量。然后最后将每一份的输出做concate。</p>
+<p>1、多头注意力机制矩阵表示</p>
+<p>在模型中，通常采用8个头，也就是我们一共有8X3=24个参数矩阵。</p>
+<p>对于一个序列输入，就会有8个输出：$z_0…z_7$</p>
+<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/19-transformer_attention_heads_z.png" alt="img"></p>
+<p>接下来我们只要将这8个输出拼接起来，再乘以一个大的参数矩阵，就会融合到一个矩阵里。送给FFN进行计算。</p>
+<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/20-transformer_attention_heads_weight_matrix_o.png" alt="img"></p>
+<p><strong>下面我们用一张图总结一下注意力机制：</strong></p>
+<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/21-transformer_multi-headed_self-attention-recap.png" alt="img"></p>
+<h3 id="FFN"><a href="#FFN" class="headerlink" title="FFN"></a>FFN</h3><p>Feed-Forward Network。对每个位置过两个线性层，其中使用ReLU作为激活函数。<br>$$<br>\rm{FFN}(x) = \rm{Linear}(\rm{ReLU}(\rm{Linear}(x))) = \rm{max}(0, xW_1 + b_1)W_2 + b_2<br>$$</p>
+<p>FFN的本质还是一维卷积。</p>
+<h3 id="positional-encoder"><a href="#positional-encoder" class="headerlink" title="positional encoder"></a>positional encoder</h3><p>加入这个的目的是为了提取序列顺序信息，因此考虑对序列中词语出现的位置进行编码。</p>
+<p>注意在词向量输入的时候，有一个postional encodeing的过程。这里主要目的就是给词向量加入位置信息：<br>$$<br>带位置信息的词向量 = 词向量 + 位置信息<br>$$<br>位置信息是通过计算位置的sin和cos值进行拼接得到的：<br>$$<br>对于偶数位置：\rm{PE}(pos, 2i) = \sin (\rm{pos} / 10000^{\frac{2i}{d}}) \<br>对于奇数位置：\rm{PE}(pos, \rm{2i+1}) = \cos (\rm{pos} / 10000^{\frac{2i}{d}})<br>$$<br>在偶数位置进行正弦编码，在奇数位置进行余弦编码。</p>
+<p>使用三角函数进行编码的原因是考虑了<strong>相对位置</strong>，比如词汇之间偏移k，PE(pos+k)可以表示维PE(pos)和PE(k)组合的形式，相对于有了表达相对位置的能力。</p>
+<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/24-transformer_positional_encoding_vectors.png" alt="img"></p>
+<p>Transfomer对于Encoder部分的设计还加入了很多trick，比如：残差连接、层归一化、mask</p>
+<p>1、残差连接</p>
+<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/28-transformer_resideual_layer_norm.png" alt="img"></p>
+<p>可以看到每一层的输入都会连在两层之后，这是为了防止梯度退化，为了加快训练速度。（参考resnet的残差设计）</p>
+<p>2、层归一化</p>
+<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/29-transformer_resideual_layer_norm_2.png" alt="img"></p>
+<p>层归一化的设计可以让梯度更好的传播，防止了梯度消失的问题。</p>
+<p><strong>层归一化就是针对一个样本，所有的维度进行归一化。</strong>（批量归一化是针对每个维度，对搜友batch_size的数据进行归一化）</p>
+<p>不是用BN的原因：</p>
+<ul>
+<li>BN高度依赖于batch size的选择，不适合batch size=1的在线学习。</li>
+<li>RNN中不适合用bn，因为RNN的sequence长度不定，training时比较困难。</li>
+</ul>
+<p>LN中同层神经原输入具有相同的均值和方差，不同输入样本有不同的均值和方差。所以LN适用于RNN中batch size=1的normlize操作。</p>
+<p>3、mask</p>
+<p>mask表示掩码，对某些之进行掩盖。分为padding mask和sequence mask。</p>
+<p>padding mask：</p>
+<p>因为每个批输入序列长度都是不一样的（句子长度不一样），对于不足长度的补0处理。我们不希望attention注意这些位置，因此我们这么做。</p>
+<p>将这些位置的值加上一个非常大的负数（负无穷），这样经过softmax之后，这些位置的概率就是0。而padding mask实际是一个boolean矩阵，false的地方就是需要处理的地方。</p>
+<p>sequence mask：</p>
+<p>sequence mask在decoder中生效。为了使得decoder不能看见未来的信息。对于一个序列，在时间步是t的时候，我们的解码输出应该只能依赖于t时刻之前的输出，而不依赖于t之后的输出。但是因为transformer没有时间步的概念，是将所有的词一起输入的，因此需要在decoder的时候加上sequence mask来掩盖t时间步之后的信息。</p>
+<p>具体的做法是：产生一个上三角矩阵，上三角的值全为1，下三角和对角线值全为0，把这样的矩阵作用在每个序列上，就达到目的了。</p>
+<h2 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h2><p>decoder的设计与encoder类似，每个block的结构也大概相同。</p>
+<h3 id="单步"><a href="#单步" class="headerlink" title="单步"></a>单步</h3><p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/31-transformer_decoding_1.gif" alt="img"></p>
+<h3 id="多步"><a href="#多步" class="headerlink" title="多步"></a>多步</h3><p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/32-transformer_decoding_2.gif" alt="img"></p>
+<p>分析整理：在面试时如果问道Transformer模型，主要介绍self-attention模型（输入、计算相似度、softmax、矩阵形式）、FFN的设计、位置信息的加入三个角度来介绍把。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wbG1zbWlsZS5naXRodWIuaW8vMjAxOC8wOC8yOS80OC1hdHRlbnRpb24taXMtYWxsLXlvdS1uZWVkLw==" title="https://plmsmile.github.io/2018/08/29/48-attention-is-all-you-need/">参考大佬的博客<i class="fa fa-external-link"></i></span></p>
+<h1 id="阿里爸爸对Transformer的改动"><a href="#阿里爸爸对Transformer的改动" class="headerlink" title="阿里爸爸对Transformer的改动"></a><span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3MvbGdHRFRDRjNxZzg0bmp2MkllSEM5QQ==" title="https://mp.weixin.qq.com/s/lgGDTCF3qg84njv2IeHC9A">阿里爸爸对Transformer的改动<i class="fa fa-external-link"></i></span></h1><p>1、改动了multi-head 的输出。</p>
+<p>原本的输出是将多个头的输出concat到一起，然后送入FFN中。但是阿里爸爸说这样不好，我们要对每个头的输出计算一个权重，所以它通过下面的公式来得到每个block的输出：</p>
+<p><img src="/uploads/loading.gif" data-original="https://mmbiz.qpic.cn/mmbiz_png/KmXPKA19gWickrFecuBfZJLrhwo7NbZhJtJBKRGznW2O3AJDDibt5Oa41G83K57N0icYq70w6caebdbQ4luqY9PtA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>观察一下上面式子，$head_i$不变，然而对每个head的输出10X64维度，它又去乘以一个W矩阵，放大到512维，然后还乘以一个$k_i$，这个$k_i$是第一个权重。然后将这个结果送到FFN中，再对FFN的输出做一个attention。</p>
+<p>可以发现，这块的改动主要有两个：</p>
+<ul>
+<li>对每个head进行升维，然后计算一次attention</li>
+<li>将每个head送到FFN中，计算每个输出的attention</li>
+</ul>
+<p><img src="/uploads/loading.gif" data-original="https://mmbiz.qpic.cn/mmbiz_png/KmXPKA19gWickrFecuBfZJLrhwo7NbZhJBkJHDHQBWRiawibJiaR2hUKIsOWEajjqkrW9AkPbOmSNdLWxbblLssSvQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>2、改动position的表达</p>
+<p>传统的tranformer直接给出了位置向量的公式，但是这个公式是绝对位置公式，阿里爸爸认为相对位置更能体现词语之间的关系。</p>
+<p>所以阿里爸爸将输入词序列建模成一个有向全连接图，</p>
+<p><img src="/uploads/loading.gif" data-original="https://mmbiz.qpic.cn/mmbiz_png/KmXPKA19gWickrFecuBfZJLrhwo7NbZhJKxdRxtX0ibptlbRbf0ubhC93arWLIou0ryQBLLdOgiaQR2bwwBjnrrJQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>上图就是所有输入序列的有向全连接图，成对词之间会有两条有向边，每个有向边上编码了相对位置信息。</p>
+<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554563797054.png" alt="1554563797054"></p>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>boris</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://yoursite.com/a/3837305387/" title="Transformer模型">http://yoursite.com/a/3837305387/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLW5kLzQuMC9kZWVkLnpo"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/a/3606633551/" rel="next" title="文本主题模型">
+                <i class="fa fa-chevron-left"></i> 文本主题模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/a/3329557370/" rel="prev" title="最大似然估计和最大后验概率估计">
+                最大似然估计和最大后验概率估计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+  
+  <p class="site-author-name" itemprop="name">boris</p>
+  <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmJhbmc=" title="GitHub &rarr; https://github.com/linbang"><i class="fa fa-fw fa-github"></i>GitHub</span>
+      </span>
+    
+  </div>
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Transformer概览"><span class="nav-number">1.</span> <span class="nav-text">Transformer概览</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文结构"><span class="nav-number">1.1.</span> <span class="nav-text">论文结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总览结构"><span class="nav-number">1.2.</span> <span class="nav-text">总览结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图解总览"><span class="nav-number">1.3.</span> <span class="nav-text">图解总览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Encoder"><span class="nav-number">1.4.</span> <span class="nav-text">Encoder</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#self-attention"><span class="nav-number">1.4.1.</span> <span class="nav-text">self-attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multi-attention"><span class="nav-number">1.4.2.</span> <span class="nav-text">multi-attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FFN"><span class="nav-number">1.4.3.</span> <span class="nav-text">FFN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#positional-encoder"><span class="nav-number">1.4.4.</span> <span class="nav-text">positional encoder</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decoder"><span class="nav-number">1.5.</span> <span class="nav-text">Decoder</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单步"><span class="nav-number">1.5.1.</span> <span class="nav-text">单步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多步"><span class="nav-number">1.5.2.</span> <span class="nav-text">多步</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#阿里爸爸对Transformer的改动"><span class="nav-number">2.</span> <span class="nav-text">阿里爸爸对Transformer的改动</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <span class="exturl" data-url="aHR0cDovL3d3dy5iZWlhbi5taWl0Lmdvdi5jbg=="> </span>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-superpowers"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">boris</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">296k</span>
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      您是到访本站的第 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 位小伙伴
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      本站已被戳过 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次了
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <script size="300" alpha="0.6" zindex="-1" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js"></script>
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.2.0"></script>
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</html>

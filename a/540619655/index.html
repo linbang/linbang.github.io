@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/uploads/logo.png?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+
+
+
+  
+  
+    
+      
+    
+    
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css?v=1.0.2">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="面向对象：继承、多态、封装 Java中继承的理解继承就是字类继承父类的实例和方法，字类通过extend父类，就可以实现对父类的继承。 注意父类中private方法和实例是无法被继承的。 继承的子类可以重写父类的方法。 Java中多态的理解含义多态，程序中定义的引用变量指向哪个类的对象在编程时不确定，只有在程序运行时才确定。因为运行时，变量才确定到具体的类上面。 必要条件1、继承：必须存在有继承关系">
+<meta name="keywords" content="博客,机器学习,Java,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA常见面试题">
+<meta property="og:url" content="http://yoursite.com/a/540619655/index.html">
+<meta property="og:site_name" content="切克闹">
+<meta property="og:description" content="面向对象：继承、多态、封装 Java中继承的理解继承就是字类继承父类的实例和方法，字类通过extend父类，就可以实现对父类的继承。 注意父类中private方法和实例是无法被继承的。 继承的子类可以重写父类的方法。 Java中多态的理解含义多态，程序中定义的引用变量指向哪个类的对象在编程时不确定，只有在程序运行时才确定。因为运行时，变量才确定到具体的类上面。 必要条件1、继承：必须存在有继承关系">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="data:image/png;base64,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">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:updated_time" content="2020-02-09T11:12:56.104Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVA常见面试题">
+<meta name="twitter:description" content="面向对象：继承、多态、封装 Java中继承的理解继承就是字类继承父类的实例和方法，字类通过extend父类，就可以实现对父类的继承。 注意父类中private方法和实例是无法被继承的。 继承的子类可以重写父类的方法。 Java中多态的理解含义多态，程序中定义的引用变量指向哪个类的对象在编程时不确定，只有在程序运行时才确定。因为运行时，变量才确定到具体的类上面。 必要条件1、继承：必须存在有继承关系">
+<meta name="twitter:image" content="data:image/png;base64,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">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/a/540619655/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>JAVA常见面试题 | 切克闹</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切克闹</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+      <a>
+        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+      </a>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">121</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">20</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">24</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/540619655/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="boris">
+      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
+      <meta itemprop="image" content="/uploads/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切克闹">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JAVA常见面试题
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-12 10:59:44" itemprop="dateCreated datePublished" datetime="2019-03-12T10:59:44+08:00">2019-03-12</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-09 19:12:56" itemprop="dateModified" datetime="2020-02-09T19:12:56+08:00">2020-02-09</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+               <!--  阅读次数：  -->
+               本文已被戳过 <span class="busuanzi-value" id="busuanzi_value_page_pv"></span> 次了
+              </span>
+            </span>
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">6.2k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">6 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>面向对象：继承、多态、封装</p>
+<h2 id="Java中继承的理解"><a href="#Java中继承的理解" class="headerlink" title="Java中继承的理解"></a>Java中继承的理解</h2><p>继承就是字类继承父类的实例和方法，字类通过extend父类，就可以实现对父类的继承。</p>
+<p>注意父类中private方法和实例是无法被继承的。</p>
+<p>继承的子类可以重写父类的方法。</p>
+<h2 id="Java中多态的理解"><a href="#Java中多态的理解" class="headerlink" title="Java中多态的理解"></a>Java中多态的理解</h2><h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><p>多态，程序中定义的引用变量指向哪个类的对象在编程时不确定，只有在程序运行时才确定。因为运行时，变量才确定到具体的类上面。</p>
+<h3 id="必要条件"><a href="#必要条件" class="headerlink" title="必要条件"></a>必要条件</h3><p>1、继承：必须存在有继承关系的子类和父类</p>
+<p>2、重写：字类必须重写父类的方法，这样在运行时才会调用字类的方法</p>
+<p>3、向上转型：必须将子类的引用赋给父类对象，只有这样该引用才能够具备调用父类的方法和子类的方法。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h4 id="实现1，基于继承的实现"><a href="#实现1，基于继承的实现" class="headerlink" title="实现1，基于继承的实现"></a>实现1，基于继承的实现</h4><p>比如我们有peple父类，父类中有一个public的函数叫getname。</p>
+<p>有一个man子类和woman子类，man子类重写了getname方法并输出man，woman类重写了getname方法并且输出woman。</p>
+<p>main函数中，我们令peple peple1 = new man();peple peple2 = new woman();然后分别调用getname的方法，分别会输出man和woman，这个过程就叫做基于继承的多态实现。</p>
+<h4 id="实现2，基于接口的实现"><a href="#实现2，基于接口的实现" class="headerlink" title="实现2，基于接口的实现"></a>实现2，基于接口的实现</h4><p>因为一个子类只能继承一个父类，有限。而通过接口就可以将不同的服务进行封装，一个类可以实现多个接口。</p>
+<p>声明一个接口用interface关键字，接口不能实例化，不能 new 接口。抽象类可以new一个对象。</p>
+<p>接口的实现用implements关键子，抽象类的继承用extend。</p>
+<h2 id="int和Integer的区别"><a href="#int和Integer的区别" class="headerlink" title="int和Integer的区别"></a>int和Integer的区别</h2><p>int是Java中的原始数据类型，Java为每个原始类型都提供了封装类，Integer就是java为int提供的封装类，所以Integer需要new一个对象。</p>
+<p>但是int a = new Integer(100);这种语法是对的，因为Java中会对这种情况自动进行拆箱和装箱。</p>
+<h2 id="public、private、proteted区别"><a href="#public、private、proteted区别" class="headerlink" title="public、private、proteted区别"></a>public、private、proteted区别</h2><p><img src="data:image/png;base64,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" alt="img"></p>
+<h2 id="‘-’和’-equals-’的区别"><a href="#‘-’和’-equals-’的区别" class="headerlink" title="‘==’和’.equals()’的区别"></a>‘==’和’.equals()’的区别</h2><h3 id="‘-’的理解"><a href="#‘-’的理解" class="headerlink" title="‘==’的理解"></a>‘==’的理解</h3><p>1、比较基本数据类型的时候，比如int、double、char等，用==比较的是他们的值是否相等</p>
+<p>2、比较引用数据类型的时候，比较的是<strong>他们在内存中存放的地址</strong></p>
+<p>所以比较两个对象，如果对象值都一样，但是是分别new的，那么用==肯定是false，因为每new一次，就会新开辟一块堆内存空间。</p>
+<h3 id="‘-equals-’的理解"><a href="#‘-equals-’的理解" class="headerlink" title="‘.equals()’的理解"></a>‘.equals()’的理解</h3><p>Java所有的类都继承Object类，.equals()就是object类中的方法。</p>
+<p>如果类不对.equals()方法进行重写，那么它比较的也是堆中的地址，作用和’==’相同。</p>
+<p>但是一般情况下，我们在类中都会重写.equals()方法，比如string是一个类对象，它就重写了.equals方法用来比较两个字符串的值是否相等，所以我们比较两个字符串的时候一定要用s1.equals(s2)。</p>
+<p>同时在自己定义类，并且可能需要比较类对象是否相同的时候，也最好重写这个方法。</p>
+<h2 id="堆区、栈区、方法区等等"><a href="#堆区、栈区、方法区等等" class="headerlink" title="堆区、栈区、方法区等等"></a>堆区、栈区、方法区等等</h2><p>JVM的内存可以分为堆区、栈区和方法区。简单总结一下可能会问的东西。</p>
+<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdn.net/20180720184301471?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0Rhbm55X2lkZWE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="è¿éåå¾çæè¿°"></p>
+<h3 id="堆区"><a href="#堆区" class="headerlink" title="堆区"></a>堆区</h3><p>堆区全部存放对象，jvm只有一个堆区，可以被所有线程共享。</p>
+<p><strong>堆区是gc回收的一个重要区域</strong></p>
+<h3 id="栈区"><a href="#栈区" class="headerlink" title="栈区"></a>栈区</h3><p>每个线程都有一个栈区，用来保存基本的数据类型、对象的引用。</p>
+<p>每个栈中的数据都是线程私有的，其他线程无法访问。</p>
+<p>栈分为三个区：基本类型变量区、执行环境上下文、操作指令区</p>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p>也叫静态区，所有的线程共享，包含所有的class和static变量</p>
+<p>方法区中包含的都是在程序中永远唯一的元素</p>
+<p>JDK1.8中，已经没有方法区了，将方法区直接放在一个与堆不相连的本地内存区域，叫做元空间。</p>
+<h2 id="Java设计模式"><a href="#Java设计模式" class="headerlink" title="Java设计模式"></a>Java设计模式</h2><h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><p>因程序需要，有时我们只需要某个类同时保留一个对象，不希望有更多对象，此时，我们则应考虑单例模式的设计。</p>
+<p>有很多种实现：</p>
+<p>1、懒汉模式</p>
+<p>来一个线程就获取一个对象，导致实例化多次类对象，不符合单例模式的要求。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton uniqueInstance;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getUniqueInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (uniqueInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            uniqueInstance = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> uniqueInstance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2、懒汉式（线程安全）</p>
+<p>对get方法加了一个synchronized锁，当一个线程进入该方法是，其他的线程必须等待，这样会引起阻塞。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getUniqueInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (uniqueInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">        uniqueInstance = <span class="keyword">new</span> Singleton();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> uniqueInstance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3、双重校验锁（线程安全）</p>
+<p>uniqueInstance 只需要被实例化一次，之后就可以直接使用了。加锁操作只需要对实例化那部分的代码进行，只有当 uniqueInstance 没有被实例化时，才需要进行加锁。</p>
+<p>双重校验锁先判断 uniqueInstance 是否已经被实例化，如果没有被实例化，那么才对实例化语句进行加锁。</p>
+<p>这里要判断两次if(singleton==null)</p>
+<p>1、第一次校验，如果已经有这个对象了，就直接返回，没有的话，进入语句块。</p>
+<p>2、如果没有第二次判断，那么两个线程同时进入下面语句</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (uniqueInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (Singleton<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line">        uniqueInstance = <span class="keyword">new</span> Singleton();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第一个线程进来后生成一个对象，第二个线程进来后又生成一个对象。所以就不对了。</p>
+<p>niqueInstance 采用 volatile 关键字修饰也是很有必要的， <code>uniqueInstance = new Singleton();</code> 这段代码其实是分为三步执行：</p>
+<ol>
+<li>为 uniqueInstance 分配内存空间</li>
+<li>初始化 uniqueInstance</li>
+<li>将 uniqueInstance 指向分配的内存地址</li>
+</ol>
+<p>但是由于 JVM 具有指令重排的特性，执行顺序有可能变成 1&gt;3&gt;2。指令重排在单线程环境下不会出现问题，但是在多线程环境下会导致一个线程获得还没有初始化的实例。例如，线程 T1 执行了 1 和 3，此时 T2 调用 getUniqueInstance() 后发现 uniqueInstance 不为空，因此返回 uniqueInstance，但此时 uniqueInstance 还未被初始化。</p>
+<p>使用 volatile 可以禁止 JVM 的指令重排，保证在多线程环境下也能正常运行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton uniqueInstance;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getUniqueInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (uniqueInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (uniqueInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    uniqueInstance = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> uniqueInstance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4、静态内部类实现</p>
+<p>当 Singleton 类加载时，静态内部类 SingletonHolder 没有被加载进内存。只有当调用 <code>getUniqueInstance()</code>方法从而触发 <code>SingletonHolder.INSTANCE</code> 时 SingletonHolder 才会被加载，此时初始化 INSTANCE 实例，并且 JVM 能确保 INSTANCE 只被实例化一次。</p>
+<p>这种方式不仅具有延迟初始化的好处，而且由 JVM 提供了对线程安全的支持。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getUniqueInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> SingletonHolder.INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3><h2 id="Java中锁的理解"><a href="#Java中锁的理解" class="headerlink" title="Java中锁的理解"></a>Java中锁的理解</h2><p>Java中面对高并发，多个线程处理一块资源的时候，为了维护数据的一致性，会使用synchronized关键字来给资源上锁。只有拿到锁的线程才有权限访问资源，加锁保证了资源访问的顺序性。</p>
+<p>乐观锁：</p>
+<p>认为竞争不总是发生，不许用加锁。如果发生冲突，就会进入到一个while循环中，不停的尝试获取资源。</p>
+<p>（这里不挂起，因为阻塞之后就会将程序从用户空间转到内核空间，非常浪费资源）</p>
+<p>悲观锁：</p>
+<p>认为竞争总是会发生，所以进程都某个资源进行操作时，会加synchronized关键字进行上锁，防止其他的进程获取这个资源。</p>
+<h2 id="overload和override的区别"><a href="#overload和override的区别" class="headerlink" title="overload和override的区别"></a>overload和override的区别</h2><p>overload是重载的意思，override是覆盖，也就是重写的意思。</p>
+<p>重载就是指一个函数名，可以设置不同的参数来实现重载。（注意，只是改变返回类型不算重载，无法通过编译）</p>
+<p>重写，是指子类的方法可以对继承的父类的方法进行重写。比如我们经常会在集合中重写compare方法，例如大顶堆等，这些就叫做override。</p>
+<h2 id="缓存池"><a href="#缓存池" class="headerlink" title="缓存池"></a>缓存池</h2><p>new Integer(123)和Integer.valueof(123)的区别：</p>
+<ul>
+<li>new Integer(123)每一次都会新建一个对象</li>
+<li>Integer.valueof(123)会使用缓存池中的对象，多次调用取得同一个对象的引用</li>
+</ul>
+<h2 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h2><h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>抽象类和抽象方法都通过abstract关键字进行声明，抽象类中包含抽象方法，抽象方法一定定义在抽象类中，而且一般情况抽象方法不会写具体的实现。</p>
+<p>抽象类不可以被实例化。</p>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>接口是更抽象的抽象类，用interface声明。接口中的方法都不能写实现。</p>
+<p>接口中成员默认都是public，字段默认是static和final。</p>
+<h2 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h2><p>用于子类访问父类的构造函数，或者通过super访问父类的成员变量。</p>
+<h2 id="static关键字"><a href="#static关键字" class="headerlink" title="static关键字"></a>static关键字</h2><p>static可以用来修饰很多东西，比如静态变量、静态方法、静态内部类等等</p>
+<h3 id="静态变量"><a href="#静态变量" class="headerlink" title="静态变量"></a>静态变量</h3><ul>
+<li>又称为类变量，也就是说这个变量属于类的，类所有的实例都共享静态变量，可以直接通过类名来访问它。静态变量在内存中只存在一份。</li>
+</ul>
+<h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><ul>
+<li>静态方法不依赖于类对象就可以进行访问，对于静态方法是没有this指针的，因为他不依赖于对象。</li>
+<li>静态方法中不能访问类的非静态成员变量和非静态方法。</li>
+</ul>
+<h3 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h3><ul>
+<li>静态内部类可以在类方法中直接new一个对象，而非静态内部类依赖于外部类的实例。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OuterClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span> </span>&#123;  <span class="comment">//只能通过outerclass的对象来new一个对象</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticInnerClass</span> </span>&#123;  <span class="comment">//可以直接new一个对象</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// InnerClass innerClass = new InnerClass(); // 'OuterClass.this' cannot be referenced from a static context</span></span><br><span class="line">        OuterClass outerClass = <span class="keyword">new</span> OuterClass();</span><br><span class="line">        InnerClass innerClass = outerClass.<span class="keyword">new</span> InnerClass();</span><br><span class="line">        StaticInnerClass staticInnerClass = <span class="keyword">new</span> StaticInnerClass();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h2><p>final声明的常量，不能被修改。</p>
+<p>final声明的方法，不能被子类重写。</p>
+<p>final声明的类，不能被继承</p>
+<h2 id="Java反射机制"><a href="#Java反射机制" class="headerlink" title="Java反射机制"></a>Java反射机制</h2><p>每个类都有一个 <strong>Class</strong> 对象，包含了与类有关的信息。当编译一个新类时，会产生一个同名的 .class 文件（字节码文件），该文件内容保存着 Class 对象。</p>
+<p>所谓的反射机制，是指代码在JVM中运行的时候，jvm获取到类中所有的属性和方法，对于一个对象，都能够调用它的任意一个方法。</p>
+<h2 id="JKD和JRE"><a href="#JKD和JRE" class="headerlink" title="JKD和JRE"></a>JKD和JRE</h2><p>jdk是指java程序用的开发包，比如各种方法、泛型的实现。</p>
+<p>jre是指java运行的环境，比如jvm。</p>
+<h2 id="Java基本数据类型"><a href="#Java基本数据类型" class="headerlink" title="Java基本数据类型"></a>Java基本数据类型</h2><table>
+<thead>
+<tr>
+<th>int</th>
+<th>4字节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>float</td>
+<td>4字节</td>
+</tr>
+<tr>
+<td>char</td>
+<td>2字节</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8字节</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>1字节</td>
+</tr>
+</tbody></table>
+<h2 id="String类是否可以被继承"><a href="#String类是否可以被继承" class="headerlink" title="String类是否可以被继承"></a>String类是否可以被继承</h2><p>不可以被继承</p>
+<p>String类使用final修饰，final修饰的类无法被继承</p>
+<p>final类不能被继承；</p>
+<p>final方法不能被重写；</p>
+<p>final变量不能被修改；</p>
+<h2 id="synchronized和volatile"><a href="#synchronized和volatile" class="headerlink" title="synchronized和volatile"></a>synchronized和volatile</h2><p>两个关键字都是为了解决java高并发的问题。</p>
+<p>synchronized修饰方法或者代码块</p>
+<p>volatile修饰变量，线程在每次使用变量的时候，都会去读取变量修改后的值。</p>
+<p>volatile轻量级同步，不会加锁导致线程阻塞，如果变量是volatile修饰，每一次读和写，都必须和主内存进行交互，同时这个关键字还禁止了编译器和处理器的一些重排序优化。（所以在双重锁实现单例模式的时候需要加volatile，防止jvm的虫重排序）</p>
+<p>volatile最常使用就是单例模式的双重锁实现，有时也会对boolean变量进行加volatile。</p>
+<h2 id="堆、栈溢出"><a href="#堆、栈溢出" class="headerlink" title="堆、栈溢出"></a>堆、栈溢出</h2><p>JVM中堆保存着所有的对象，堆溢出就是不断的new对象，就会溢出。</p>
+<p>JVM中栈是线程私有的，保存一些引用、变量、常量等，每执行一次方法就会加一个栈帧（栈顶元素）。栈溢出可以理解为方法执行时创建的栈帧超过了栈的深度，最有可能的就是递归。</p>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>Java中泛型广泛应用在集合类框架中，泛型可以简化代码。集合定义中只要通过&lt;&gt;定义类型就行了。</p>
+<p>泛型通过类型擦除实现，在程序编译期间擦出所有类型，只保留Object累。判断类型信息是在写代码中，编译器在编译之间就会检查泛型是否正确，然后才可以编译。</p>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>异常（Exception）是程序在执行过程中的错误，比如输入错误、数组边界错误、空指针错误等。</p>
+<p>如果有异常捕捉代码，比如（try-catch），就会进入异常程序，不会影响程序运行；如果没有，或者throw异常，就可能会导致程序中断。</p>
+<p>exception：可预见的错误，可以通过捕捉来控制。</p>
+<p>error：不可预见的错误，比如堆栈溢出等，不可捕捉，jvm层面的错误，不可捕捉。</p>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>boris</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://yoursite.com/a/540619655/" title="JAVA常见面试题">http://yoursite.com/a/540619655/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLW5kLzQuMC9kZWVkLnpo"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/a/1219920510/" rel="next" title="ArrayList">
+                <i class="fa fa-chevron-left"></i> ArrayList
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/a/1725226326/" rel="prev" title="SVD介绍">
+                SVD介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+  
+  <p class="site-author-name" itemprop="name">boris</p>
+  <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmJhbmc=" title="GitHub &rarr; https://github.com/linbang"><i class="fa fa-fw fa-github"></i>GitHub</span>
+      </span>
+    
+  </div>
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中继承的理解"><span class="nav-number">1.</span> <span class="nav-text">Java中继承的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中多态的理解"><span class="nav-number">2.</span> <span class="nav-text">Java中多态的理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#含义"><span class="nav-number">2.1.</span> <span class="nav-text">含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#必要条件"><span class="nav-number">2.2.</span> <span class="nav-text">必要条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">2.3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现1，基于继承的实现"><span class="nav-number">2.3.1.</span> <span class="nav-text">实现1，基于继承的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现2，基于接口的实现"><span class="nav-number">2.3.2.</span> <span class="nav-text">实现2，基于接口的实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#int和Integer的区别"><span class="nav-number">3.</span> <span class="nav-text">int和Integer的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#public、private、proteted区别"><span class="nav-number">4.</span> <span class="nav-text">public、private、proteted区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#‘-’和’-equals-’的区别"><span class="nav-number">5.</span> <span class="nav-text">‘==’和’.equals()’的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#‘-’的理解"><span class="nav-number">5.1.</span> <span class="nav-text">‘==’的理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#‘-equals-’的理解"><span class="nav-number">5.2.</span> <span class="nav-text">‘.equals()’的理解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆区、栈区、方法区等等"><span class="nav-number">6.</span> <span class="nav-text">堆区、栈区、方法区等等</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#堆区"><span class="nav-number">6.1.</span> <span class="nav-text">堆区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#栈区"><span class="nav-number">6.2.</span> <span class="nav-text">栈区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区"><span class="nav-number">6.3.</span> <span class="nav-text">方法区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java设计模式"><span class="nav-number">7.</span> <span class="nav-text">Java设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式"><span class="nav-number">7.1.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂模式"><span class="nav-number">7.2.</span> <span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#观察者模式"><span class="nav-number">7.3.</span> <span class="nav-text">观察者模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中锁的理解"><span class="nav-number">8.</span> <span class="nav-text">Java中锁的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#overload和override的区别"><span class="nav-number">9.</span> <span class="nav-text">overload和override的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存池"><span class="nav-number">10.</span> <span class="nav-text">缓存池</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象类和接口"><span class="nav-number">11.</span> <span class="nav-text">抽象类和接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象类"><span class="nav-number">11.1.</span> <span class="nav-text">抽象类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口"><span class="nav-number">11.2.</span> <span class="nav-text">接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#super关键字"><span class="nav-number">12.</span> <span class="nav-text">super关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#static关键字"><span class="nav-number">13.</span> <span class="nav-text">static关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态变量"><span class="nav-number">13.1.</span> <span class="nav-text">静态变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态方法"><span class="nav-number">13.2.</span> <span class="nav-text">静态方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态内部类"><span class="nav-number">13.3.</span> <span class="nav-text">静态内部类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#final关键字"><span class="nav-number">14.</span> <span class="nav-text">final关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java反射机制"><span class="nav-number">15.</span> <span class="nav-text">Java反射机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JKD和JRE"><span class="nav-number">16.</span> <span class="nav-text">JKD和JRE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java基本数据类型"><span class="nav-number">17.</span> <span class="nav-text">Java基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String类是否可以被继承"><span class="nav-number">18.</span> <span class="nav-text">String类是否可以被继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#synchronized和volatile"><span class="nav-number">19.</span> <span class="nav-text">synchronized和volatile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆、栈溢出"><span class="nav-number">20.</span> <span class="nav-text">堆、栈溢出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型"><span class="nav-number">21.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常"><span class="nav-number">22.</span> <span class="nav-text">异常</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <span class="exturl" data-url="aHR0cDovL3d3dy5iZWlhbi5taWl0Lmdvdi5jbg=="> </span>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-superpowers"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">boris</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">296k</span>
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      您是到访本站的第 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 位小伙伴
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      本站已被戳过 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次了
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <script size="300" alpha="0.6" zindex="-1" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js"></script>
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.2.0"></script>
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</html>

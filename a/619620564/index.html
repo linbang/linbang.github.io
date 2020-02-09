@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/uploads/logo.png?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+
+
+
+  
+  
+    
+      
+    
+    
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css?v=1.0.2">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="文本分类问题可以用传统的分类方法和深度学习方法。本文对这两种方法进行梳理。 文本分类问题文本分类问题时自然语言处理经典问题，包括二分类（情感分类）、多分类（主题识别）、多标签（自动标签系统）等一些问题。 传统文本分类方法 传统的人工文本分类方法主要套路是：人工特征工程+传统机器学习模型 特征工程特征工程在传统的机器学习中特别重要，在文本分类中，需要通过人工提取文本各种特征，特征工程比起模型更加重要">
+<meta name="keywords" content="博客,机器学习,Java,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文本分类汇总">
+<meta property="og:url" content="http://yoursite.com/a/619620564/index.html">
+<meta property="og:site_name" content="切克闹">
+<meta property="og:description" content="文本分类问题可以用传统的分类方法和深度学习方法。本文对这两种方法进行梳理。 文本分类问题文本分类问题时自然语言处理经典问题，包括二分类（情感分类）、多分类（主题识别）、多标签（自动标签系统）等一些问题。 传统文本分类方法 传统的人工文本分类方法主要套路是：人工特征工程+传统机器学习模型 特征工程特征工程在传统的机器学习中特别重要，在文本分类中，需要通过人工提取文本各种特征，特征工程比起模型更加重要">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:updated_time" content="2020-02-09T11:12:58.710Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文本分类汇总">
+<meta name="twitter:description" content="文本分类问题可以用传统的分类方法和深度学习方法。本文对这两种方法进行梳理。 文本分类问题文本分类问题时自然语言处理经典问题，包括二分类（情感分类）、多分类（主题识别）、多标签（自动标签系统）等一些问题。 传统文本分类方法 传统的人工文本分类方法主要套路是：人工特征工程+传统机器学习模型 特征工程特征工程在传统的机器学习中特别重要，在文本分类中，需要通过人工提取文本各种特征，特征工程比起模型更加重要">
+<meta name="twitter:image" content="http://yoursite.com/uploads/loading.gif">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/a/619620564/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>文本分类汇总 | 切克闹</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切克闹</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+      <a>
+        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+      </a>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">121</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">20</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">24</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/619620564/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="boris">
+      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
+      <meta itemprop="image" content="/uploads/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切克闹">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">文本分类汇总
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-07 14:14:42" itemprop="dateCreated datePublished" datetime="2019-03-07T14:14:42+08:00">2019-03-07</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-09 19:12:58" itemprop="dateModified" datetime="2020-02-09T19:12:58+08:00">2020-02-09</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/自然语言处理/" itemprop="url" rel="index"><span itemprop="name">自然语言处理</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+               <!--  阅读次数：  -->
+               本文已被戳过 <span class="busuanzi-value" id="busuanzi_value_page_pv"></span> 次了
+              </span>
+            </span>
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">8.3k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">8 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>文本分类问题可以用传统的分类方法和深度学习方法。本文对这两种方法进行梳理。</p>
+<h1 id="文本分类问题"><a href="#文本分类问题" class="headerlink" title="文本分类问题"></a>文本分类问题</h1><p>文本分类问题时自然语言处理经典问题，包括二分类（情感分类）、多分类（主题识别）、多标签（自动标签系统）等一些问题。</p>
+<h1 id="传统文本分类方法"><a href="#传统文本分类方法" class="headerlink" title="传统文本分类方法"></a>传统文本分类方法</h1><p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/7145358-d78410d7b9cc6874.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/720/format/webp" alt="img"></p>
+<p>传统的人工文本分类方法主要套路是：人工特征工程+传统机器学习模型</p>
+<h2 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h2><p>特征工程在传统的机器学习中特别重要，在文本分类中，需要通过人工提取文本各种特征，特征工程比起模型更加重要。</p>
+<p>文本分类也和传统分类任务一样，需要进行预处理、特征提取、文本表示三个部分，将文本内容转变成计算机可以理解的格式，送入到模型中进行学习。</p>
+<h3 id="文本预处理"><a href="#文本预处理" class="headerlink" title="文本预处理"></a>文本预处理</h3><p>首先预处理的第一步和普通分类任务相似，都需要进行数据清洗，比如缺失值处理、去重处理、噪声处理等。</p>
+<p>文本预处理过程包括一下几个过程：分词、停词、同义词替换、无意义文本去除</p>
+<h4 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h4><p>分词的主要方法有三种</p>
+<ul>
+<li>基于字符串匹配（规则）的分词</li>
+</ul>
+<p>​    扫描字符串，如果发现字符串的字串和词典中的词相同，就匹配。比如机械分词方法，这种分词方法通常都会加入一些启发式规则，例如：正向最大匹配，反向最大匹配，长词优先等。</p>
+<blockquote>
+<p>正向最大匹配思想</p>
+<p>1、从左到右取带切分汉语的m个字符作为匹配字段，m为词典中最长词条长度</p>
+<p>2、查找词典并进行匹配，若匹配成功就把这个匹配字段作为一个词切分出来</p>
+<p>3、若不成功，则去掉最后一个字，然后继续上述过程，直到找到匹配为止</p>
+</blockquote>
+<ul>
+<li>基于统计的分词</li>
+</ul>
+<p>​    核心思想：上下文中，相邻的字出现的次数越多，就越可能构成一个词。基于人工标注的词性和统计特征，在分词阶段通过模型计算各种分词出现的概率，把概率最大的分词结果作为最终结果。常见的序列标注模型有HMM和CRF。常见的概率模型有N-gram语言模型。</p>
+<p><strong>基于N-gram的分词法</strong></p>
+<p>N-gram其实是统计语言模型的进阶版本，思想马尔可夫假设：一个词的出现只和前面的N-1个词有关。</p>
+<p>假设是2-gram语言模型，所以我们公式就转化成：<br>$$<br>P(w)=P(w_1)P(w_2|w_1)P（w_3|w_2w_1）…P(w_n|w_{n-1}w_{n-2}..w_1) \<br>= P(w_1)P(w_2|w_1)P(w_3|w_2)…P(w_n|w_{n-1})<br>$$<br>这样的话，各种切分路径的概率就可以求解，然后我们枚举全部的路径，暴力求解最优路径。或者用动态规划都可以。</p>
+<p><strong>基于HMM（隐形马尔可夫）模型的分词</strong></p>
+<p>一个HMM模型可以用5元组表示$\mu=(Q,V,A,B,\pi)$，</p>
+<blockquote>
+<p>Q：所有可能的状态集合</p>
+<p>V：所有可能的观测集合</p>
+<p>A：状态转移矩阵</p>
+<p>B：观测概率矩阵</p>
+<p>$\pi$：初始概率分布</p>
+</blockquote>
+<p>HMM模型问题有两个特征：1）问题是基于序列的，比如时间序列、状态序列等。2）问题有两类数据，一类序列数据是可以观测到的，即观测序列；另一类数据是无法被观测到的，即隐藏状态序列，也叫做状态序列。</p>
+<p>隐形马尔可夫模型$\lambda$可以用三元组表示：$\lambda=(A,B,\pi)$。HMM模型主要解决三个基本问题：</p>
+<ul>
+<li>概率计算问题：给定一个隐藏序列$I=I_1,I_2,…,I_t$和模型$\lambda=(A,B,\pi)$，计算观察序列$O$的概率。求解的方法是前向、后向动态规划算法。</li>
+<li>学习问题：给定一个观察序列$O=O_1,O_2,…,O_t$，给定一个状态序列$I=I_1,I_2…I_t$，用极大似然估计方法求模型参数。求解的方法是EM算法。</li>
+<li>预测问题：也成为解码问题，已知模型参数和观测序列，要求找到最可能的隐藏序列$I=I_1,I_2…I_t$。求解得算法是通过viterbi算法求解。</li>
+</ul>
+<p>利用HMM模型求解分词本质是预测问题，也就是根据观测序列（词序列）找到真正隐藏状态值序列。状态集合为{B,M,E,S}:{Begin,Middle,End,Single}，分别表示字在词语中的位置。观察值集合就是所有的汉字。我们需要给定一个句子，然后找到这个句子的状态序列。例如：</p>
+<blockquote>
+<p>句子：小明硕士毕业于中国科学院计算所</p>
+<p>输出状态序列：BEBEBMEBEBMEBES</p>
+<p>根据状态序列进行切词：BE/ BE/ BME/ BE/ BME/ BE/ S</p>
+<p>切词结果：小明/ 硕士/ 毕业于/中国/科学院/计算所</p>
+</blockquote>
+<p>注意，B后面只能接MorE，不能接BorS。M后面也只能接MorE，不能接BorS。</p>
+<p>我们有了状态集合和观察集合，观察序列就是viterbi算法的输入，状态序列就是viterbi的输出，输入和输出之间我们还需要三个模型参数：状态转移矩阵、观测值概率矩阵和初始状态分布。接下来就是通过有标注的数据来得到这三个参数，从而进行中文分词。</p>
+<p><strong>基于CRF模型的分词</strong></p>
+<p>CRF（条件随机场），是判别式模型，通过学习条件概率$P(Y|X)$来描述模型。</p>
+<ul>
+<li>基于理解的分词</li>
+</ul>
+<p>上面的基于统计分词是最常用的方法，里面涉及到一些常用的例如hmm或者crf模型。而基于理解的分词需要强的人工介入，适用范围不广。</p>
+<p><strong>常用分词方法对比</strong></p>
+<p>1、CRF使用输入文本的全局特征。而HMM只能看到在当前位置前面的局部特征（齐次马尔可夫假设）</p>
+<p>2、CRF是判别式模型，直接对序列标注建模。而HMM是生成式模型，引入了不必要的先验知识（概率）</p>
+<p>3、CRF解码速度快，分词精度高，但是训练速度慢；HMM需要很大的语料信息（生成模型参数），精准度低。</p>
+<p>分词常用的是jieba库，可以根据文本内容将常用词标注出来，比如  “北京邮电大学”有可能被误分为“北京   邮电  大学”。</p>
+<h4 id="停词"><a href="#停词" class="headerlink" title="停词"></a>停词</h4><p>一般情况下停词将标点符号、无意义的词过滤掉，也就是进行数据清洗。</p>
+<p>在比赛中我们对于停词的数据清洗，主要是移除无意义符号、错误拼写的单词、移除数字、单词内部的空格等等。</p>
+<p>网上也有一些开源的停用词词表，可以直接使用。</p>
+<h4 id="同义词替换"><a href="#同义词替换" class="headerlink" title="同义词替换"></a>同义词替换</h4><p>同义词替换是经常会做的事情，主要是因为中文中同义词太多了，进行替换可以帮助我们找到词之间的关联，更好的理解句子。</p>
+<h3 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h3><p>传统的特征工程需要对文本进行特征提取，最重要的特征就是每个词的TF-IDF值，词的重要性随着他在文本中出现的次数成正比增加，但同时会随着他在语料库中出现的频率反比下降。同时传统的特征工程还包括句子中某些情感词出现的次数、单词总数，情感词与单词的比重、拼接词汇、打乱词序、LDA主题等等一些发散性特征工程。所以用传统的机器学习方法来处理文本分类问题，在特征工程上需要很高的经验，而深度学习的发展则可以解决这个问题。</p>
+<p>深度神经网络通过CNN、RNN自动抽取特征，具有更高的准确率。</p>
+<h3 id="文本表达"><a href="#文本表达" class="headerlink" title="文本表达"></a>文本表达</h3><p>文本分类问题多数是以词粒度的，所以文本的表达实际上就是词的表达。主要的表达方式有：</p>
+<ul>
+<li>one-hot表达：这就是经典的词袋模型，对于所有样本，我们通过计算词频或者tf-idf值选取最高的N个单词作为词袋，然后对着N个单词编号。那么每个句子都可以用一个矩阵表达，然后我们将矩阵padding成相同长度，就可以得到句子的表达方式。对于词而言就是个one-hot的过程，只有1位是1，其余N-1位都是0。这个方法有个问题就是矩阵太稀疏，而且无法表达词之间的语义信息。</li>
+<li>embedding表达：这就是深度学习中经常进行的操作，将one-hot之后的词变成一个低维的稠密矩阵，这种表达依赖于上下文，包含更多的语义信息，模型有word2vec、fasttext等，可以用预训练好的词向量。但是这个方法也有问题：一词多义问题无法解决，因为这种模型下，每个词都被映射到一个词向量，比如：“脑子进水”、”大水“都有水，表达意思去却完全不同。针对这个问题，后续google推出bert和transformer等多个模型解决一词多义问题。</li>
+</ul>
+<h1 id="基于深度学习的文本分类模型"><a href="#基于深度学习的文本分类模型" class="headerlink" title="基于深度学习的文本分类模型"></a>基于深度学习的文本分类模型</h1><h2 id="FastText模型"><a href="#FastText模型" class="headerlink" title="FastText模型"></a>FastText模型</h2><p><img src="/uploads/loading.gif" data-original="http://www.datagrand.com/blog/wp-content/uploads/2018/01/beepress-beepress-weixin-zhihu-jianshu-plugin-2-4-2-2635-1516863566-2.jpeg" alt="ææ¯å¹²è´§ä¸¨fastTextåçåå®è·µ"></p>
+<p>FastText是一个有监督的模型，网络也有三层，输入层、隐藏层和输出层。</p>
+<ul>
+<li>输入层就是一个句子的多个单词以及其n-gram单词他们的embedding向量，通常取3-gram，用来表示文档。对于one-hot输入，通常用一个embedding层代替输入层，这样还可以得到embedding矩阵，后续可以生成词向量。</li>
+<li>隐藏层就是一个GlobalAveragePooling1D层，用来将所有的词向量进行取平均，变成一个句向量。</li>
+<li>输出层是一个softmax进行分类，通常将输出层改造成层次softmax加快收敛（类似word2vec的输出）。</li>
+</ul>
+<p><strong>FastText核心思想：将整个句子的词以及其n-gram词的embedding向量求平均代表句子向量，然后对其进行softmax多分类。</strong>涉及两个技巧：n-gram和层次softmax。</p>
+<p>FastText问题：</p>
+<p>1、没有考虑局部特征，使用的n-gram的trick恰巧说明了局部特征的重要性</p>
+<h2 id="TextCNN"><a href="#TextCNN" class="headerlink" title="TextCNN"></a>TextCNN</h2><p><img src="/uploads/loading.gif" data-original="https://img-blog.csdnimg.cn/20181125183659110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQyNDgxMjc=,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°"></p>
+<p>TextCNN用CNN来提取句子中的n-gram关键信息。一般情况都是$1*K$的卷积核，用来提取K窗口大小的特征。在实际完了过中，我们通常使用多个不同size的kernel来提取信息，不同的卷积大小对应着不同宽度的视野。注意在文本问题上，都是使用一维卷积，虽然加上词向量是一个二维矩阵，但是在embedding-level上进行卷积没有任何意义。</p>
+<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdnimg.cn/20181125183623379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQyNDgxMjc=,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°"></p>
+<ul>
+<li>embedding层：第一层最左边是一个7*5的矩阵，每一行代表单词的embeding向量。</li>
+<li>convolution层：分别对输入进行kernel_size=(2,3,4)的一维卷积，每个kernel输出两个channel。</li>
+<li>maxpooling层：第三层是一个池化层，降采样关键信息。</li>
+<li>full connection and softmax：最后面就接上flatten层和dense实现softmax输出。</li>
+</ul>
+<p><strong>embedding向量表达</strong></p>
+<p>1、可以随机初始化，然后根据网络中变化而更新学习。</p>
+<p>2、先用外部预料与训练一个embedding矩阵，然后输入到embedding层，用与训练好的词向量初始化embedding。也可以直接找网上开源的词向量库。</p>
+<ul>
+<li>静态方式：训练过程中不再更新embedding，trainable=False</li>
+<li>非静态方式：训练过程中对词向量进行微调，fine-tunning。trainable=True</li>
+</ul>
+<p><strong>TextCNN的改进</strong></p>
+<p>在卷积层之后跟着的一层卷积，普遍是跟着一层maxpooling，但是也可以改造成“k-maxpooling”，也就是保存k个最大的信息，保留了全局的序列信息。（论文中k取5、10、15、20）</p>
+<blockquote>
+<p>我觉得这个地方景色还不错，但是人也太多了。</p>
+<p>这个句子前半部分是正向，但是整体是负向，用k-maxpooling可以很好的捕捉这部分的信息。</p>
+</blockquote>
+<h2 id="TextRNN"><a href="#TextRNN" class="headerlink" title="TextRNN"></a>TextRNN</h2><p>TextCNN虽然很成功，但是对于长句子，因为卷积核大小问题，无法获取全文视野，所以引入RNN到文本文类网络中，</p>
+<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdn.net/20180911231703165?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RvcmVyb19sY2g=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>一般来说为了解决长距离依赖问题，我们都会使用LSTM替代RNN。</p>
+<ul>
+<li>embedding层：这一作用就是将输入的one-hot变成词向量表达，假设有28个词，每个词300维向量表示，那么LSTM就是28个时间步，每个时间步的输入就是当前位置的词向量。</li>
+<li>BiLSTM层：我们对句子从左到右，从右到左分别送入lstm中，目的是学习当前词的上下文信息，假设num_units=128，那么每个时间步的输出就是128维。</li>
+<li>全连接层：将每个时间步的两个输出都concat到一起，在keras中就是通过dense实现就可以了。</li>
+</ul>
+<h2 id="TextRNN-Attention"><a href="#TextRNN-Attention" class="headerlink" title="TextRNN+Attention"></a>TextRNN+Attention</h2><p>将Attention机制应用在文本分类领域，更加关注某些词汇对结果的贡献，对于泛型词汇关注度降低。最早在<span class="exturl" data-url="aHR0cHM6Ly93d3cuY3MuY211LmVkdS9+ZGl5aXkvZG9jcy9uYWFjbDE2LnBkZui/meevh+iuuuaWh+S4reaPkOWIsO+8jOi/meS4quiuuuaWh+aYr+WvueaWh+eroOi/m+ihjOWIhuexu++8jOS7jndvcmQtJmd0O3NlbnRlbmNlLSZndDtwYXBlcuS4ieS4quetiee6p+OAguiAjOaIkeS7rOeahOS7u+WKoeS4gOiIrOmDveaYr+WvueWPpeWtkOi/m+ihjOWIhuexu++8jOaJgOS7peWPqueUqOWIsOS4gOWxgue7k+aehOWwseWPr+S7peS6huOAgg==" title="https://www.cs.cmu.edu/~diyiy/docs/naacl16.pdf这篇论文中提到，这个论文是对文章进行分类，从word-&gt;sentence-&gt;paper三个等级。而我们的任务一般都是对句子进行分类，所以只用到一层结构就可以了。">https://www.cs.cmu.edu/~diyiy/docs/naacl16.pdf这篇论文中提到，这个论文是对文章进行分类，从word-&gt;sentence-&gt;paper三个等级。而我们的任务一般都是对句子进行分类，所以只用到一层结构就可以了。<i class="fa fa-external-link"></i></span></p>
+<p>BiLSTM+Attention模型就是在BiLSTM的输出上加了一个Attention层，用来提升某些单词对结果的贡献。在BiLSTM中会用最后一个时序的输出向量作为特征向量，然后进行softmax分类。加入attention之后是对所有的时序输出向量进行加权平均作为特征向量，然后进入到softmax中。</p>
+<p><img src="/uploads/loading.gif" data-original="https://img2018.cnblogs.com/blog/1335117/201901/1335117-20190102140027405-1649634369.png" alt="img"></p>
+<p>关于Attention的详细介绍参考：从seq2seq到attention文章</p>
+<p>在keras实现中，我们就是简单的在BiLSTM层后面加上一个Attention层。</p>
+<h2 id="TextRCNN"><a href="#TextRCNN" class="headerlink" title="TextRCNN"></a>TextRCNN</h2><p>所谓的TextRCNN：一般的CNN是卷积+池化，而RCNN将卷积层换成了双向的RNN，变成了双向RNN+池化层。</p>
+<p><img src="/uploads/loading.gif" data-original="https://panxiaoxie.cn/2018/06/01/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E7%B3%BB%E5%88%974-textRCNN/model.png" alt="img"></p>
+<ul>
+<li><p>从左到右看，左半部分中间一栏就是word embedding层，输出是$e(w)$</p>
+</li>
+<li><p>下面将词向量输入到双向的RNN中，得到$c_l,c_r$<br>$$<br>c_l{(w_i)} = f(W^{(l)}c_l(w_{i-1})+W^{(sl)}e(w_{i}))\<br>c_r{(w_i)} = f(W^{(r)}c_r(w_{i-1})+W^{(sr)}e(w_{i}))<br>$$</p>
+</li>
+<li><p>然后将双向rnn的两个输出，加上embedding的输出，concate到一起，经过tanh激活函数得到$y_2$<br>$$<br>x_i = [c_l(w_i);e(w_i);c_r(w_i)]\<br>y_i^{(2)}=tanh(W^{(2)}x_i+b^{(2)})<br>$$</p>
+</li>
+<li><p>对$y_2$的输出进行池化，使用maxpooling，得到$y_3$<br>$$<br>y^{(3)} = max_{i=1}^ny_i^{(2)}<br>$$</p>
+</li>
+<li><p>最后跟上全连接层+softmax<br>$$<br>y^{(4)} = W^{(4)}y^{(3)}+b^{(4)}\<br>p_i=\dfrac{exp(y_i^{(4)})}{\sum_{k=1}^nexp(y_k^{(4)})}<br>$$</p>
+</li>
+</ul>
+<p>整个模型的思路比较清晰，这里要注意两点：</p>
+<p>1、RCNN中双向RNN叠加了每个时刻的向量，而之前的BiLSTM中都只是用了最后一个时间步的输出作为句子向量</p>
+<p>2、RCNN中单词的embedding向量同样加到最后，有点像残差学习。</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> Input, Model</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> backend <span class="keyword">as</span> K</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Embedding, Dense, SimpleRNN, Lambda, Concatenate, Conv1D, GlobalMaxPooling1D</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RCNN</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, maxlen, max_features, embedding_dims,</span></span></span><br><span class="line"><span class="function"><span class="params">                 class_num=<span class="number">1</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 last_activation=<span class="string">'sigmoid'</span>)</span>:</span></span><br><span class="line">        self.maxlen = maxlen</span><br><span class="line">        self.max_features = max_features</span><br><span class="line">        self.embedding_dims = embedding_dims</span><br><span class="line">        self.class_num = class_num</span><br><span class="line">        self.last_activation = last_activation</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_model</span><span class="params">(self)</span>:</span></span><br><span class="line">        input_current = Input((self.maxlen,))</span><br><span class="line">        input_left = Input((self.maxlen,))</span><br><span class="line">        input_right = Input((self.maxlen,))</span><br><span class="line"></span><br><span class="line">        embedder = Embedding(self.max_features, self.embedding_dims, input_length=self.maxlen)</span><br><span class="line">        embedding_current = embedder(input_current)</span><br><span class="line">        embedding_left = embedder(input_left)</span><br><span class="line">        embedding_right = embedder(input_right)</span><br><span class="line"></span><br><span class="line">        x_left = SimpleRNN(<span class="number">128</span>, return_sequences=<span class="literal">True</span>)(embedding_left)</span><br><span class="line">        x_right = SimpleRNN(<span class="number">128</span>, return_sequences=<span class="literal">True</span>, go_backwards=<span class="literal">True</span>)(embedding_right)</span><br><span class="line">        x_right = Lambda(<span class="keyword">lambda</span> x: K.reverse(x, axes=<span class="number">1</span>))(x_right)</span><br><span class="line">        x = Concatenate(axis=<span class="number">2</span>)([x_left, embedding_current, x_right])</span><br><span class="line"></span><br><span class="line">        x = Conv1D(<span class="number">64</span>, kernel_size=<span class="number">1</span>, activation=<span class="string">'tanh'</span>)(x)</span><br><span class="line">        x = GlobalMaxPooling1D()(x)</span><br><span class="line"></span><br><span class="line">        output = Dense(self.class_num, activation=self.last_activation)(x)</span><br><span class="line">        model = Model(inputs=[input_current, input_left, input_right], outputs=output)</span><br><span class="line">        <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
+
+<p>对于RCNN还有很多改造，一个常见的思路：</p>
+<ul>
+<li>忽略left/right内容的限制，直接用keras集成的Bidirectional来实现双层LSTM</li>
+<li>在concate输出之后，经过多个卷积核进行卷积</li>
+<li>池化层使用平均池化和最大值池化两种方式</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> Input, Model</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Embedding, Dense, Concatenate, Conv1D, Bidirectional, CuDNNLSTM, GlobalAveragePooling1D, GlobalMaxPooling1D</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RCNNVariant</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""Variant of RCNN.</span></span><br><span class="line"><span class="string">        Base on structure of RCNN, we do some improvement:</span></span><br><span class="line"><span class="string">        1. Ignore the shift for left/right context.</span></span><br><span class="line"><span class="string">        2. Use Bidirectional LSTM/GRU to encode context.</span></span><br><span class="line"><span class="string">        3. Use Multi-CNN to represent the semantic vectors.</span></span><br><span class="line"><span class="string">        4. Use ReLU instead of Tanh.</span></span><br><span class="line"><span class="string">        5. Use both AveragePooling and MaxPooling.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, maxlen, max_features, embedding_dims,</span></span></span><br><span class="line"><span class="function"><span class="params">                 class_num=<span class="number">1</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 last_activation=<span class="string">'sigmoid'</span>)</span>:</span></span><br><span class="line">        self.maxlen = maxlen</span><br><span class="line">        self.max_features = max_features</span><br><span class="line">        self.embedding_dims = embedding_dims</span><br><span class="line">        self.class_num = class_num</span><br><span class="line">        self.last_activation = last_activation</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_model</span><span class="params">(self)</span>:</span></span><br><span class="line">        input = Input((self.maxlen,))</span><br><span class="line"></span><br><span class="line">        embedding = Embedding(self.max_features, self.embedding_dims, input_length=self.maxlen)(input)</span><br><span class="line"></span><br><span class="line">        x_context = Bidirectional(CuDNNLSTM(<span class="number">128</span>, return_sequences=<span class="literal">True</span>))(embedding)</span><br><span class="line">        x = Concatenate()([embedding, x_context])</span><br><span class="line"></span><br><span class="line">        convs = []</span><br><span class="line">        <span class="keyword">for</span> kernel_size <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">5</span>):</span><br><span class="line">            conv = Conv1D(<span class="number">128</span>, kernel_size, activation=<span class="string">'relu'</span>)(x)</span><br><span class="line">            convs.append(conv)</span><br><span class="line">        poolings = [GlobalAveragePooling1D()(conv) <span class="keyword">for</span> conv <span class="keyword">in</span> convs] + [GlobalMaxPooling1D()(conv) <span class="keyword">for</span> conv <span class="keyword">in</span> convs]</span><br><span class="line">        x = Concatenate()(poolings)</span><br><span class="line"></span><br><span class="line">        output = Dense(self.class_num, activation=self.last_activation)(x)</span><br><span class="line">        model = Model(inputs=input, outputs=output)</span><br><span class="line">        <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>boris</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://yoursite.com/a/619620564/" title="文本分类汇总">http://yoursite.com/a/619620564/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLW5kLzQuMC9kZWVkLnpo"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/a/1933089106/" rel="next" title="从seq2seq到attention">
+                <i class="fa fa-chevron-left"></i> 从seq2seq到attention
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/a/1205269195/" rel="prev" title="LSTM的理解">
+                LSTM的理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+  
+  <p class="site-author-name" itemprop="name">boris</p>
+  <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmJhbmc=" title="GitHub &rarr; https://github.com/linbang"><i class="fa fa-fw fa-github"></i>GitHub</span>
+      </span>
+    
+  </div>
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文本分类问题"><span class="nav-number">1.</span> <span class="nav-text">文本分类问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传统文本分类方法"><span class="nav-number">2.</span> <span class="nav-text">传统文本分类方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特征工程"><span class="nav-number">2.1.</span> <span class="nav-text">特征工程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文本预处理"><span class="nav-number">2.1.1.</span> <span class="nav-text">文本预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分词"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">分词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#停词"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">停词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同义词替换"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">同义词替换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征提取"><span class="nav-number">2.1.2.</span> <span class="nav-text">特征提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本表达"><span class="nav-number">2.1.3.</span> <span class="nav-text">文本表达</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于深度学习的文本分类模型"><span class="nav-number">3.</span> <span class="nav-text">基于深度学习的文本分类模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FastText模型"><span class="nav-number">3.1.</span> <span class="nav-text">FastText模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TextCNN"><span class="nav-number">3.2.</span> <span class="nav-text">TextCNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TextRNN"><span class="nav-number">3.3.</span> <span class="nav-text">TextRNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TextRNN-Attention"><span class="nav-number">3.4.</span> <span class="nav-text">TextRNN+Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TextRCNN"><span class="nav-number">3.5.</span> <span class="nav-text">TextRCNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">3.5.1.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <span class="exturl" data-url="aHR0cDovL3d3dy5iZWlhbi5taWl0Lmdvdi5jbg=="> </span>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-superpowers"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">boris</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">296k</span>
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      您是到访本站的第 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 位小伙伴
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      本站已被戳过 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次了
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <script size="300" alpha="0.6" zindex="-1" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js"></script>
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.2.0"></script>
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</html>

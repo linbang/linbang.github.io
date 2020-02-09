@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/uploads/logo.png?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+
+
+
+  
+  
+    
+      
+    
+    
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css?v=1.0.2">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="CTR在个性化推荐、搜索、商业化等领域都有着非常关键的作用。本文主要介绍主流的CTR预估模型及其发展。 Embedding介绍embedding通常用来生成词向量，词向量是一个50~300维的稠密向量。正常在词袋模型中，我们通常使用one-hot来表征一个词语，但是这种方法产生的词向量太稀疏，而且多个词之间没有联系。因此才有了embedding的方法来讲稀疏的ont-hot相连变成稠密的词向量。">
+<meta name="keywords" content="博客,机器学习,Java,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTR预估模型及其发展">
+<meta property="og:url" content="http://yoursite.com/a/1786543572/index.html">
+<meta property="og:site_name" content="切克闹">
+<meta property="og:description" content="CTR在个性化推荐、搜索、商业化等领域都有着非常关键的作用。本文主要介绍主流的CTR预估模型及其发展。 Embedding介绍embedding通常用来生成词向量，词向量是一个50~300维的稠密向量。正常在词袋模型中，我们通常使用one-hot来表征一个词语，但是这种方法产生的词向量太稀疏，而且多个词之间没有联系。因此才有了embedding的方法来讲稀疏的ont-hot相连变成稠密的词向量。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:image" content="http://yoursite.com/uploads/loading.gif">
+<meta property="og:updated_time" content="2020-02-09T11:12:58.771Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CTR预估模型及其发展">
+<meta name="twitter:description" content="CTR在个性化推荐、搜索、商业化等领域都有着非常关键的作用。本文主要介绍主流的CTR预估模型及其发展。 Embedding介绍embedding通常用来生成词向量，词向量是一个50~300维的稠密向量。正常在词袋模型中，我们通常使用one-hot来表征一个词语，但是这种方法产生的词向量太稀疏，而且多个词之间没有联系。因此才有了embedding的方法来讲稀疏的ont-hot相连变成稠密的词向量。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/loading.gif">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/a/1786543572/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>CTR预估模型及其发展 | 切克闹</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切克闹</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+      <a>
+        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+      </a>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">121</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">20</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">24</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/1786543572/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="boris">
+      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
+      <meta itemprop="image" content="/uploads/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切克闹">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">CTR预估模型及其发展
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-05 15:14:14" itemprop="dateCreated datePublished" datetime="2019-03-05T15:14:14+08:00">2019-03-05</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-09 19:12:58" itemprop="dateModified" datetime="2020-02-09T19:12:58+08:00">2020-02-09</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/推荐/" itemprop="url" rel="index"><span itemprop="name">推荐</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+               <!--  阅读次数：  -->
+               本文已被戳过 <span class="busuanzi-value" id="busuanzi_value_page_pv"></span> 次了
+              </span>
+            </span>
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">9.8k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">9 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>CTR在个性化推荐、搜索、商业化等领域都有着非常关键的作用。本文主要介绍主流的CTR预估模型及其发展。</p>
+<h2 id="Embedding介绍"><a href="#Embedding介绍" class="headerlink" title="Embedding介绍"></a>Embedding介绍</h2><p>embedding通常用来生成词向量，词向量是一个50~300维的稠密向量。正常在词袋模型中，我们通常使用one-hot来表征一个词语，但是这种方法产生的词向量太稀疏，而且多个词之间没有联系。因此才有了embedding的方法来讲稀疏的ont-hot相连变成稠密的词向量。</p>
+<p>转化的方法主要有：word2vec、glove等模型。</p>
+<p><img src="/uploads/loading.gif" data-original="https://yangxudong.github.io/ctr-models/embedding.png" alt="embedding"></p>
+<p>在推荐领域，因为很多类别特征都非常稀疏，比如id、cate等，所以embedding在这里的应用其实是用来将one-hot特征映射到一个低维稠密向量上。</p>
+<h1 id="CTR常用模型介绍"><a href="#CTR常用模型介绍" class="headerlink" title="CTR常用模型介绍"></a>CTR常用模型介绍</h1><h2 id="1、LR"><a href="#1、LR" class="headerlink" title="1、LR"></a>1、LR</h2><p>LR（逻辑斯特回归）是线性模型，可以把他看作一个没有隐层的单节点神经网络模型。<br>$$<br>y=\frac{1}{1+e^{-(wx+b)}}<br>$$<br><img src="/uploads/loading.gif" data-original="https://yangxudong.github.io/ctr-models/lr.jpg" alt="lr"></p>
+<p>LR模型比较简单，可解释性强。但是因为LR是一个线性模型，无法学习分非线性只是，所以需要依赖特征工程。</p>
+<p>为了让LR学习到非线性关系，需要进行特征工程，主要方法：连续特征离散化、特征交叉。</p>
+<h4 id="特征离散化"><a href="#特征离散化" class="headerlink" title="特征离散化"></a>特征离散化</h4><p>特征离散化是指将连续特征划分为多个区间。从特征角度引入非线性，增强LR模型的拟合能力。同时离散化可以对噪声数据更好的鲁棒性，使得模型更加稳定，防止过拟合。</p>
+<h5 id="无监督方法"><a href="#无监督方法" class="headerlink" title="无监督方法"></a>无监督方法</h5><p>分箱法：等宽分箱和等频分箱。前者根据数据的定长间隔进行离散，后者根据数据的频率进行离散。</p>
+<p>直观划分：根据经验进行划分，比如年龄。</p>
+<h5 id="有监督方法"><a href="#有监督方法" class="headerlink" title="有监督方法"></a>有监督方法</h5><p>1R法：分箱法的有监督版本，先取k个放到一个箱子中，后面的实例放入箱子时，如果标签与箱子中大部分标签相同，就放入这个箱子，否则再取k个作为一个箱子。如此直到所有的实例完成。</p>
+<p>基于卡方的离散法： 首先将数值特征的每个不同值看做一个区间对每对相邻区间计算卡方统计量，如果大于阈值就合并，递归进行直到找不到卡方统计大于阈值的时候停止。</p>
+<p>基于熵的离散法：类似决策树的思路，用信息增益、基尼指数决定合成或者分裂。</p>
+<h4 id="特征交叉"><a href="#特征交叉" class="headerlink" title="特征交叉"></a>特征交叉</h4><p>CTR预估往往涉及到用户、物品、上下文等多个方面特征，如果将不同类型的特征进行组合会得到强特征。比如性别和商品进行交叉：“女性+化妆品”，这个特征就与CTR相关度比较高。</p>
+<p>通常的交叉方法就是人工评判，后续也可以用模型进行交叉，例如FM模型。</p>
+<h2 id="2、GBDT-LR"><a href="#2、GBDT-LR" class="headerlink" title="2、GBDT+LR"></a>2、GBDT+LR</h2><p>GBDT+LR是一种模型级联的方式，解决了LR特征不足的问题。</p>
+<p>思路：特征工程分为两个部分，一部分特征用于训练一个GBDT模型，把GBDT模型每棵树的叶子节点编号作为新的特征，加入到原始特征集中，然后用combine的全部特征训练LR。</p>
+<p><img src="/uploads/loading.gif" data-original="https://yangxudong.github.io/ctr-models/lr+gbdt.jpg" alt="lr+gbdt"></p>
+<p>这里使用了GBDT学习高阶非线性特征的特点，为LR引入了非线性。通常把一些连续值特征、值空间不大的类别特征送入GBDT中。</p>
+<p>这种方法也有明显的缺陷，GBDT和LR两个模型是分开的，梯度无法在中间传导，也就无法精确的更新参数。同时这个模型无法实时online训练。GBDT训练又会浪费很多时间，因此这个模型不太被使用。</p>
+<h2 id="3、FM模型"><a href="#3、FM模型" class="headerlink" title="3、FM模型"></a>3、FM模型</h2><p>在CTR预估中，我们往往会对类别categories变量进行one-hot处理，比如一个类别有500个取值，那么这个类别就变成了500个特征。这样的话，整个特征矩阵就会变得非常稀疏，在这种情况下，我们对所有特征进行交叉，得到：</p>
+<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=y%28X%29%3D%5Comega_0%2B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Comega_ix_i%7D%2B%5Csum_%7Bi%3D1%7D%5E%7Bn-1%7D%7B%5Csum_%7Bj%3Di%2B1%7D%5E%7Bn%7D%7B%5Comega_%7Bij%7Dx_ix_j%7D%7D" alt="y(X)=\omega_0+\sum_{i=1}^{n}{\omega_ix_i}+\sum_{i=1}^{n-1}{\sum_{j=i+1}^{n}{\omega_{ij}x_ix_j}}"></p>
+<p>公式的前半部分就是普通LR，后半部分就是所有特征的组合。</p>
+<p>组合特征的参数一共有n(n-1)/2个，然而因为特征矩阵非常稀疏，每个$w_{ij}$需要大量的非0的特征进行训练，在稀疏矩阵中无法得到满足，所以这种方法训练出来的模型表达能力很差。</p>
+<p>那么FM模型的主要目标：<strong>解决数据稀疏的情况下，特征如何组合的问题</strong></p>
+<p>所有的二次项参数$w_{i,j}$ 可以看作一个对称矩阵$W$，那么整个矩阵就可以被分解为：$W=V^TV$，其中$V$的第$j$列$v_j$就是第$j$维特征的隐向量，换句话说，特征$x_i$和$x_j$的交叉项系数就是对应的隐向量的内积，$w_{i,j}=&lt;v_i,v_j&gt;$。这就是FM的核心思想。</p>
+<p>为了求出矩阵$W$，我们需要得到每个特征的隐向量，通常隐向量维度用k表示，k是一个超参数（k&lt;&lt;n）。转化的过程如下：</p>
+<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=W%5E%5Cstar%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D+%5Comega_%7B11%7D+%26+%5Comega_%7B12%7D+%26+...+%26+%5Comega_%7B1n%7D%5C%5C+%5Comega_%7B21%7D+%26+%5Comega_%7B22%7D+%26+...+%26+%5Comega_%7B2n%7D+%5C%5C+...+%26+...+%26+...+%26+...+%5C%5C+%5Comega_%7Bn1%7D+%26+%5Comega_%7Bn2%7D+%26+...+%26+%5Comega_%7Bnn%7D+%5Cend%7Bmatrix%7D+%5Cright%5D+%3DV%5ETV+%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D+V_1+%5C%5CV_2%5C%5C+...+%5C%5CV_n+%5Cend%7Bmatrix%7D+%5Cright%5D%5Ctimes+%5Cleft%5B+%5Cbegin%7Bmatrix%7D+V_1%2C+V_2%2C+...+%2CV_n+%5Cend%7Bmatrix%7D+%5Cright%5D" alt="W^\star=\left[ \begin{matrix} \omega_{11} &amp; \omega_{12} &amp; ... &amp; \omega_{1n}\\ \omega_{21} &amp; \omega_{22} &amp; ... &amp; \omega_{2n} \\ ... &amp; ... &amp; ... &amp; ... \\ \omega_{n1} &amp; \omega_{n2} &amp; ... &amp; \omega_{nn} \end{matrix} \right] =V^TV =\left[ \begin{matrix} V_1 \\V_2\\ ... \\V_n \end{matrix} \right]\times \left[ \begin{matrix} V_1, V_2, ... ,V_n \end{matrix} \right]"></p>
+<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=%5C+%5C+%5C+%5C+%5C+%5C+%3D+%5Cleft%5B+%5Cbegin%7Bmatrix%7D+v_%7B11%7D+%26+v_%7B12%7D+%26+...+%26+v_%7B1k%7D+%5C%5C+v_%7B21%7D+%26+v_%7B22%7D+%26+...+%26+v_%7B2k%7D+%5C%5C+...+%26+...+%26+...+%26+...%5C%5C+v_%7Bn1%7D+%26+v_%7Bn2%7D+%26+...+%26+v_%7Bnk%7D+%5Cend%7Bmatrix%7D+%5Cright%5D+%5Ctimes+%5Cleft%5B+%5Cbegin%7Bmatrix%7D+v_%7B11%7D+%26+v_%7B21%7D+%26+...+%26+v_%7Bn1%7D+%5C%5C+v_%7B12%7D+%26+v_%7B22%7D+%26+...+%26+v_%7Bn2%7D+%5C%5C+...+%26+...+%26+...+%26+...%5C%5C+v_%7B1k%7D+%26+v_%7B2k%7D+%26+...+%26+v_%7Bnk%7D+%5Cend%7Bmatrix%7D+%5Cright%5D" alt="\ \ \ \ \ \ = \left[ \begin{matrix} v_{11} &amp; v_{12} &amp; ... &amp; v_{1k} \\ v_{21} &amp; v_{22} &amp; ... &amp; v_{2k} \\ ... &amp; ... &amp; ... &amp; ...\\ v_{n1} &amp; v_{n2} &amp; ... &amp; v_{nk} \end{matrix} \right] \times \left[ \begin{matrix} v_{11} &amp; v_{21} &amp; ... &amp; v_{n1} \\ v_{12} &amp; v_{22} &amp; ... &amp; v_{n2} \\ ... &amp; ... &amp; ... &amp; ...\\ v_{1k} &amp; v_{2k} &amp; ... &amp; v_{nk} \end{matrix} \right]"></p>
+<p>所以FM的模型方程是：</p>
+<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=%5Chat%7By%7D%28X%29%3A%3D%5Comega_0%2B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Comega_ix_i%7D%2B%5Csum_%7Bi%3D1%7D%5E%7Bn-1%7D%7B%5Csum_%7Bj%3Di%2B1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_j%3Ex_ix_j%7D%7D+" alt="\hat{y}(X):=\omega_0+\sum_{i=1}^{n}{\omega_ix_i}+\sum_{i=1}^{n-1}{\sum_{j=i+1}^{n}{&lt;v_i,v_j&gt;x_ix_j}} "></p>
+<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=%3Cv_i%2Cv_j%3E%3A%3D%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7Bv_%7Bi%2Cf%7D%5Ccdot+v_%7Bj%2Cf%7D%7D" alt="&lt;v_i,v_j&gt;:=\sum_{f=1}^{k}{v_{i,f}\cdot v_{j,f}}"></p>
+<p>在回归问题可以直接用均方误差损失函数进行梯度求导，在分类问题中，对输出加上个sigmoid函数就变成了二分类问题。</p>
+<p><strong>为什么FM模型是时间复杂度是线性的？</strong></p>
+<p>这个模型看起来时间复杂度是$O(K<em>N^2)$，怎么还比原来的高了呢？但是其实我们可以通过化简来优化时间复杂度，使其降低到$O(K</em>N)$。</p>
+<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=%5Cbegin%7Balign%2A%7D+%5Csum_%7Bi%3D1%7D%5E%7Bn-1%7D%7B%5Csum_%7Bj%3Di%2B1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_j%3Ex_ix_j%7D%7D+%26%3D+%5Cfrac%7B1%7D%7B2%7D%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_j%3Ex_ix_j%7D%7D+-+%5Cfrac%7B1%7D%7B2%7D+%7B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_i%3Ex_ix_i%7D%7D+%5C%5C+%26%3D+%5Cfrac%7B1%7D%7B2%7D+%5Cleft%28+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7Bv_%7Bi%2Cf%7Dv_%7Bj%2Cf%7Dx_ix_j%7D%7D%7D+-+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7Bv_%7Bi%2Cf%7Dv_%7Bi%2Cf%7Dx_ix_i%7D%7D+%5Cright%29+%5C%5C+%26%3D+%5Cfrac%7B1%7D%7B2%7D%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7B%5Cleft%5B+%5Cleft%28+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7Dx_i%7D+%5Cright%29+%5Ccdot+%5Cleft%28+%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7Bv_%7Bj%2Cf%7Dx_j%7D+%5Cright%29+-+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7D%5E2+x_i%5E2%7D+%5Cright%5D%7D+%5C%5C+%26%3D+%5Cfrac%7B1%7D%7B2%7D%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7B%5Cleft%5B+%5Cleft%28+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7Dx_i%7D+%5Cright%29%5E2+-+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7D%5E2+x_i%5E2%7D+%5Cright%5D%7D+%5Cend%7Balign%2A%7D" alt="\begin{align*} \sum_{i=1}^{n-1}{\sum_{j=i+1}^{n}{&lt;v_i,v_j&gt;x_ix_j}} &amp;= \frac{1}{2}\sum_{i=1}^{n}{\sum_{j=1}^{n}{&lt;v_i,v_j&gt;x_ix_j}} - \frac{1}{2} {\sum_{i=1}^{n}{&lt;v_i,v_i&gt;x_ix_i}} \\ &amp;= \frac{1}{2} \left( \sum_{i=1}^{n}{\sum_{j=1}^{n}{\sum_{f=1}^{k}{v_{i,f}v_{j,f}x_ix_j}}} - \sum_{i=1}^{n}{\sum_{f=1}^{k}{v_{i,f}v_{i,f}x_ix_i}} \right) \\ &amp;= \frac{1}{2}\sum_{f=1}^{k}{\left[ \left( \sum_{i=1}^{n}{v_{i,f}x_i} \right) \cdot \left( \sum_{j=1}^{n}{v_{j,f}x_j} \right) - \sum_{i=1}^{n}{v_{i,f}^2 x_i^2} \right]} \\ &amp;= \frac{1}{2}\sum_{f=1}^{k}{\left[ \left( \sum_{i=1}^{n}{v_{i,f}x_i} \right)^2 - \sum_{i=1}^{n}{v_{i,f}^2 x_i^2} \right]} \end{align*}"></p>
+<p>使用梯度下降法求解参数，参数就是一维的$w$和二维的$v$。</p>
+<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=%5Cbegin%7Bequation%7D+%5Cfrac%7B%5Cpartial+%5Chat%7By%7D%28x%29+%7D%7B%5Cpartial+%5Ctheta%7D+%3D+%5Cleft%5C%7B+%5Cbegin%7Barray%7D%7Blr%7D+1%2C+%26+if%5C+%5Ctheta%5C+is%5C+%5Comega_0+%5C%5C+x_i%2C+%26+if%5C+%5Ctheta%5C+is%5C+%5Comega_i%5C%5C+x_i%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7Bv_%7Bj%2Cf%7Dx_j+-+v_%7Bi%2Cf%7Dx_i%5E2%7D+%26+if%5C+%5Ctheta%5C+is%5C+v_%7Bi%2Cf%7D+%5Cend%7Barray%7D+%5Cright.+%5Cend%7Bequation%7D+" alt="\begin{equation} \frac{\partial \hat{y}(x) }{\partial \theta} = \left\{ \begin{array}{lr} 1, &amp; if\ \theta\ is\ \omega_0 \\ x_i, &amp; if\ \theta\ is\ \omega_i\\ x_i\sum_{j=1}^{n}{v_{j,f}x_j - v_{i,f}x_i^2} &amp; if\ \theta\ is\ v_{i,f} \end{array} \right. \end{equation} "></p>
+<p>在计算$v_{i,f}$的梯度时候，只需要计算$\sum_{j=1}^{n}{v_{j,f}{x_j}}$就可以了，计算这个式子时间复杂度是$O(k*N)$，模型参数一共$nk+n+1$个。</p>
+<p>所以FM模型的时间复杂度是$O(kn)$，可以在线性时间内训练和预测。</p>
+<p><strong>为什么说FM解决了数据稀疏情况下特征组合问题呢？</strong></p>
+<p>1、FM将参数数量从n^2量级降低到了n*k量级，减少了参数数量。</p>
+<p>2、原本$w_{i,j}$只依赖于$x_i$和$x_j$，所以如果数据稀疏的话，两个参数的乘积大概率是0，无法训练，参数训练的不准确。但是现在隐向量$v_i$可以由所有和$x_i$有关的数据训练出来，更加容易训练了，结果也会更加准确。</p>
+<p><strong>如何理解隐向量V？</strong></p>
+<p>隐向量$v_i$是对特征$x_i$的低纬稠密表达，可以将隐向量理解维特征的embedding表示，将离散特征转化为Dense Feature，后续这种Dense Featrue可以作为DNN的输入，用DNN来解决CTR生成问题。</p>
+<p>注意这里每个field被映射到一个隐向量中，比如年龄–&gt;v1，性别–&gt;v2。</p>
+<p><strong>FM模型的优点</strong></p>
+<p>1、在稀疏的数据中进行合理的参数估计</p>
+<p>2、模型的时间复杂度是线性的</p>
+<h2 id="4、FFM模型"><a href="#4、FFM模型" class="headerlink" title="4、FFM模型"></a>4、FFM模型</h2><p>FFM模型是对FM模型的扩展，引入了目标field的概念。</p>
+<p>在FM中，“性别”直接embedding成一个向量。但是FFM对于“性别”处理方法不一样，它是训练多个“性别–&gt;年龄”、“性别—&gt;身高”等等，性别对每一个特征都训练出一个隐向量。</p>
+<p>在FFM中，每个特征$x_i$，针对所有的其他特征 $f_j$，都会学习到一个隐向量$v_{i,f_{j}}$，因此隐向量不仅与特征相关，也与field相关。所以假设样本n个特征属于f个field，那么FFM的二次项就有$n<em>f$个隐向量<br>$$<br>y=w_0 + \sum_{i=1}^{n}w_i x_i + \sum_{i=1}^{n}\sum_{j=i+1}^n \langle v_{i,f_j},v_{j,f_i} \rangle x_i x_j<br>$$<br>所以FFM模型的二次项系数有$n</em>f<em>k$个，因为与field相关，无法像FM一样化简，时间复杂度是$O(k</em>n^2)$，但是因为隐向量与field相关，与特定的field有关系，所以$k_{FFM}&lt;&lt;k_{FM}$。</p>
+<p><strong>FFM训练中使用什么梯度下降算法？</strong></p>
+<p>FFM在迭代时采用AdaGrad算法，可以在训练中自动调整学习率，对于稀疏的参数增加学习率，而稠密的参数降低学习率。<br>$$<br>\begin{align<em>}<br>SGD: \ &amp; w_{t+1,j} = w_{t,j} -\eta \cdot g_{t,j} \<br>Adagrad: \ &amp; w_{t+1,j} = w_{t,j} – \frac{\eta}{\sqrt{G_{t,jj}+ \epsilon}} \cdot g_{t,j}<br>\end{align</em>}<br>$$<br>可以看到Adagrad用学习率除以$\sqrt{G_{t,jj}+ \epsilon}$，其中$\epsilon$是平滑项，防止分母为0，$G_{t,jj}$是对角矩阵，累计每个参数的历史梯度，使得在训练过程中学习率逐渐变小。</p>
+<p><strong>FFM训练中注意事项</strong></p>
+<p>1、样本归一化。如果不进行样本归一化，很容易造成数据inf溢出，从而梯度计算时nan错误。</p>
+<p>2、特征归一化。因为要对参数求梯度，所以如果不归一化会导致梯度不稳定。</p>
+<p>3、省略0值特征。从公式上看，零值特征对模型完全没有贡献，因此省去零值特征可以加快训练速度。</p>
+<p><strong>FFM和FM模型区别</strong></p>
+<p>1、FFM模型考虑了目标域的概念，比如现在有性别、年龄、国家三个类别特征，FM将这三个类别特征都进行embedding分别变成长度是k的向量：k1、k2、k3。但是FFM是这么做的：它分别训练性别–&gt;年龄，性别—&gt;国家的向量，进行特征关联的时候使用不同的隐向量，因此这就是FFM中field的由来。</p>
+<p>2、FFM模型计算比较复杂，梯度求导麻烦，FM经过化简之后梯度计算相对简单。</p>
+<h2 id="5、DeepFM模型"><a href="#5、DeepFM模型" class="headerlink" title="5、DeepFM模型"></a>5、DeepFM模型</h2><p>因为为了保证线性计算时间的需求，所以FM只能学习到二阶组合特征，无法学习到高阶特征。为了学习到高阶特征，考虑使用神经网络，因为神经网络可以拟合任意函数。</p>
+<p>那么DeepFM就分成两个部分：神经网络部分和因子分解机部分，分别用来提取高阶特征和低阶特征。这两个部分共享同样的输入，DeepFM预测结果为：<br>$$<br>y=sigmoid(y_{FM}+y_{DNN})<br>$$<br>整体架构图为：</p>
+<p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/4155986-21fa429e42108e99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/535/format/webp" alt="img"></p>
+<h3 id="FM部分"><a href="#FM部分" class="headerlink" title="FM部分"></a>FM部分</h3><p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/4155986-d144aba541c68a34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/582/format/webp" alt="img"></p>
+<p>FM部分是一个因子分解机，和FM模型的输出一致<br>$$<br>y_{FM}=\langle w,x \rangle + \sum_{i=1}^d \sum_{j=i+1}^d \langle V_i,V_j \rangle x_i x_j<br>$$</p>
+<h3 id="神经网络部分"><a href="#神经网络部分" class="headerlink" title="神经网络部分"></a>神经网络部分</h3><p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/4155986-366d825a661466a3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/538/format/webp" alt="img"></p>
+<p>神经网络部分是一个前馈神经网络，神经网络的输入是embedding之后的k维稠密向量，然后通过H个隐藏层去拟合高阶的特征。<br>$$<br>y_{DNN}=\sigma(W^{H+1} \cdot a^H + b^{H+1})<br>$$<br><strong>对于embedding的理解</strong></p>
+<p>对于embedding层的理解，我们可以认为$V_i$就是特征$x_i$的one-hot表示到embedidng层的权重。这里要注意与FM一样，分域进行embedding。</p>
+<p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/4155986-cd51e0bd97ab285d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt="img"></p>
+<p>比如我们现在有三个特征：性别、年龄、身高。进行one-hot之后，分别将这三个field特征embedidng成一个k维的向量，送到DNN中的就是3*k维向量。</p>
+<p>1、尽管每个fiels输入长度不同，输出长度都是k。</p>
+<p>2、在FM模型中的$V_i$现在作为embedding层的权重了。</p>
+<p>因为embedding只能将离散变量变成低维稠密向量，对于连续值，采取的办法是进行等频、等宽离散，将连续特征变成离散特征送到模型中。</p>
+<p><strong>DeepFM中的参数</strong></p>
+<p>模型有4种参数：DNN中的每层的W矩阵，DNN中的每层的b向量，embedding层的V矩阵，FM的一阶表示w。</p>
+<p>模型的训练和DNN的反向传播机制是一样的。</p>
+<p><strong>模型细节</strong></p>
+<p>1、连续值的处理：有的论文是将连续值做离散化，我复现的时候是把连续值归一化之后，后面直接接上k个ndoe。也就是不把连续值进行离散化。</p>
+<p>2、模型最后的输出其实由三个部分组成：deep+二阶fm+一阶lr。其中deep和二阶fm共享长度为k的embedding输入，也就是将每个域的特征都映射到k维向量上去（包括连续值）。对于一阶lr部分，其实可以直接求和，但是我复现的这个论文还把每个域的输入embedding到一个k=1的向量上去，对这些1的向量做一个add。其实思路时一样的，只是实现方法略有不同。</p>
+<p>3、注意对二阶fm的计算逻辑是根据化简之后的公式来的。也就是两个向量相减的形式。</p>
+<p>4、这里有个点要注意一下，对于离散特征有两种类型：single value categorical和multiple value categorical。第一种就是性别、年龄这种，只能属于一个离散值，这种处理比较简单，就直接embedding就行了。但是第二种可以有多个类别，比如interest这种，一个人可能有多个兴趣点，这种直接embedding好像说不过去。思路就是对每一个“1”相加取平均。</p>
+<h2 id="6、Wide-amp-Deep模型"><a href="#6、Wide-amp-Deep模型" class="headerlink" title="6、Wide &amp; Deep模型"></a>6、Wide &amp; Deep模型</h2><p>wide&amp;deep在推荐和CTR预估中有很重要的作用，核心是结合线性模型的记忆能力（memorization）和DNN的泛化能力（generalization），在训练的过程中同时优化这两个模型的参数，从而达到整体模型预测能力最优。</p>
+<ul>
+<li>记忆能力：从历史数据中发现item或者特征之间的相关性—&gt;偏差</li>
+<li>泛化能力：相关性的传递，发现历史数据中没有的新特征组合—&gt;方差</li>
+</ul>
+<p><img src="/uploads/loading.gif" data-original="https://yangxudong.github.io/ctr-models/wdl.png" alt="wdl"></p>
+<h3 id="wide端"><a href="#wide端" class="headerlink" title="wide端"></a>wide端</h3><p>wide端对应的是线性模型，需要人工进行特征组合，人工进行特征工程。</p>
+<p>对于线性模型，可以使用L1正则化防止过拟合。</p>
+<h3 id="Deep端"><a href="#Deep端" class="headerlink" title="Deep端"></a>Deep端</h3><p>deep端对应的是深度学习模型，输入是特征值，然后对特征值进行embedding，送入MLP中。</p>
+<p>在训练时可以使用adagrade加快训练速度。</p>
+<p><img src="/uploads/loading.gif" data-original="https://nihil.top/wp-content/uploads/2018/08/1533869217679.png" alt="img"></p>
+<p><img src="/uploads/loading.gif" data-original="https://nihil.top/wp-content/uploads/2018/08/1533867372711.png" alt="img"></p>
+<p><strong>wide&amp;deep和deepFM有什么区别</strong></p>
+<p>1、输入不同：deepFM的两个子模型输入相同，都是特征的one-hot结果，并且共享embedding参数；wide&amp;deep两个子模型的输入不一样，wide端是经过特征工程的特征，deep端是原始特征然后经过embedding。</p>
+<p>2、wide端特征不同：deepFM是通过FM模型来对所有特征进行组合；wide&amp;deep是人工进行特征工程。</p>
+<h2 id="7、FNN模型"><a href="#7、FNN模型" class="headerlink" title="7、FNN模型"></a>7、FNN模型</h2><p>因为FM模型也可以学习到隐向量$V_i$，那么我们在此基础上用学习到的embedding向量替代原始特征，然后再用深度学习来计算CTR。整个过程分为两个阶段：</p>
+<ul>
+<li>用一个模型做特征工程，生成embedidng向量</li>
+<li>用第一阶段的输出作为输入，训练MLP模型</li>
+</ul>
+<p>FNN模型就是用FM模型学习到的embedding向量初始化MLP，再由MLP完成最终学习，其模型结构如下：</p>
+<p><img src="/uploads/loading.gif" data-original="https://yangxudong.github.io/ctr-models/fnn.jpg" alt="fnn"></p>
+<ul>
+<li>输入层是一个经过one-hot的稀疏的矩阵，但是进行embedding的时候需要分域来进行embeding，将每个域embedding成k维向量。</li>
+<li>Dense Real Layer：假设未经one-hot有n个特征，那么这一层就有n*k+1个节点。第一个$w_0$是常数，后面每k个就是一个特征的one-hot结果。</li>
+<li>第一个隐层是一个全连接层，与Dense Real Layer的每个节点都相连。</li>
+<li>输出层是单节点，激活函数是sigmoid，用来计算CTR预估值</li>
+</ul>
+<h2 id="8、PNN模型"><a href="#8、PNN模型" class="headerlink" title="8、PNN模型"></a>8、PNN模型</h2><p>主要思路是：embedding输入到MLP之后学习的交叉特征并不充分，提出了一种product layer的思想，基于乘法运算来体现交叉的DNN网络。</p>
+<p>之前的学习都是“+”的关系，也就是或。PNN认为在CTR预估中更多是是且，也就是乘的关系，比如“男生且喜欢游戏”。</p>
+<p>PNN模型也可以看作是两个模型的级联，首先通过一个低阶特征提取模型，输出是product layer的输出。第二个模型是MLP模型，输入就是低阶模型的输出，输出是CTR预估值。</p>
+<p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/4155986-9867a7134749f48e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="img"></p>
+<p>PNN的模型整体上和FNN类似，不同的是加入了Product Layer。</p>
+<h3 id="输出层"><a href="#输出层" class="headerlink" title="输出层"></a>输出层</h3><p>将上一层网络进行全连接，然后通过sgmoid函数转化到（0~1）区间中。<br>$$<br>y=\sigma(W_3l_2+b_3)<br>$$</p>
+<h3 id="L2层"><a href="#L2层" class="headerlink" title="L2层"></a>L2层</h3><p>l2层的每个节点都是l1层的全连接，并且激活函数使用Relu函数。<br>$$<br>l_2 = relu(W_2l_1+b_2)<br>$$</p>
+<h3 id="L1层"><a href="#L1层" class="headerlink" title="L1层"></a>L1层</h3><p>L1层每个节点也是对上一层的全连接<br>$$<br>l_1 = relu(W_{l_z}l_z+W_{l_p}l_p+b_1)<br>$$<br>可以看到对于L1层的输入，有三个部分，$l_z$和$l_p$就是PNN的核心，$b_1$是偏置项。</p>
+<h3 id="Product-Layer层"><a href="#Product-Layer层" class="headerlink" title="Product Layer层"></a>Product Layer层</h3><p>product layer层分成两个部分，左边是线性部分$l_z$，右边是非线性部分$l_p$。</p>
+<p>线性部分就是将embedding层的输出和1相乘，送入到$l_z$中。这部分节点数量就是feature的数量n。</p>
+<p>非线性部分有两种构造形式：任意两个feature的内积或者外积，分别对应inner product和outer product。</p>
+<p>在IPNN中，因为又涉及到任意两个向量组合，计算量非常大。因此受FM启发，p矩阵是一个对称的方阵，所以对p矩阵进行分解：$p=\theta^T\theta$，减少参数和模型复杂度。</p>
+<p>在OPNN中，外积操作带来更多的网络参数，因此采用多个外积矩阵按元素叠加的技巧减少复杂度。</p>
+<p>一般情况用内积比较多，内积的计算量也比较少。在计算过程中，都巧妙的使用矩阵分解的方法，减小计算量。</p>
+<h3 id="Embedding层"><a href="#Embedding层" class="headerlink" title="Embedding层"></a>Embedding层</h3><p>这一层和DeepFM做的工作类似，都是按域将输入变换成k维的稠密向量。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>CTR预估模型从宽度向深度转变，相应的人工特征工程也在减少。越来越多的使用神经网络来做CTR预估：</p>
+<p><img src="/uploads/loading.gif" data-original="https://yangxudong.github.io/ctr-models/dnn-models.png" alt="img"></p>
+<p>四种主流的深度学习模型对比：</p>
+<p><img src="/uploads/loading.gif" data-original="https://yangxudong.github.io/ctr-models/comparison.png" alt="img"></p>
+<p>通过实验，一般情况下DeepFM模型可以取得最优的效果。</p>
+<h2 id="9、DIN模型"><a href="#9、DIN模型" class="headerlink" title="9、DIN模型"></a>9、DIN模型</h2><p>主要思路：深度兴趣网络，运用用户历史行为来提高CTR预估值。</p>
+<p>基于数据的两个特性：</p>
+<p>1、多样性：用户浏览兴趣具有多样性；</p>
+<p>2、局部激活性：与点击事件有关的并不是全部的历史数据，只和部分历史数据有关</p>
+<p>网络结构：</p>
+<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554085202129.png" alt="1554085202129"></p>
+<p>论文把特征分成四类：用户特征、用户行为特征、广告特征、上下文特征</p>
+<p>并没有进行特征交叉，用户行为特征是多值离散特征multi-hot，如果全部使用会很稀疏，因此这里用了一个比较好玩（无聊）的想法，就是我关注用户有过行为的物品。这么就带来一个问题，每个用户有过行为的物品数量不一致咋办？这里就用SUM Pooling进行加权，然后就得到了统一长度向量表征。</p>
+<p>根据论文中的意思，主要做的就是对user behaviors进行改进，这一部分本质是多值离散特征，比如兴趣点这种可能有很多个，传统的模型就是单纯的求max或者求average（参考DeepFM处理多值离散的方法），但是DIN认为这样不好，因为当前ad和历史记录肯定要去找相似的才更有说服力，因此这里就加了个Attention机制。</p>
+<p><strong>Attention</strong></p>
+<p>我们下面来分析一下这个Attention是怎么做的？</p>
+<p>1、首先Q是待处理的Ad的embedding向量，K和V都是每个兴趣点的embedding向量。这里注意User Behaviors的输入其实是多值离散的[0,1,1,0,1,1…]这种的，也就是说只有M(M&lt;=N)个兴趣点是有具体的embedding向量的，其余的0对应的向量就是[0,0,0…0]，这部分向量计算出来的相似度也是0，所以不影响。</p>
+<p>2、看一下打分函数</p>
+<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554085601259.png" alt="1554085601259"></p>
+<p>这个打分函数还比较复杂，分解一下，两个向量计算外积，flatten之后与原始向量concat，然后进行PRelu激活，在走一个sigmoid输出一个相似性。对于0的情况，就需要落在Prelu的左边。</p>
+<p>3、两两计算相似度</p>
+<p>普通的Attention，我们都是计算softmax概率，突出当前item与历史所有的item中最相似的一个。但是这里使用的确实sigmoid，也就是说模型计算了两两的相似性，最后的权重没有做归一化。</p>
+<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554086773725.png" alt="1554086773725"></p>
+<p>论文中也提到了这点设计：</p>
+<blockquote>
+<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554087009142.png" alt="1554087009142"></p>
+</blockquote>
+<p>意思就是要保留用户的兴趣强度，这么个设计更好的挖掘用户的兴趣点。我的理解是：如果进行softmax，可能没有了物品类别的概念，只有了物品的概念。比如待计算的Ad是手机，兴趣点可能有：苹果手机、华为手机、小米手机、短袖、长袖。。等等，如果用传统的attention，只能捕捉到具体的是苹果手机or华为手机or小米手机，而使用它的设计，就能捕捉到手机相关，从而这三个权重都很高，虽然没有归一化，但是突出了物品类别的概念。</p>
+<p>经过上面的分析，这个模型的Attention结构就比较明了了，计算待下发的Ad与用户所有历史行为计算相似度(两两sigmoid)，然后做加权的sum pooling之后作为user behaviors的输出。</p>
+<p><strong>trick</strong></p>
+<p>下面看一下这个网络的一些trick：</p>
+<p>1、激活函数</p>
+<p>PRelu或者Dice，他们的导数信息为：</p>
+<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554087637628.png" alt="1554087637628"></p>
+<p>论文中说PRelu激活函数在0点位置不可导，所以对于每层输入分布不同的时候，不适用。所以提出了Dice激活函数。</p>
+<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554967035844.png" alt="1554967035844"></p>
+<p>这个激活函数乍一看长得很像sigmoid啊，E(s)和Var(s)分别是batch数据的均值和方差。主要目的是为了防止输入数据分布不同的情况，所以这个就是将输入数据变成同分布了而已。。emm。</p>
+<p>当E和V都是0的时候，退化成PRelu。</p>
+<p>2、正则化</p>
+<p>主要在损失函数中加了自适应L2正则化，防止过拟合。</p>
+<p>他这个L2正则化叫做mini-batch aware regularizer，证明了这个优化的L2正则化在处理稀疏特征时比较有用。</p>
+<p>因为用户数据分布符合长尾定律，很多feature_id只出现几次，小部分feature_id出现很多次，模型表现很差。因此他这里</p>
+<p>提出了自适应的l2正则化，</p>
+<p>1.针对feature id出现的频率，来自适应的调整他们正则化的强度；<br>2.对于出现频率高的，给与较小的正则化强度；<br>3.对于出现频率低的，给予较大的正则化强度。</p>
+<p><strong>embedding</strong></p>
+<p>现在来看一下embedding层的做法：</p>
+<p>1、embedding层将离散的特征映射到低维向量中去。注意这里每一个embedding就有一个concat，这里的embedding应该也是分域的，将每个域embedding到一个低维向量之后，concat这些低维向量作为当前的表达。</p>
+<p>2、比如历史good：颜色、气味、大小等等这些域都映射到k维，那么这个good的表达就是k*m个特征。也就是把每一个field的特征embedding之后做concat。</p>
+<p><strong>回顾一下这个网络：</strong></p>
+<p>1、输入：用户固有特征（one-hot，单值离散）、用户行为特征（one-hot，多值离散）、Ad特征（one-hot，单值离散）、上下文特征（one-hot，单值离散）</p>
+<p>2、网络架构：核心是Embedding层和Attention层。embedding将所有的one-hot向量映射到低维稠密向量中。Attention计算两两相似度，得到用户行为特征的加权和作为输出。</p>
+<p>3、损失函数：交叉熵损失函数</p>
+<p>4、评价指标：GAUC，auc的改进。</p>
+<p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/4155986-358cc3c6656a5408.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/654" alt="img"></p>
+<p>5、训练方法：反向dp</p>
+<p><strong>总结</strong></p>
+<p>1、用户有多个兴趣爱好，访问了多个good_id，shop_id。为了降低纬度并使得商品店铺间的算术运算有意义，我们先对其进行Embedding嵌入。那么我们如何对用户多种多样的兴趣建模那？使用Pooling对Embedding Vector求和或者求平均。同时这也解决了不同用户输入长度不同的问题，得到了一个固定长度的向量。这个向量就是用户表示，是用户兴趣的代表。</p>
+<p>2、但是，直接求sum或average损失了很多信息。所以稍加改进，针对不同的behavior id赋予不同的权重，这个权重是由当前behavior id和候选广告共同决定的。这就是Attention机制，实现了Local Activation。</p>
+<p>3、DIN使用activation unit来捕获local activation的特征，使用weighted sum pooling来捕获diversity结构。</p>
+<p>4、在模型学习优化上，DIN提出了Dice激活函数、自适应正则 ，显著的提升了模型性能与收敛速度。</p>
+<p><strong>思考</strong></p>
+<p>1、将attention引入推荐领域，确实是比较好的想法，不过计算相似度不进行归一化，还是不太能理解。</p>
+<p>2、对于打分函数的特性，我的理解是因为user behaviors中有一些是0，那么对于这部分的分数肯定应该就是0，因为用户都没有看过，肯定对当前下发的Ad没有任何影响。但是模型中的打分函数对于这部分没有激活的数据仍然会有一个概率值，因此这点还不是特别能理解。</p>
+<p>3、deepFM使用的都是用户固有特征、商品固有特征，然后进行特征组合，没有考虑用户历史行为特征。因此DIN网络将用户历史行为特征考虑进来，同时用attention机制找相似性，肯定可以比较好的挖掘历史特征。但是对于用户固有属性方面没有进行太多的挖掘，因此如果将deepFM的思想和DIN的思想进行融合会怎么样呢？</p>
+<p>4、这里的物品向量表示都是用的固有属性，为什么不能用基于ItemCF的协同过滤思想产生的向量呢？</p>
+<p>5、冷启动问题？广告只和用户历史行为有关，那么如何探索新的用户兴趣点呢？会不会有兴趣茧房问题呢？</p>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>boris</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://yoursite.com/a/1786543572/" title="CTR预估模型及其发展">http://yoursite.com/a/1786543572/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLW5kLzQuMC9kZWVkLnpo"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/a/866938117/" rel="next" title="final和static关键字">
+                <i class="fa fa-chevron-left"></i> final和static关键字
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/a/1933089106/" rel="prev" title="从seq2seq到attention">
+                从seq2seq到attention <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+  
+  <p class="site-author-name" itemprop="name">boris</p>
+  <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmJhbmc=" title="GitHub &rarr; https://github.com/linbang"><i class="fa fa-fw fa-github"></i>GitHub</span>
+      </span>
+    
+  </div>
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Embedding介绍"><span class="nav-number">1.</span> <span class="nav-text">Embedding介绍</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#CTR常用模型介绍"><span class="nav-number"></span> <span class="nav-text">CTR常用模型介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、LR"><span class="nav-number">1.</span> <span class="nav-text">1、LR</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特征离散化"><span class="nav-number">1.0.1.</span> <span class="nav-text">特征离散化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#无监督方法"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">无监督方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#有监督方法"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">有监督方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征交叉"><span class="nav-number">1.0.2.</span> <span class="nav-text">特征交叉</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、GBDT-LR"><span class="nav-number">2.</span> <span class="nav-text">2、GBDT+LR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、FM模型"><span class="nav-number">3.</span> <span class="nav-text">3、FM模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、FFM模型"><span class="nav-number">4.</span> <span class="nav-text">4、FFM模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、DeepFM模型"><span class="nav-number">5.</span> <span class="nav-text">5、DeepFM模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FM部分"><span class="nav-number">5.1.</span> <span class="nav-text">FM部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络部分"><span class="nav-number">5.2.</span> <span class="nav-text">神经网络部分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、Wide-amp-Deep模型"><span class="nav-number">6.</span> <span class="nav-text">6、Wide &amp; Deep模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#wide端"><span class="nav-number">6.1.</span> <span class="nav-text">wide端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deep端"><span class="nav-number">6.2.</span> <span class="nav-text">Deep端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、FNN模型"><span class="nav-number">7.</span> <span class="nav-text">7、FNN模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、PNN模型"><span class="nav-number">8.</span> <span class="nav-text">8、PNN模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输出层"><span class="nav-number">8.1.</span> <span class="nav-text">输出层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#L2层"><span class="nav-number">8.2.</span> <span class="nav-text">L2层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#L1层"><span class="nav-number">8.3.</span> <span class="nav-text">L1层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Product-Layer层"><span class="nav-number">8.4.</span> <span class="nav-text">Product Layer层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Embedding层"><span class="nav-number">8.5.</span> <span class="nav-text">Embedding层</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number"></span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9、DIN模型"><span class="nav-number">1.</span> <span class="nav-text">9、DIN模型</span></a></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <span class="exturl" data-url="aHR0cDovL3d3dy5iZWlhbi5taWl0Lmdvdi5jbg=="> </span>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-superpowers"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">boris</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">296k</span>
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      您是到访本站的第 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 位小伙伴
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      本站已被戳过 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次了
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <script size="300" alpha="0.6" zindex="-1" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js"></script>
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.2.0"></script>
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</html>

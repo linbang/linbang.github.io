@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/uploads/logo.png?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+
+
+
+  
+  
+    
+      
+    
+    
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css?v=1.0.2">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="事务我们在写Java程序，遇到并发问题时，会想到用锁来解决。数据库遇到并发问题怎么解决呢？答案就是事务，事务的本质就是锁和并发的结合体。 简单理解事务就是一串满足ACID的SQL命令，可以通过commit提交，可以通过rollback回滚 事务的四大特性： 1、原子性(Atomicity) 原子性是指事务包含的所有操作要么全部成功，要么全部失败回滚。 2、一致性(Consistency) 在事务执">
+<meta name="keywords" content="博客,机器学习,Java,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库知识点">
+<meta property="og:url" content="http://yoursite.com/a/175394686/index.html">
+<meta property="og:site_name" content="切克闹">
+<meta property="og:description" content="事务我们在写Java程序，遇到并发问题时，会想到用锁来解决。数据库遇到并发问题怎么解决呢？答案就是事务，事务的本质就是锁和并发的结合体。 简单理解事务就是一串满足ACID的SQL命令，可以通过commit提交，可以通过rollback回滚 事务的四大特性： 1、原子性(Atomicity) 原子性是指事务包含的所有操作要么全部成功，要么全部失败回滚。 2、一致性(Consistency) 在事务执">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-02-09T11:12:58.767Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库知识点">
+<meta name="twitter:description" content="事务我们在写Java程序，遇到并发问题时，会想到用锁来解决。数据库遇到并发问题怎么解决呢？答案就是事务，事务的本质就是锁和并发的结合体。 简单理解事务就是一串满足ACID的SQL命令，可以通过commit提交，可以通过rollback回滚 事务的四大特性： 1、原子性(Atomicity) 原子性是指事务包含的所有操作要么全部成功，要么全部失败回滚。 2、一致性(Consistency) 在事务执">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/a/175394686/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>数据库知识点 | 切克闹</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切克闹</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+      <a>
+        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+      </a>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">121</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">20</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">24</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/a/175394686/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="boris">
+      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
+      <meta itemprop="image" content="/uploads/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切克闹">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数据库知识点
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-14 09:57:10" itemprop="dateCreated datePublished" datetime="2019-03-14T09:57:10+08:00">2019-03-14</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-09 19:12:58" itemprop="dateModified" datetime="2020-02-09T19:12:58+08:00">2020-02-09</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+               <!--  阅读次数：  -->
+               本文已被戳过 <span class="busuanzi-value" id="busuanzi_value_page_pv"></span> 次了
+              </span>
+            </span>
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">3.1k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">3 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>我们在写Java程序，遇到并发问题时，会想到用锁来解决。数据库遇到并发问题怎么解决呢？答案就是事务，事务的本质就是锁和并发的结合体。</p>
+<p>简单理解事务就是一串满足ACID的SQL命令，可以通过commit提交，可以通过rollback回滚</p>
+<p>事务的四大特性：</p>
+<p>1、原子性(Atomicity)</p>
+<p>原子性是指事务包含的所有操作要么全部成功，要么全部失败回滚。</p>
+<p>2、一致性(Consistency)</p>
+<p>在事务执行前后保持一致性状态，含义是数据库中的所有数据应满足数据库的完整性约束。</p>
+<p>3、隔离性（Isolation）</p>
+<p>用户并发访问、操作数据库时，数据库为各个用户开启的事务相互隔离。</p>
+<p>4、持久性（Durability）</p>
+<p>一旦事务提交，则其所做的修改将会永远保存到数据库中。即使系统发生崩溃，事务执行的结果也不能丢失。</p>
+<p>AUTOCOMMIT</p>
+<p>MySQL默认采用自动提交模式，不显示使用START TRANSACTION语句来开启事务，每个查询都会被当作一个事务自动提交。</p>
+<h2 id="数据库的索引"><a href="#数据库的索引" class="headerlink" title="数据库的索引"></a>数据库的索引</h2><h3 id="1、索引定义"><a href="#1、索引定义" class="headerlink" title="1、索引定义"></a>1、索引定义</h3><p>为什么要有索引：数据库中记录可能会很多，为了方便查找，加上索引，提高查询效率。如果没有索引，需要顺序遍历所有的数据，才能找到想要的数据。</p>
+<p>索引对应着数据库表种得一个或多个列。</p>
+<h3 id="2、索引类型"><a href="#2、索引类型" class="headerlink" title="2、索引类型"></a>2、索引类型</h3><p><strong>从物理存储的角度</strong></p>
+<p>1、聚簇索引其实就是一种存储的数据结构，思路就是将索引和存储单元分离，内部节点用来寻找数据，叶子节点用来存储数据。</p>
+<p>2、非聚簇索引</p>
+<p><strong>从逻辑角度</strong></p>
+<p>1、主键索引</p>
+<p>通常我们在建表的时候要制定那一列作为主键，主键每个值必须唯一。数据库自动按照主键建立索引。</p>
+<p>2、组合索引</p>
+<p>组合索引就是使用多个列进行联合查找，遵循“最左匹配”原则。</p>
+<p>3、唯一索引或者非唯一索引</p>
+<h3 id="3、索引的实现方式"><a href="#3、索引的实现方式" class="headerlink" title="3、索引的实现方式"></a>3、索引的实现方式</h3><p>1、B+树</p>
+<p>最常见的索引实现方式，B+树的内部节点只用来比较索引大小，叶子节点用来存放数据。</p>
+<p>B+树是一颗多叉平衡树，生成方式是自下到上的分裂，这种分裂方式保证了所有的叶子节点在同一层。</p>
+<p>所有叶子节点中包含了全部数据的信息，包括指向数据的指针，叶子节点本身按照关键字的大小顺序链接</p>
+<p>2、Hash索引</p>
+<p>对主键进行hash，并将hash结果和该数据的地址联系起来。这样查找会比较快，但是引起hash冲突，解决hash冲突可以用链地址法。</p>
+<p>缺点就是：hah不能排序，也不支持部分区域查找。</p>
+<p><strong>为什么不用B树或者红黑树</strong></p>
+<p>1、红黑树是平衡的二叉树，在增加、删除数据的时候，需要对红黑树进行频繁的调整，浪费时间。</p>
+<p>2、B树查询性能不好，B树采用非聚集索引，每个节点都可保存指向真实数据的指针，相对于B+树每层的存储元素更多。</p>
+<h3 id="4、索引优化"><a href="#4、索引优化" class="headerlink" title="4、索引优化"></a>4、索引优化</h3><p>索引优化大概率算法工程师不太会考把，不过也整理一下自己的思路。</p>
+<p>1、是否可以根据频率建立索引。有点类似哈夫曼树的思想，根据搜索的频率来建立树结构。将频率高的数据放到距离root节点更近的地方，提高查询效率。</p>
+<p>2、MySQL中对叶子节点存储优化，叶子节点不存储数据，而是存储主键的地址。拿到叶子节点的地址之后，再去找相应的数据。</p>
+<h2 id="关系型数据库和非关系型数据库"><a href="#关系型数据库和非关系型数据库" class="headerlink" title="关系型数据库和非关系型数据库"></a>关系型数据库和非关系型数据库</h2><p>关系型数据库：</p>
+<p>传统的数据库，简单来说就是满足二维表格模型，支持ACID特性，可以有很多列，然后指定一个主键。</p>
+<p>支持SQL查询，但是只能存储基础类型，结构化数据。</p>
+<p>非关系型数据库：</p>
+<p>使用&lt;key,value&gt;存储数据，不支持ACID特性。</p>
+<p>nosql可以存储文档、图片等非结构化数据。</p>
+<p>常用的非关系型数据库：redis、python中的shelve模块。</p>
+<h2 id="最左匹配原则"><a href="#最左匹配原则" class="headerlink" title="最左匹配原则"></a>最左匹配原则</h2><p>假设我们建表的时候指定联合索引是（a,b,c）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create table test(</span><br><span class="line">a int ,</span><br><span class="line">b int,</span><br><span class="line">c int,</span><br><span class="line">d int,</span><br><span class="line">key index_abc(a,b,c)</span><br><span class="line">)engine=InnoDB default charset=utf8;</span><br></pre></td></tr></table></figure>
+
+<p>我们对这样的表进行查找的时候：</p>
+<p>如果查找(a = 1 , b = 2 , c = 3)，就会<strong>优先比较a来确定下一步搜索的方向</strong>，如果a相同再去比较b和c，依次建立起数据。</p>
+<p>如果查找(c = 3 , b = 2 , a = 1)，虽然倒序了，但是优化器会自动给你调正确，可以使用索引。</p>
+<p>如果查找(b = 2 , c = 3)，没有a这个条件，那么mysql就会扫描全部的表，这样索引的作用就没有了。</p>
+<p>如果查找(a = 1 , c = 3)，缺少b这个条件，mysql仍然先按照a来找搜索方向，虽然b缺失，系统会找到所有b的数据，然后再找找c进行检索。</p>
+<p><strong>上面这些性质叫做索引的最左匹配特性</strong>。</p>
+<h2 id="数据库范式"><a href="#数据库范式" class="headerlink" title="数据库范式"></a>数据库范式</h2><p>数据库范式是数据库设计的重要原则,一般情况我们要考虑数据库的第一范式，第二范式和第三范式。</p>
+<p>第一范式：如果关系模式R是第一范式的模式，那么，R的每一个关系r的属性都是原子项，不可分割。 1NF是关系模式应具备的最起码的条件，如果数据库设计不能满足第一范式，就不能称为关系型数据库。关系数据库设计研究的关系规范化是在1NF之上进行的。 </p>
+<p>第二范式：如果关系模式R是1NF，且每一个非主属性完全依赖于候选建，那么就称R是第二范式。</p>
+<p>第三范式：如果关系模式R是2NF，且关系模式R（U,F）中的所有非主属性对任何候选关键字都不存在传递依赖，则称关系R是属于第三范式。</p>
+<h2 id="并发一致性问题"><a href="#并发一致性问题" class="headerlink" title="并发一致性问题"></a>并发一致性问题</h2><p>在并发环境下，事务的隔离性很难保证，因此会出现并发一致性问题。</p>
+<p>1、丢失修改</p>
+<p>T1 和 T2 两个事务都对一个数据进行修改，T1 先修改，T2 随后修改，T2 的修改覆盖了 T1 的修改。</p>
+<p>2、读脏数据</p>
+<p>T1 修改一个数据，T2 随后读取这个数据。如果 T1 撤销了这次修改，那么 T2 读取的数据是脏数据。</p>
+<p>3、不可重复读</p>
+<p>T2 读取一个数据，T1 对该数据做了修改。如果 T2 再次读取这个数据，此时读取的结果和第一次读取的结果不同。幻读针对的是数据的数量，两次查询数量不一致，就是幻读。</p>
+<p>4、幻读</p>
+<p>T1 读取某个范围的数据，T2 在这个范围内插入新的数据，T1 再次读取这个范围的数据，此时读取的结果和和第一次读取的结果不同。</p>
+<p>产生并发不一致问题主要原因是破坏了事务的隔离性，解决的办法是通过控制并发来保证隔离性。</p>
+<p>1、加锁，但是加锁比较麻烦</p>
+<p>2、通过控制隔离级别</p>
+<h2 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h2><p>1、未提交读 (READ UNCOMMITTED)</p>
+<p>事务中的修改，即使没有提交，对其它事务也是可见的。</p>
+<p>2、提交读 (READ COMMITTED)</p>
+<p>一个事务只能读取已经提交的事务所做的修改。换句话说，一个事务所做的修改在提交之前对其它事务是不可见的。</p>
+<p>3、可重复读 (REPEATABLE READ)</p>
+<p>保证在同一个事务中多次读取同样数据的结果是一样的。</p>
+<p>4、可串行化 (SERIALIZABLE)</p>
+<p>强制事务串行执行。</p>
+<table>
+<thead>
+<tr>
+<th align="center">隔离级别</th>
+<th align="center">脏读</th>
+<th align="center">不可重复读</th>
+<th align="center">幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">不可提交读</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+</tr>
+<tr>
+<td align="center">提交读</td>
+<td align="center">×</td>
+<td align="center">√</td>
+<td align="center">√</td>
+</tr>
+<tr>
+<td align="center">可重复读</td>
+<td align="center">×</td>
+<td align="center">×</td>
+<td align="center">√</td>
+</tr>
+<tr>
+<td align="center">可串行化</td>
+<td align="center">×</td>
+<td align="center">×</td>
+<td align="center">×</td>
+</tr>
+</tbody></table>
+<h2 id="数据库的锁"><a href="#数据库的锁" class="headerlink" title="数据库的锁"></a>数据库的锁</h2><p>数据库的锁分为乐观锁和悲观锁两种。</p>
+<p>悲观锁就是普通的锁，在一个事务获取一个锁之后就一直拥有，其余事务只能等待。悲观锁按照使用性质可以分为：</p>
+<ul>
+<li>共享锁</li>
+<li>排他锁</li>
+<li>更新锁</li>
+</ul>
+<p>因为数据库中使用最频繁是读取，这时候一个更新操作会加锁阻塞所有的读取，降低性能。所以在读写比例比较大的时候，需要使用乐观锁。</p>
+<p>乐观锁，每次操作数据的时候会认为没有其余人会修改数据，所以不去加锁，但是在更新的时候回去判断数据在此期间是否被修改。乐观锁的实现方式：</p>
+<ul>
+<li>版本号：增加version字段，每次更新version+1，读取的时候读取version，更新的时候比较version，如果是相同的version就可以更新了，如果版本号大就说明中间有更新了，由用户自己决定该怎么做。</li>
+<li>时间戳：和版本号一样，只是通过时间戳来判断是否更新。</li>
+<li>待更新字段</li>
+</ul>
+<h2 id="delete、drop和truncate的区别"><a href="#delete、drop和truncate的区别" class="headerlink" title="delete、drop和truncate的区别"></a>delete、drop和truncate的区别</h2><p>drop直接删掉表</p>
+<p>truncate删除表中的所有数据，保留表</p>
+<p>delete删除表中的数据，可以加where。</p>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>boris</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://yoursite.com/a/175394686/" title="数据库知识点">http://yoursite.com/a/175394686/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLW5kLzQuMC9kZWVkLnpo"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/a/412478700/" rel="next" title="CNN网络发展">
+                <i class="fa fa-chevron-left"></i> CNN网络发展
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/a/3135569683/" rel="prev" title="Redis">
+                Redis <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+  
+  <p class="site-author-name" itemprop="name">boris</p>
+  <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmJhbmc=" title="GitHub &rarr; https://github.com/linbang"><i class="fa fa-fw fa-github"></i>GitHub</span>
+      </span>
+    
+  </div>
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">1.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的索引"><span class="nav-number">2.</span> <span class="nav-text">数据库的索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、索引定义"><span class="nav-number">2.1.</span> <span class="nav-text">1、索引定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、索引类型"><span class="nav-number">2.2.</span> <span class="nav-text">2、索引类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、索引的实现方式"><span class="nav-number">2.3.</span> <span class="nav-text">3、索引的实现方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、索引优化"><span class="nav-number">2.4.</span> <span class="nav-text">4、索引优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系型数据库和非关系型数据库"><span class="nav-number">3.</span> <span class="nav-text">关系型数据库和非关系型数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最左匹配原则"><span class="nav-number">4.</span> <span class="nav-text">最左匹配原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库范式"><span class="nav-number">5.</span> <span class="nav-text">数据库范式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发一致性问题"><span class="nav-number">6.</span> <span class="nav-text">并发一致性问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隔离级别"><span class="nav-number">7.</span> <span class="nav-text">隔离级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的锁"><span class="nav-number">8.</span> <span class="nav-text">数据库的锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#delete、drop和truncate的区别"><span class="nav-number">9.</span> <span class="nav-text">delete、drop和truncate的区别</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <span class="exturl" data-url="aHR0cDovL3d3dy5iZWlhbi5taWl0Lmdvdi5jbg=="> </span>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-superpowers"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">boris</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">296k</span>
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      您是到访本站的第 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 位小伙伴
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      本站已被戳过 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次了
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <script size="300" alpha="0.6" zindex="-1" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js"></script>
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.2.0"></script>
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</html>
