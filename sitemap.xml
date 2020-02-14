@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.lbblog.com/a/2832254963/</loc>
+    
+    <lastmod>2020-02-14T14:36:21.137Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.lbblog.com/a/1/</loc>
     
     <lastmod>2020-02-09T11:16:51.381Z</lastmod>
@@ -849,14 +856,14 @@
   </url>
   
   <url>
-    <loc>http://www.lbblog.com/categories/index.html</loc>
+    <loc>http://www.lbblog.com/tags/index.html</loc>
     
     <lastmod>2019-07-28T02:51:46.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.lbblog.com/tags/index.html</loc>
+    <loc>http://www.lbblog.com/categories/index.html</loc>
     
     <lastmod>2019-07-28T02:51:46.000Z</lastmod>
     

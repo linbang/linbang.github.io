@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/uploads/logo.png?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+
+
+
+  
+  
+    
+      
+    
+    
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css?v=1.0.2">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="前言新冠病毒肆虐已经一个月了，截止到2020年2月13日零点，全国已经感染59883人，疑似16067，治愈5960人，死亡1368。作为一个数据工作者，也想用自己的方式干点啥（寒假在家太无聊），所以决定自己动手撸一遍模型来预测一下后面的走势。调查了一下传染病的模型，大部分都是基于动力学模型（微分方程），有点类似本科学的控制理论，因此本文我先基于SIR撸一个简单的预测模型。 SIR模型SIR模型是">
+<meta name="keywords" content="博客,机器学习,Java,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="新冠肺炎预测">
+<meta property="og:url" content="http://www.lbblog.com/a/2832254963/index.html">
+<meta property="og:site_name" content="切克闹">
+<meta property="og:description" content="前言新冠病毒肆虐已经一个月了，截止到2020年2月13日零点，全国已经感染59883人，疑似16067，治愈5960人，死亡1368。作为一个数据工作者，也想用自己的方式干点啥（寒假在家太无聊），所以决定自己动手撸一遍模型来预测一下后面的走势。调查了一下传染病的模型，大部分都是基于动力学模型（微分方程），有点类似本科学的控制理论，因此本文我先基于SIR撸一个简单的预测模型。 SIR模型SIR模型是">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:updated_time" content="2020-02-14T14:36:21.137Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="新冠肺炎预测">
+<meta name="twitter:description" content="前言新冠病毒肆虐已经一个月了，截止到2020年2月13日零点，全国已经感染59883人，疑似16067，治愈5960人，死亡1368。作为一个数据工作者，也想用自己的方式干点啥（寒假在家太无聊），所以决定自己动手撸一遍模型来预测一下后面的走势。调查了一下传染病的模型，大部分都是基于动力学模型（微分方程），有点类似本科学的控制理论，因此本文我先基于SIR撸一个简单的预测模型。 SIR模型SIR模型是">
+<meta name="twitter:image" content="http://www.lbblog.com/uploads/loading.gif">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://www.lbblog.com/a/2832254963/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>新冠肺炎预测 | 切克闹</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切克闹</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+      <a>
+        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+      </a>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">122</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">20</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">24</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/2832254963/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="boris">
+      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
+      <meta itemprop="image" content="/uploads/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切克闹">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">新冠肺炎预测
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-13 12:02:06" itemprop="dateCreated datePublished" datetime="2020-02-13T12:02:06+08:00">2020-02-13</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-14 22:36:21" itemprop="dateModified" datetime="2020-02-14T22:36:21+08:00">2020-02-14</time>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+               <!--  阅读次数：  -->
+               本文已被戳过 <span class="busuanzi-value" id="busuanzi_value_page_pv"></span> 次了
+              </span>
+            </span>
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">4.6k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">4 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>新冠病毒肆虐已经一个月了，截止到2020年2月13日零点，全国已经感染59883人，疑似16067，治愈5960人，死亡1368。<br><img src="/uploads/loading.gif" data-original="https://ae01.alicdn.com/kf/H2d72c242f97842659cc049ce7df83707i.png" alt><br>作为一个数据工作者，也想用自己的方式干点啥（寒假在家太无聊），所以决定自己动手撸一遍模型来预测一下后面的走势。调查了一下传染病的模型，大部分都是基于动力学模型（微分方程），有点类似本科学的控制理论，因此本文我先基于SIR撸一个简单的预测模型。</p>
+<h1 id="SIR模型"><a href="#SIR模型" class="headerlink" title="SIR模型"></a>SIR模型</h1><p>SIR模型是一个简单的描述传染病传播的数学模型，将人群分为以下几类：<br>1 易感人群（Susceptible）：指未得病者，但缺乏免疫能力，与感病者接触后容易受到感染。<br>2 感染人群（Infective）：指染上传染病的人，他可以传播给易感人群。<br>3 移除人群（Removed）：被移出系统的人。因病愈（具有免疫力）或死亡的人。这部分人不再参与感染和被感染过程。</p>
+<h2 id="SIR模型数学描述"><a href="#SIR模型数学描述" class="headerlink" title="SIR模型数学描述"></a>SIR模型数学描述</h2><ul>
+<li>环境中总人数：$N$</li>
+<li>易感染人数：$S(t)$</li>
+<li>感染人数：$I(t)$</li>
+<li>恢复人数：$R(t)$</li>
+<li>感染系数和恢复系数：$\beta$,$\gamma$</li>
+</ul>
+<p>易感人群被感染者接触之后，传染率就是传染系数。这个参数也是我们主要需要拟合的参数。</p>
+<p>感染人群以固定的恢复系数恢复或者死亡，从而没有感染性。这个参数往往通过先验知识得到。</p>
+<p>根据SIR模型可以得到下列的微分方程：</p>
+<ul>
+<li>$$\frac{dS}{dt}=-\beta \frac{SI}{N}$$</li>
+<li>$\frac{dI}{dt}=\beta \frac{SI}{N}-\gamma I$</li>
+<li>$\frac{dR}{dt}=\gamma I$</li>
+</ul>
+<h2 id="SIR模型数学推导"><a href="#SIR模型数学推导" class="headerlink" title="SIR模型数学推导"></a>SIR模型数学推导</h2><h3 id="假设和前提"><a href="#假设和前提" class="headerlink" title="假设和前提"></a>假设和前提</h3><p>一、初始值</p>
+<p>由于刚开始时感染人数很小（约等于1），因此在刚开始时，易感人群为N-1，感染人数为1，恢复人数为0.</p>
+<p>二、$\gamma$的值</p>
+<p>根据新冠肺炎的特点，恢复期大约是14天，因此我们取$\gamma=1/14$。</p>
+<p>三、假设</p>
+<p>出于计算简单，我们假设早期有$S \approx N$，也就是易感人群几乎与全部人群相等。</p>
+<p>四、$\beta$的表达</p>
+<p>传染率$\beta$反应了疾病传播的强度，因此我们认为$\beta = n * prob$，其中n指的是一个病人接触到的人数量，prob指的是密切接触人的感染概率。我们想要得到的就是prob。通过控制n，就可以显著降低$\beta$。在本文推导中，我们假设n=5。</p>
+<h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><p>根据假设，我们可以得到：</p>
+<p>$$\frac{dI}{dt}=\beta \frac{SI}{N}-\gamma I=(\beta-\gamma)I$$</p>
+<p>求解该微分方程可以得到：</p>
+<p>$$I(t)=Ce^{(\beta-\gamma)t}$$</p>
+<p>因为初始时刻t=0时，$I(t)=1$，所以$C=1$，所以</p>
+<p>$$I(t)=e^{(\beta-\gamma)t}$$</p>
+<p>对等式两边同时取log，可以得到：</p>
+<p>$$lnI(t)=(\beta-\gamma)t ====&gt; y=(\beta-\gamma)t$$</p>
+<p>我们知道$\gamma$已知，t和$lnI(t)$是已知的数据，因此问题就是如何对这个公式里的$\beta$进行参数估计。</p>
+<p>这是一个简单的一次参数估计拟合，最常用的方法就是最小二乘法。</p>
+<blockquote>
+<p>目标：$min \quad J=\sum_{i}((\beta-\gamma)x_i-y_i)^2$</p>
+<p>求解过程：</p>
+<p>1、$\frac{\partial J}{\partial \beta}=\sum_{i}2x_i((\beta-\gamma)x_i-y_i)=0$</p>
+<p>2、$\beta=\gamma+\frac{\sum_{i}x_i y_i}{\sum_{i}x_i^2}$</p>
+</blockquote>
+<p>由此我们就得到了传染率$\beta$，考虑到n=5的假设，就可以得到一个人感染的概率prob。</p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><h2 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h2><p>这部分主要是处理网上的数据 (数据来源：<span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy9naXRodWIuY29tLzgzOVN0dWRpby9Ob3ZlbC1Db3JvbmF2aXJ1cy1VcGRhdGVz" title="https://link.zhihu.com/?target=https%3A//github.com/839Studio/Novel-Coronavirus-Updates">839Studio/Novel-Coronavirus-Updates<i class="fa fa-external-link"></i></span>) ，里面是各个城市每日新增确诊，新增出院or死亡等信息。我们需要将这些原始数据进行预处理：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">preProcess</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, file, city)</span>:</span></span><br><span class="line">        self.data = file[file[<span class="string">'城市'</span>] == city]</span><br><span class="line">        Infection = self.data.groupby(<span class="string">'报道时间'</span>)[<span class="string">'新增确诊'</span>].sum()</span><br><span class="line">        Recovered = self.data.groupby(<span class="string">'报道时间'</span>)[<span class="string">'新增出院'</span>].sum()</span><br><span class="line">        Dead = self.data.groupby(<span class="string">'报道时间'</span>)[<span class="string">'新增死亡'</span>].sum()</span><br><span class="line">        self.data = &#123;<span class="string">'报道时间'</span>:Infection.index, <span class="string">'新增确诊'</span>:Infection.values, <span class="string">'新增出院'</span>: Recovered.values, <span class="string">'新增死亡'</span>:Dead.values&#125;</span><br><span class="line">        self.data = pd.DataFrame(self.data, index = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(Infection.shape[<span class="number">0</span>])])</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getTotal</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.removeNoisyData()</span><br><span class="line">        TotalInfection = [self.data.loc[<span class="number">0</span>:i,<span class="string">'新增确诊'</span>].sum() <span class="keyword">for</span> i <span class="keyword">in</span> range(self.data.shape[<span class="number">0</span>])]</span><br><span class="line">        TotalRecovered = [self.data.loc[<span class="number">0</span>:i,<span class="string">'新增出院'</span>].sum() <span class="keyword">for</span> i <span class="keyword">in</span> range(self.data.shape[<span class="number">0</span>])]</span><br><span class="line">        TotalDead = [self.data.loc[<span class="number">0</span>:i,<span class="string">'新增死亡'</span>].sum() <span class="keyword">for</span> i <span class="keyword">in</span> range(self.data.shape[<span class="number">0</span>])]</span><br><span class="line">        self.data = self.data.join(pd.DataFrame([TotalInfection,TotalRecovered ,TotalDead], index = [<span class="string">'累计确诊'</span>, <span class="string">'累计出院'</span>,<span class="string">'累计死亡'</span>]).T)</span><br><span class="line">        <span class="comment">#return self.data</span></span><br><span class="line">        print(self.data)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeNoisyData</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.data = self.data[self.data[<span class="string">'报道时间'</span>] &gt;= <span class="string">'1月18日'</span>]</span><br><span class="line">        self.data.index = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(self.data.shape[<span class="number">0</span>])]</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">report</span><span class="params">(self)</span>:</span></span><br><span class="line">        plt.plot(self.data.index, self.data[<span class="string">'累计确诊'</span>])</span><br><span class="line">        plt.xlabel(<span class="string">'Day'</span>)</span><br><span class="line">        plt.ylabel(<span class="string">'Number of people'</span>)</span><br><span class="line">        plt.show()</span><br></pre></td></tr></table></figure>
+
+<h2 id="参数拟合"><a href="#参数拟合" class="headerlink" title="参数拟合"></a>参数拟合</h2><p>因为SIR模型我们主要是得到$\beta$这个参数，通过最小二乘法可以获取，因此我们直接根据上面的推导过程写一个函数得到最小二乘法的结果。</p>
+<ul>
+<li>因为首例发现是在12.8号，距离1.18有41天，因此我们需要将这部分时间加上去，用dataStartTimeStep这个变量表示</li>
+<li>采用1.18号之后的数据是因为这天之后是没有隐瞒的</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_beta</span><span class="params">(y, gama, dataStartTimeStep)</span>:</span></span><br><span class="line">    x = list(range(dataStartTimeStep,len(y)+dataStartTimeStep))</span><br><span class="line">    m = sum([a*b <span class="keyword">for</span> a,b <span class="keyword">in</span> zip(x, y)])</span><br><span class="line">    n = sum([a*a <span class="keyword">for</span> a <span class="keyword">in</span> x])</span><br><span class="line">    beta = m/n+gamma</span><br><span class="line">    print(<span class="string">'beta的值为：'</span>,beta)</span><br><span class="line">    <span class="keyword">return</span> beta</span><br></pre></td></tr></table></figure>
+
+<h2 id="SIR模型-1"><a href="#SIR模型-1" class="headerlink" title="SIR模型"></a>SIR模型</h2><p>SIR模型主要就是求解那个微分方程，可以使用scipy包里面的odeint函数实现。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SIRModel</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, N, beta, gamma, prob, contacts)</span>:</span></span><br><span class="line">        self.beta, self.gamma, self.N = beta, gamma, N</span><br><span class="line">        self.t = np.linspace(<span class="number">0</span>, <span class="number">360</span>, <span class="number">361</span>)</span><br><span class="line">        self.setInitCondition()</span><br><span class="line">        self.prob = prob</span><br><span class="line">        self.contacts = contacts</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">odeModel</span><span class="params">(self, population, t)</span>:</span></span><br><span class="line">        diff = np.zeros(<span class="number">3</span>)</span><br><span class="line">        s,i,r = population</span><br><span class="line">        diff[<span class="number">0</span>] = - self.beta * s * i / self.N</span><br><span class="line">        diff[<span class="number">1</span>] = self.beta * s * i / self.N - self.gamma * i</span><br><span class="line">        diff[<span class="number">2</span>] = self.gamma * i</span><br><span class="line">        <span class="keyword">return</span> diff</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setInitCondition</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.populationInit = [self.N - <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">solve</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.solution = odeint(self.odeModel,self.populationInit,self.t)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">report</span><span class="params">(self)</span>:</span></span><br><span class="line">        plt.plot(self.solution[:,<span class="number">1</span>],color = <span class="string">'orange'</span>,label = <span class="string">'Infection'</span>,marker = <span class="string">'.'</span>)</span><br><span class="line">        plt.plot(self.solution[:,<span class="number">2</span>],color = <span class="string">'green'</span>,label = <span class="string">'Recovery'</span>,marker = <span class="string">'.'</span>)</span><br><span class="line">        plt.title(<span class="string">'SIR Model'</span> + <span class="string">' prob= '</span>+ str(self.prob) + <span class="string">'contacts= '</span>+ str(self.contacts))</span><br><span class="line">        plt.legend()</span><br><span class="line">        plt.xlabel(<span class="string">'Day'</span>)</span><br><span class="line">        plt.ylabel(<span class="string">'Number of people'</span>)</span><br><span class="line">        plt.show()</span><br></pre></td></tr></table></figure>
+
+<h1 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h1><p>1、传染率</p>
+<p>使用不同的天数来拟合得到的结果是不一样的，因此这里多试验了几组拟合结果：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>5天</th>
+<th>6天</th>
+<th>7天</th>
+<th>8天</th>
+<th>9天</th>
+<th>10天</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$$\beta$$</td>
+<td>0.16939</td>
+<td>0.1759</td>
+<td>0.18063</td>
+<td>0.184004</td>
+<td>0.186607</td>
+<td>0.19042</td>
+</tr>
+<tr>
+<td>prob</td>
+<td>0.03388</td>
+<td>0.035</td>
+<td>0.0361</td>
+<td>0.0368007</td>
+<td>0.03732</td>
+<td>0.03808</td>
+</tr>
+</tbody></table>
+<p>可以发现使用数据量越大，$\beta$值越大，传染的概率越大，说明随着天数增加情况越来越严重。我们使用的是10天的数据来做拟合。</p>
+<p>可以得到病毒的基本传染数：</p>
+<p>$R_0=\frac{\beta}{\gamma}=\frac{0.19042}{1/14}=2.66588$</p>
+<p>2、预测曲线图</p>
+<p>在模型中，我们用n来控制一个患者密切接触者的数量，这个变量也表示政府管控的严厉性。</p>
+<p>在一个密切接触者被感染的概率prob是0.03808的情况下，我们可以得到下面对比结果：</p>
+<ul>
+<li>n=2个时，也就是政府管控的非常严格，一个病人只能有两个密切接触者。在这个时候，患病人数比较少，基本都维持在个位数。</li>
+</ul>
+<p><img src="/uploads/loading.gif" data-original="https://ae01.alicdn.com/kf/Hef483944081e4015b299c8dc176041fcQ.png" alt></p>
+<ul>
+<li>n=3时，一个病人有3个密切接触者。可以看到300多天时出现了顶峰，将近100w人感染。</li>
+</ul>
+<p><img src="/uploads/loading.gif" data-original="https://ae01.alicdn.com/kf/H79870a5c759a4ac7859753ab04b195fb2.png" alt></p>
+<ul>
+<li>n=4时，大概在200天左右达到巅峰，同时感染人数将近20%。</li>
+</ul>
+<p><img src="/uploads/loading.gif" data-original="https://ae01.alicdn.com/kf/Hddcc2c943bb4400ea1e577572b508078J.png" alt></p>
+<ul>
+<li>n=5时，政府几乎不管控。150天不到就发生了爆发，并且感染人数30%。</li>
+</ul>
+<p><img src="/uploads/loading.gif" data-original="https://ae01.alicdn.com/kf/H526d661c780d4c00b3050c65225c66feC.png" alt></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这次实验用了最简单的SIR模型，看懂了之后网上找了一些模型的开源实现。在求解部分使用了最小二乘推导。</p>
+<p>感觉真实的数据可能更恐怖，这个还是被美化的结果，所以还是老老实实在家呆着吧。</p>
+<p>这个模型感觉太简单了点，后面再研究研究更难的模型，看看能不能用深度网络来做。</p>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>boris</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://www.lbblog.com/a/2832254963/" title="新冠肺炎预测">http://www.lbblog.com/a/2832254963/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLW5kLzQuMC9kZWVkLnpo"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/a/1/" rel="next" title="HR面问题">
+                <i class="fa fa-chevron-left"></i> HR面问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+  
+  <p class="site-author-name" itemprop="name">boris</p>
+  <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmJhbmc=" title="GitHub &rarr; https://github.com/linbang"><i class="fa fa-fw fa-github"></i>GitHub</span>
+      </span>
+    
+  </div>
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SIR模型"><span class="nav-number">2.</span> <span class="nav-text">SIR模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SIR模型数学描述"><span class="nav-number">2.1.</span> <span class="nav-text">SIR模型数学描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SIR模型数学推导"><span class="nav-number">2.2.</span> <span class="nav-text">SIR模型数学推导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#假设和前提"><span class="nav-number">2.2.1.</span> <span class="nav-text">假设和前提</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推导"><span class="nav-number">2.2.2.</span> <span class="nav-text">推导</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据预处理"><span class="nav-number">3.1.</span> <span class="nav-text">数据预处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数拟合"><span class="nav-number">3.2.</span> <span class="nav-text">参数拟合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SIR模型-1"><span class="nav-number">3.3.</span> <span class="nav-text">SIR模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结果展示"><span class="nav-number">4.</span> <span class="nav-text">结果展示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <span class="exturl" data-url="aHR0cDovL3d3dy5iZWlhbi5taWl0Lmdvdi5jbg=="> </span>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-superpowers"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">boris</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">300k</span>
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      您是到访本站的第 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 位小伙伴
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      本站已被戳过 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次了
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <script size="300" alpha="0.6" zindex="-1" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js"></script>
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.2.0"></script>
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</html>
