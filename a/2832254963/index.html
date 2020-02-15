@@ -121,7 +121,7 @@
 <meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
 <meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
 <meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:updated_time" content="2020-02-14T14:36:21.137Z">
+<meta property="og:updated_time" content="2020-02-14T15:28:08.474Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="新冠肺炎预测">
 <meta name="twitter:description" content="前言新冠病毒肆虐已经一个月了，截止到2020年2月13日零点，全国已经感染59883人，疑似16067，治愈5960人，死亡1368。作为一个数据工作者，也想用自己的方式干点啥（寒假在家太无聊），所以决定自己动手撸一遍模型来预测一下后面的走势。调查了一下传染病的模型，大部分都是基于动力学模型（微分方程），有点类似本科学的控制理论，因此本文我先基于SIR撸一个简单的预测模型。 SIR模型SIR模型是">
@@ -263,7 +263,25 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">122</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">125</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-favorite">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/favorite/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>个人随笔</a>
 
   </li>
         
@@ -281,7 +299,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">20</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">21</span></a>
 
   </li>
         
@@ -403,7 +421,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-14 22:36:21" itemprop="dateModified" datetime="2020-02-14T22:36:21+08:00">2020-02-14</time>
+                <time title="修改时间：2020-02-14 23:28:08" itemprop="dateModified" datetime="2020-02-14T23:28:08+08:00">2020-02-14</time>
               </span>
             
           
@@ -423,6 +441,24 @@
             </span>
           
 
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/a/2832254963/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/a/2832254963/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
           
 
           <br>
@@ -646,6 +682,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/a/1675780638/" rel="prev" title="python网络爬虫（一）">
+                python网络爬虫（一） <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -664,6 +704,9 @@
 
           </div>
           
+  
+    
+    <div class="comments" id="comments"></div>
   
 
 
@@ -714,7 +757,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-count">125</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -836,7 +879,9 @@
         
           
         
-        <span class="site-state-item-count">20</span>
+          
+        
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -919,7 +964,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">300k</span>
+    <span title="站点总字数">307k</span>
   
 
   
@@ -1131,6 +1176,32 @@ window.addEventListener("message", function(e) {
 
 
 
+
+  
+    
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'cyUjg3FlHz4rMmsmVW4azCse-gzGzoHsz',
+    appKey: 'gAlBR1oAWAptwvtKqeJmNy2j',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
 
   
 
