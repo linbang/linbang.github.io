@@ -257,7 +257,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">126</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">130</span></a>
 
   </li>
         
@@ -311,7 +311,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">24</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">25</span></a>
 
   </li>
 
@@ -357,7 +357,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/2816918426/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/1029785637/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="boris">
@@ -377,7 +377,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/a/2816918426/" class="post-title-link" itemprop="url">容器需要掌握的知识</a>
+                <a href="/a/1029785637/" class="post-title-link" itemprop="url">HashMap</a>
               
             
           </h2>
@@ -463,8 +463,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/a/2816918426/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/a/2816918426/" itemprop="commentCount"></span>
+    <a href="/a/1029785637/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/a/1029785637/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -494,20 +494,19 @@
         
           
             <p>
-              容器主要包括 Collection 和 Map 两种，Collection 和 Map 都是接口，Collection 存储着对象的集合，而 Map 存储着键值对（两个对象）的映射表。
-Set
-TreeSet：基于红黑树实现，支持有序性操作，例如根据一个范围查找元素的操作。但是查找效率不如 HashSet，HashSet 查找的时间复杂度为 O(1)，TreeSet 则为 O(logN)。
-HashSet：基于哈希表实现，支持快速查找，但不支持有序性操作。并且失去了元素的插入顺序信息，也就是说使用 Iterator 遍历 HashSet 得到的结果是不确定的。
-LinkedHashSet：具有 HashSet 的查找效率，且内部使用双向链表维护元素的插入顺序。
+              为了便于理解，以下源码分析以 JDK 1.7 为主。
+存储结构内部包含了一个 Entry 类型的数组 table。
+transient Entry[] table;
 
-List
-ArrayList
+Entry 存储着键值对。它包含了四个字段，从 next 字段我们可以看出 Entry 是一个链表。即数组中的每个位置被当成一个桶，一个桶存放一个链表。HashMap 使用拉链法来解决冲突，同一个链表中存放哈希值相同的 Entry。
+
+static class Entry&lt;K,V&gt; implements Map.Entry&lt;K,V&gt; &#123;    final K key;    V value;    Entry&lt;K,V&gt; next;    int hash;    Entry(int
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/a/2816918426/#more" rel="contents">
+              <a class="btn" href="/a/1029785637/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -769,6 +768,212 @@ public synchronized boolean add(E e) &#123;    modCount++;    ensureCapacityHelp
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/1800931374/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="boris">
+      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
+      <meta itemprop="image" content="/uploads/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切克闹">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/a/1800931374/" class="post-title-link" itemprop="url">WeakHashMap</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-12 10:59:44" itemprop="dateCreated datePublished" datetime="2019-03-12T10:59:44+08:00">2019-03-12</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-09 19:12:56" itemprop="dateModified" datetime="2020-02-09T19:12:56+08:00">2020-02-09</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/JAVA容器/" itemprop="url" rel="index"><span itemprop="name">JAVA容器</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/a/1800931374/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/a/1800931374/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              存储结构WeakHashMap 的 Entry 继承自 WeakReference，被 WeakReference 关联的对象在下一次垃圾回收时会被回收 (而HashMap 中由于每个元素都有一个桶去引用，因此不会被垃圾回收器回收)。
+WeakHashMap 主要用来实现缓存，通过使用 WeakHashMap 来引用缓存对象，由 JVM 对这部分缓存进行回收。
+private static class Entry&lt;K,V&gt; extends WeakReference&lt;Object&gt; implements Map.Entry&lt;K,V&gt;
+
+Tomcat 中的 ConcurrentCache (*)Tomcat 中的 ConcurrentCache 使用了 We
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/a/1800931374/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/1947257592/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -920,6 +1125,215 @@ Full GC：回收老年代和新生代，老年代对象其存活时间长，因�
           
             <div class="post-button text-center">
               <a class="btn" href="/a/1947257592/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/2816918426/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="boris">
+      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
+      <meta itemprop="image" content="/uploads/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切克闹">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/a/2816918426/" class="post-title-link" itemprop="url">容器需要掌握的知识</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-12 10:59:44" itemprop="dateCreated datePublished" datetime="2019-03-12T10:59:44+08:00">2019-03-12</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-09 19:12:56" itemprop="dateModified" datetime="2020-02-09T19:12:56+08:00">2020-02-09</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/JAVA容器/" itemprop="url" rel="index"><span itemprop="name">JAVA容器</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/a/2816918426/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/a/2816918426/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              容器主要包括 Collection 和 Map 两种，Collection 和 Map 都是接口，Collection 存储着对象的集合，而 Map 存储着键值对（两个对象）的映射表。
+Set
+TreeSet：基于红黑树实现，支持有序性操作，例如根据一个范围查找元素的操作。但是查找效率不如 HashSet，HashSet 查找的时间复杂度为 O(1)，TreeSet 则为 O(logN)。
+HashSet：基于哈希表实现，支持快速查找，但不支持有序性操作。并且失去了元素的插入顺序信息，也就是说使用 Iterator 遍历 HashSet 得到的结果是不确定的。
+LinkedHashSet：具有 HashSet 的查找效率，且内部使用双向链表维护元素的插入顺序。
+
+List
+ArrayList
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/a/2816918426/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1200,211 +1614,6 @@ Full GC：回收老年代和新生代，老年代对象其存活时间长，因�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3115023810/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
-      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
-      <meta itemprop="image" content="/uploads/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/a/3115023810/" class="post-title-link" itemprop="url">垃圾收集</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-12 10:59:44" itemprop="dateCreated datePublished" datetime="2019-03-12T10:59:44+08:00">2019-03-12</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-02-09 19:12:58" itemprop="dateModified" datetime="2020-02-09T19:12:58+08:00">2020-02-09</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/JAVA虚拟机/" itemprop="url" rel="index"><span itemprop="name">JAVA虚拟机</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-          
-
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/a/3115023810/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/a/3115023810/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              垃圾收集主要是针对堆和方法区进行。程序计数器、虚拟机栈和本地方法栈这三个区域属于线程私有的，只存在于线程的生命周期内，线程结束之后就会消失，因此不需要对这三个区域进行垃圾回收。
-判断一个对象是否可被回收引用计数法为对象添加一个引用计数器，当对象增加一个引用时计数器加 1，引用失效时计数器减 1。引用计数为 0 的对象可被回收。
-在两个对象出现循环引用的情况下，此时引用计数器永远不为 0，导致无法对它们进行回收。正是因为循环引用的存在，因此 Java 虚拟机不使用引用计数算法。
-public class Test &#123;    public Object instance = null;    public static void main(String[] args) &#123;  
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/a/3115023810/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/553472470/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1618,7 +1827,7 @@ java -Xss512M HackTheJava
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/4234104364/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3115023810/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="boris">
@@ -1638,7 +1847,7 @@ java -Xss512M HackTheJava
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/a/4234104364/" class="post-title-link" itemprop="url">命名实体识别</a>
+                <a href="/a/3115023810/" class="post-title-link" itemprop="url">垃圾收集</a>
               
             
           </h2>
@@ -1663,7 +1872,7 @@ java -Xss512M HackTheJava
                 
               
 
-              <time title="创建时间：2019-03-11 20:45:06" itemprop="dateCreated datePublished" datetime="2019-03-11T20:45:06+08:00">2019-03-11</time>
+              <time title="创建时间：2019-03-12 10:59:44" itemprop="dateCreated datePublished" datetime="2019-03-12T10:59:44+08:00">2019-03-12</time>
             </span>
           
 
@@ -1692,7 +1901,14 @@ java -Xss512M HackTheJava
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/自然语言处理/" itemprop="url" rel="index"><span itemprop="name">自然语言处理</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/JAVA虚拟机/" itemprop="url" rel="index"><span itemprop="name">JAVA虚拟机</span></a></span>
 
                 
                 
@@ -1717,8 +1933,8 @@ java -Xss512M HackTheJava
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/a/4234104364/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/a/4234104364/" itemprop="commentCount"></span>
+    <a href="/a/3115023810/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/a/3115023810/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1748,18 +1964,16 @@ java -Xss512M HackTheJava
         
           
             <p>
-              命名实体识别(NER)是NLP比较常见的任务，命名实体是指文本中具有特定意义或者指代行强的实体，通常包括人名、地名、组织机构名、日期时间、专有名词等。NER就是从非结构化的输入文本中抽取上述实体，并且可以按照业务需求识别出更多类别的实体。
-进行命名实体识别是比较有意义的，一方面在搜索场景下对命名实体进行检索准确性更高，一方面在情感分析中我们大概率需要去除命名实体的干扰。
-实际应用中，NER模型通常只要识别出人名、地名、组织机构名、日期时间即可，数字类型的实体可以通过正则匹配识别。
-深度学习方法在NER中的应用
-这张图表示了NER的发展历程，目前比较多的就是使用深度学习。
-在机器学习方法中，NER被当作是序列标注问题。利用大规模预料来学习出标注模型，从而对句子的各个位置进行标注。传统的模型有生
+              垃圾收集主要是针对堆和方法区进行。程序计数器、虚拟机栈和本地方法栈这三个区域属于线程私有的，只存在于线程的生命周期内，线程结束之后就会消失，因此不需要对这三个区域进行垃圾回收。
+判断一个对象是否可被回收引用计数法为对象添加一个引用计数器，当对象增加一个引用时计数器加 1，引用失效时计数器减 1。引用计数为 0 的对象可被回收。
+在两个对象出现循环引用的情况下，此时引用计数器永远不为 0，导致无法对它们进行回收。正是因为循环引用的存在，因此 Java 虚拟机不使用引用计数算法。
+public class Test &#123;    public Object instance = null;    public static void main(String[] args) &#123;  
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/a/4234104364/#more" rel="contents">
+              <a class="btn" href="/a/3115023810/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1818,7 +2032,7 @@ java -Xss512M HackTheJava
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3329557370/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/707384687/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="boris">
@@ -1838,7 +2052,7 @@ java -Xss512M HackTheJava
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/a/3329557370/" class="post-title-link" itemprop="url">最大似然估计和最大后验概率估计</a>
+                <a href="/a/707384687/" class="post-title-link" itemprop="url">LinkedList</a>
               
             
           </h2>
@@ -1863,7 +2077,7 @@ java -Xss512M HackTheJava
                 
               
 
-              <time title="创建时间：2019-03-11 17:10:52" itemprop="dateCreated datePublished" datetime="2019-03-11T17:10:52+08:00">2019-03-11</time>
+              <time title="创建时间：2019-03-12 10:59:44" itemprop="dateCreated datePublished" datetime="2019-03-12T10:59:44+08:00">2019-03-12</time>
             </span>
           
 
@@ -1878,7 +2092,7 @@ java -Xss512M HackTheJava
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-09 19:12:58" itemprop="dateModified" datetime="2020-02-09T19:12:58+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-09 19:12:56" itemprop="dateModified" datetime="2020-02-09T19:12:56+08:00">2020-02-09</time>
               </span>
             
           
@@ -1892,7 +2106,14 @@ java -Xss512M HackTheJava
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/JAVA容器/" itemprop="url" rel="index"><span itemprop="name">JAVA容器</span></a></span>
 
                 
                 
@@ -1917,8 +2138,8 @@ java -Xss512M HackTheJava
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/a/3329557370/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/a/3329557370/" itemprop="commentCount"></span>
+    <a href="/a/707384687/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/a/707384687/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1948,18 +2169,26 @@ java -Xss512M HackTheJava
         
           
             <p>
-              最大似然估计和最大后验概率估计是参数估计中两种常用的方法。一直对这种数学推导望而却步，因为连续两位同学面试都问到这个问题，所以在此咬牙总结一下。
-概率和统计概率研究的问题，是已知一个模型和参数，怎么去预测这个模型产生的结果的特性。比如用LR算法，已经找到了很多参数，那么预测的结果好不好。这个问题是概率问题。
-统计研究的是用数据去预测模型和参数。比如买了一堆肉（数据），推测出来这个是猪肉（推测出模型），然后再判断是什么品种（推测模型参数）。
-所以概率是已知模型和参数，推预测结果；统计是已知预测结果，推模型和参数
-最大似然估计和最大后验概率估计都是已知结果，推断模型和参数的方法。我们首先要理解贝叶斯公式。
-贝叶斯公式$$P(A|B) =\frac{P(A,B)}{P(B)} =\frac{P(B
-              ...
+              概览基于双向链表实现，使用 Node 存储链表节点信息。
+private static class Node&lt;E&gt; &#123;    E item;    Node&lt;E&gt; next;    Node&lt;E&gt; prev;&#125;
+
+每个链表存储了 first 和 last 指针：
+transient Node&lt;E&gt; first;transient Node&lt;E&gt; last;
+
+
+与ArrayList的比较
+ArrayList 基于动态数组实现，LinkedList 基于双向链表实现；
+ArrayList 支持随机访问，LinkedList 不支持；
+LinkedList 在任意位置添加删除元素更快。
+
+参考资料Java 容器
+
+              
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/a/3329557370/#more" rel="contents">
+              <a class="btn" href="/a/707384687/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2018,7 +2247,7 @@ java -Xss512M HackTheJava
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3837305387/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/2218520205/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="boris">
@@ -2038,7 +2267,7 @@ java -Xss512M HackTheJava
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/a/3837305387/" class="post-title-link" itemprop="url">Transformer模型</a>
+                <a href="/a/2218520205/" class="post-title-link" itemprop="url">CopyOnWriteArrayList</a>
               
             
           </h2>
@@ -2063,7 +2292,7 @@ java -Xss512M HackTheJava
                 
               
 
-              <time title="创建时间：2019-03-11 09:54:24" itemprop="dateCreated datePublished" datetime="2019-03-11T09:54:24+08:00">2019-03-11</time>
+              <time title="创建时间：2019-03-12 10:59:44" itemprop="dateCreated datePublished" datetime="2019-03-12T10:59:44+08:00">2019-03-12</time>
             </span>
           
 
@@ -2078,7 +2307,7 @@ java -Xss512M HackTheJava
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-09 19:12:58" itemprop="dateModified" datetime="2020-02-09T19:12:58+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-09 19:12:56" itemprop="dateModified" datetime="2020-02-09T19:12:56+08:00">2020-02-09</time>
               </span>
             
           
@@ -2092,7 +2321,14 @@ java -Xss512M HackTheJava
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/自然语言处理/" itemprop="url" rel="index"><span itemprop="name">自然语言处理</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JAVA/JAVA容器/" itemprop="url" rel="index"><span itemprop="name">JAVA容器</span></a></span>
 
                 
                 
@@ -2117,8 +2353,8 @@ java -Xss512M HackTheJava
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/a/3837305387/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/a/3837305387/" itemprop="commentCount"></span>
+    <a href="/a/2218520205/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/a/2218520205/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -2148,222 +2384,18 @@ java -Xss512M HackTheJava
         
           
             <p>
-              本文主要介绍Transformer模型，思想来源于Google的《Attention is all you need》
-Transformer模型为了解决seq2seq的问题，本质还是一个Encoder-Decoder的模型。
-Transformer概览论文结构
-上面左图是一个attention模型，右边是一个multi-head attention模型，所谓multi-head实际上就是将输入的所有单词拆成h份，然后将这h个输出concate到一起。在论文中h=8。
+              读写分离
+写操作在一个复制的数组上进行，读操作还是在原始数组中进行，读写分离，互不影响。
+写操作需要加锁，防止并发写入时导致写入数据丢失。
+写操作结束之后需要把原始数组指向新的复制数组。
 
-上图就是Transformer架构，左半部分就是Encdoer模型，右边是Decoder模型。
-总览结构
-上图显示了Transformer模型的具体情况。一个Encoder是由6个encoder块组成的，每一个encoder
+public boolean add(E e) &#123;    final ReentrantLock lock = this.lock;    lock.lock();    try &#123;        Object[] elements = getArray();        int len = elements.length;        Object[] newElements = Arrays.copyOf(elements, len + 1);        newElemen
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/a/3837305387/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3606633551/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
-      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
-      <meta itemprop="image" content="/uploads/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/a/3606633551/" class="post-title-link" itemprop="url">文本主题模型</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-11 09:54:24" itemprop="dateCreated datePublished" datetime="2019-03-11T09:54:24+08:00">2019-03-11</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-02-09 19:12:58" itemprop="dateModified" datetime="2020-02-09T19:12:58+08:00">2020-02-09</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/自然语言处理/" itemprop="url" rel="index"><span itemprop="name">自然语言处理</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-          
-
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/a/3606633551/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/a/3606633551/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              LDA潜在迪利克雷分布。
-什么是LDALDA是一个文档生成模型，无监督学习。LDA认为一个文章是多个主题的，每个主题对应着不同的词。一篇文章构造过程，首先是以一定的概率选择某个主题，然后在这个主题下以一定的概率选择某个词，这样就生成了文章的第一个词。不断重复这个过程，就生成了整个文章。（假定词之间没有顺序）
-LDA的使用是上述文档生成的逆过程，它将根据一篇得到的文章，去寻找出这篇文章的主题，以及这些主题对应的词。
-LDA处理的问题是：有M篇文档，对应的d个文档中有$N_d$个词，输入是：
-
-目标是找到每一篇文档的主题分布，和每个主题中的词的分布。
-首先我们需要设置超参数K，表示主题个数。
-1、LDA假设主题的先验分布是Dirichlet分布，也就是对于任意文档d，其主题分布$\theta_d
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/a/3606633551/#more" rel="contents">
+              <a class="btn" href="/a/2218520205/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2458,7 +2490,7 @@ LDA处理的问题是：有M篇文档，对应的d个文档中有$N_d$个词，�
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">126</span>
+          <span class="site-state-item-count">130</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2523,7 +2555,9 @@ LDA处理的问题是：有M篇文档，对应的d个文档中有$N_d$个词，�
         
           
         
-        <span class="site-state-item-count">24</span>
+          
+        
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -2648,7 +2682,7 @@ LDA处理的问题是：有M篇文档，对应的d个文档中有$N_d$个词，�
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">313k</span>
+    <span title="站点总字数">319k</span>
   
 
   
