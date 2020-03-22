@@ -113,15 +113,15 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="ConcurrentHashMap">
 <meta property="og:url" content="http://www.lbblog.com/a/3455415529/index.html">
-<meta property="og:site_name" content="切克闹">
+<meta property="og:site_name" content="Sakuraの博客">
 <meta property="og:description" content="存储结构HashEntry 的结构 和 HashMap 中的 Entry 类似，唯一的区别就是其中的核心数据如 value ，以及 next 都是用 volatile 修饰的，保证了获取时的可见性。 123456static final class HashEntry&amp;lt;K,V&amp;gt; &amp;#123;    final int hash;    final K key;    volatile">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="https://cyc2018.github.io/CS-Notes/pics/deb18bdb-b3b3-4660-b778-b0823a48db12.jpg">
 <meta property="og:updated_time" content="2020-02-09T11:12:56.127Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ConcurrentHashMap">
 <meta name="twitter:description" content="存储结构HashEntry 的结构 和 HashMap 中的 Entry 类似，唯一的区别就是其中的核心数据如 value ，以及 next 都是用 volatile 修饰的，保证了获取时的可见性。 123456static final class HashEntry&amp;lt;K,V&amp;gt; &amp;#123;    final int hash;    final K key;    volatile">
-<meta name="twitter:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta name="twitter:image" content="https://cyc2018.github.io/CS-Notes/pics/deb18bdb-b3b3-4660-b778-b0823a48db12.jpg">
 
 
 
@@ -140,7 +140,7 @@
 </script>
 
   
-  <title>ConcurrentHashMap | 切克闹</title>
+  <title>ConcurrentHashMap | Sakuraの博客</title>
   
 
 
@@ -199,14 +199,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">切克闹</span>
+        <span class="site-title">Sakuraの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
     
       <a>
-        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
       </a>
     
   </div>
@@ -242,6 +242,24 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -362,13 +380,13 @@
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3455415529/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -529,7 +547,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> Segment&lt;K,V&gt;[] segments;</span><br></pre></td></tr></table></figure>
 
 <p>默认的并发级别为 16，也就是说默认创建 16 个 Segment。</p>
-<p><img src="/uploads/loading.gif" data-original="https://cyc2018.github.io/CS-Notes/pics/deb18bdb-b3b3-4660-b778-b0823a48db12.jpg" alt="img"></p>
+<p><img src="https://cyc2018.github.io/CS-Notes/pics/deb18bdb-b3b3-4660-b778-b0823a48db12.jpg" alt="img"></p>
 <h2 id="size操作"><a href="#size操作" class="headerlink" title="size操作"></a>size操作</h2><p>每个 Segment 维护了一个 count 变量来统计该 Segment 中的键值对个数。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The number of elements. Accessed only either within locks</span></span><br><span class="line"><span class="comment"> * or among other volatile reads that maintain visibility.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">transient</span> <span class="keyword">int</span> count;</span><br></pre></td></tr></table></figure>
 
@@ -578,7 +596,7 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>boris</li>
+    <strong>本文作者： </strong>sakura</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
@@ -602,8 +620,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/a/1219920510/" rel="next" title="ArrayList">
-                <i class="fa fa-chevron-left"></i> ArrayList
+              <a href="/a/1029785637/" rel="next" title="HashMap">
+                <i class="fa fa-chevron-left"></i> HashMap
               </a>
             
           </div>
@@ -612,8 +630,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/a/540619655/" rel="prev" title="JAVA常见面试题">
-                JAVA常见面试题 <i class="fa fa-chevron-right"></i>
+              <a href="/a/1219920510/" rel="prev" title="ArrayList">
+                ArrayList <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -674,9 +692,9 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
   
-  <p class="site-author-name" itemprop="name">boris</p>
+  <p class="site-author-name" itemprop="name">sakura</p>
   <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
 </div>
 
@@ -888,7 +906,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-superpowers"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">boris</span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -1137,5 +1155,5 @@ window.addEventListener("message", function(e) {
 
   
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

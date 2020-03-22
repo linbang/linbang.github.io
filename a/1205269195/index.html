@@ -113,17 +113,17 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="LSTM的理解">
 <meta property="og:url" content="http://www.lbblog.com/a/1205269195/index.html">
-<meta property="og:site_name" content="切克闹">
+<meta property="og:site_name" content="Sakuraの博客">
 <meta property="og:description" content="理解LSTM中的各个参数1、num_units首先，我们知道在lstm中，num_units这个参数就是LSTM的输出结果的维度，例如num_units=128，那么LSTM就输出一个128维的向量。 假设我们的训练数据是28*28的矩阵（可以理解为一句话有28个单词，每个单词词向量是28维），我们把这个样本的每一行当作输入，通过28个时间步来展开LSTM（每个单词就是一个时间步），在每个LSTM">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="https://img-blog.csdn.net/20180723102354100?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25vdEhlYWRhY2hl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180723103329367?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25vdEhlYWRhY2hl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20170831144624424?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjIyMzkxMw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:updated_time" content="2020-02-09T11:12:58.739Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LSTM的理解">
 <meta name="twitter:description" content="理解LSTM中的各个参数1、num_units首先，我们知道在lstm中，num_units这个参数就是LSTM的输出结果的维度，例如num_units=128，那么LSTM就输出一个128维的向量。 假设我们的训练数据是28*28的矩阵（可以理解为一句话有28个单词，每个单词词向量是28维），我们把这个样本的每一行当作输入，通过28个时间步来展开LSTM（每个单词就是一个时间步），在每个LSTM">
-<meta name="twitter:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180723102354100?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25vdEhlYWRhY2hl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 
 
 
@@ -142,7 +142,7 @@
 </script>
 
   
-  <title>LSTM的理解 | 切克闹</title>
+  <title>LSTM的理解 | Sakuraの博客</title>
   
 
 
@@ -201,14 +201,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">切克闹</span>
+        <span class="site-title">Sakuraの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
     
       <a>
-        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
       </a>
     
   </div>
@@ -244,6 +244,24 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -364,13 +382,13 @@
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/1205269195/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -516,9 +534,9 @@
       
         <h1 id="理解LSTM中的各个参数"><a href="#理解LSTM中的各个参数" class="headerlink" title="理解LSTM中的各个参数"></a>理解LSTM中的各个参数</h1><h2 id="1、num-units"><a href="#1、num-units" class="headerlink" title="1、num_units"></a>1、num_units</h2><p>首先，我们知道在lstm中，num_units这个参数就是LSTM的输出结果的维度，例如num_units=128，那么LSTM就输出一个128维的向量。</p>
 <p>假设我们的训练数据是28*28的矩阵（可以理解为一句话有28个单词，每个单词词向量是28维），我们把这个样本的每一行当作输入，通过28个时间步来展开LSTM（每个单词就是一个时间步），在每个LSTM单元，都输入一个28维的词向量，如下图所示：</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdn.net/20180723102354100?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25vdEhlYWRhY2hl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="è¿éåå¾çæè¿°"></p>
+<p><img src="https://img-blog.csdn.net/20180723102354100?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25vdEhlYWRhY2hl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="è¿éåå¾çæè¿°"></p>
 <p>那么对于每一步的LSTM，如果num_units=128，那么每一步的输出都是128*1的向量。我们将整个网络展开，就得到下图：</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdn.net/20180723103329367?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25vdEhlYWRhY2hl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="è¿éåå¾çæè¿°"></p>
+<p><img src="https://img-blog.csdn.net/20180723103329367?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25vdEhlYWRhY2hl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="è¿éåå¾çæè¿°"></p>
 <p>每一个时间步的输出都是128*1的向量，在每个时间步，都会接受一个28维的输入和上一步的128维的输出，处理之后再映射成一个新的128维的向量输出。直到最后一个时间步，输出一个128维的向量。</p>
 <p><strong>LSTM中参数个数计算</strong></p>
 <p>假设一个时间步特征长度是n，输出长度是m，那么LSTM层的参数个数是：$4<em>(n</em>m+m)$</p>
@@ -529,7 +547,7 @@
 <li>return_sequence=True：表示每一步都会将向量输出，然后取平均或者加权平均作为总的输出</li>
 </ul>
 <h1 id="LSTM和GRU区别"><a href="#LSTM和GRU区别" class="headerlink" title="LSTM和GRU区别"></a>LSTM和GRU区别</h1><p>GRU是简化的LSTM，参数更少，更容易收敛。</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdn.net/20170831144624424?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjIyMzkxMw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="è¿éåå¾çæè¿°"></p>
+<p><img src="https://img-blog.csdn.net/20170831144624424?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjIyMzkxMw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="è¿éåå¾çæè¿°"></p>
 <p>1、GRU只有两个门：更新门和重置门，LSTM由三个门：遗忘门、输入门、输出门</p>
 <p>2、GRU对于状态直接传递，而LSTM通过输出门控制细胞状态</p>
 <p>相同：</p>
@@ -586,7 +604,7 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>boris</li>
+    <strong>本文作者： </strong>sakura</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
@@ -682,9 +700,9 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
   
-  <p class="site-author-name" itemprop="name">boris</p>
+  <p class="site-author-name" itemprop="name">sakura</p>
   <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
 </div>
 
@@ -896,7 +914,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-superpowers"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">boris</span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -1145,5 +1163,5 @@ window.addEventListener("message", function(e) {
 
   
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

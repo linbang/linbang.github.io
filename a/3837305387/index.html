@@ -113,39 +113,39 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Transformer模型">
 <meta property="og:url" content="http://www.lbblog.com/a/3837305387/index.html">
-<meta property="og:site_name" content="切克闹">
+<meta property="og:site_name" content="Sakuraの博客">
 <meta property="og:description" content="本文主要介绍Transformer模型，思想来源于Google的《Attention is all you need》 Transformer模型为了解决seq2seq的问题，本质还是一个Encoder-Decoder的模型。 Transformer概览论文结构 上面左图是一个attention模型，右边是一个multi-head attention模型，所谓multi-head实际上就是将输入的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/02-multi-head-attention.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/01-transformer.png">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552269798148.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/04-The_transformer_encoders_decoders.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/06-Transformer_encoder.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/12-transformer_self_attention_vectors.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/13-transformer_self_attention_score.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=LN%28x_i%29+%3D+%5Calpha%5Ctimes%5Cfrac%7Bx_i+-+%5Cmu_L%7D%7B%5Csqrt%7B%5Csigma_L%5E2+%2B+%5Cepsilon%7D%7D+%2B+%5Cbeta">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/15-self-attention-output.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/16-self-attention-matrix-calculation.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/17-self-attention-matrix-calculation-2.png">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554558854336.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/18-transformer_attention_heads_qkv.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/19-transformer_attention_heads_z.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/20-transformer_attention_heads_weight_matrix_o.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/21-transformer_multi-headed_self-attention-recap.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/24-transformer_positional_encoding_vectors.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/28-transformer_resideual_layer_norm.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/29-transformer_resideual_layer_norm_2.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/31-transformer_decoding_1.gif">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/32-transformer_decoding_2.gif">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/KmXPKA19gWickrFecuBfZJLrhwo7NbZhJtJBKRGznW2O3AJDDibt5Oa41G83K57N0icYq70w6caebdbQ4luqY9PtA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/KmXPKA19gWickrFecuBfZJLrhwo7NbZhJBkJHDHQBWRiawibJiaR2hUKIsOWEajjqkrW9AkPbOmSNdLWxbblLssSvQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/KmXPKA19gWickrFecuBfZJLrhwo7NbZhJKxdRxtX0ibptlbRbf0ubhC93arWLIou0ryQBLLdOgiaQR2bwwBjnrrJQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554563797054.png">
 <meta property="og:updated_time" content="2020-02-09T11:12:58.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Transformer模型">
 <meta name="twitter:description" content="本文主要介绍Transformer模型，思想来源于Google的《Attention is all you need》 Transformer模型为了解决seq2seq的问题，本质还是一个Encoder-Decoder的模型。 Transformer概览论文结构 上面左图是一个attention模型，右边是一个multi-head attention模型，所谓multi-head实际上就是将输入的">
-<meta name="twitter:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta name="twitter:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/02-multi-head-attention.png">
 
 
 
@@ -164,7 +164,7 @@
 </script>
 
   
-  <title>Transformer模型 | 切克闹</title>
+  <title>Transformer模型 | Sakuraの博客</title>
   
 
 
@@ -223,14 +223,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">切克闹</span>
+        <span class="site-title">Sakuraの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
     
       <a>
-        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
       </a>
     
   </div>
@@ -266,6 +266,24 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -386,13 +404,13 @@
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3837305387/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -538,19 +556,19 @@
       
         <p>本文主要介绍Transformer模型，思想来源于Google的<span class="exturl" data-url="aHR0cHM6Ly9hcnhpdi5vcmcvcGRmLzE3MDYuMDM3NjIucGRm" title="https://arxiv.org/pdf/1706.03762.pdf">《Attention is all you need》<i class="fa fa-external-link"></i></span></p>
 <p>Transformer模型为了解决seq2seq的问题，本质还是一个Encoder-Decoder的模型。</p>
-<h1 id="Transformer概览"><a href="#Transformer概览" class="headerlink" title="Transformer概览"></a>Transformer概览</h1><h2 id="论文结构"><a href="#论文结构" class="headerlink" title="论文结构"></a>论文结构</h2><p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/02-multi-head-attention.png" alt="img"></p>
+<h1 id="Transformer概览"><a href="#Transformer概览" class="headerlink" title="Transformer概览"></a>Transformer概览</h1><h2 id="论文结构"><a href="#论文结构" class="headerlink" title="论文结构"></a>论文结构</h2><p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/02-multi-head-attention.png" alt="img"></p>
 <p>上面左图是一个attention模型，右边是一个multi-head attention模型，所谓multi-head实际上就是将输入的所有单词拆成h份，然后将这h个输出concate到一起。在论文中h=8。</p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/01-transformer.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/01-transformer.png" alt="img"></p>
 <p>上图就是Transformer架构，左半部分就是Encdoer模型，右边是Decoder模型。</p>
-<h2 id="总览结构"><a href="#总览结构" class="headerlink" title="总览结构"></a>总览结构</h2><p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552269798148.png" alt="1552269798148"></p>
+<h2 id="总览结构"><a href="#总览结构" class="headerlink" title="总览结构"></a>总览结构</h2><p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552269798148.png" alt="1552269798148"></p>
 <p>上图显示了Transformer模型的具体情况。一个Encoder是由6个encoder块组成的，每一个encoder块有两层，一层是多头的self-attention，第二层是一个feed-forward层。同时在每两层之间，设计了一个残差连接用于加快训练速度。然后过一个norm层，所以每一块的输出就是$norm(x+f(x))$，其中$f(x)$就是经过self-attention和feed-forward层的输出。所有</p>
 <p>下面我们分别总结各个模块。</p>
 <h2 id="图解总览"><a href="#图解总览" class="headerlink" title="图解总览"></a>图解总览</h2><p>本质也就是一个Encoder-Decoder的翻译模型。</p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/04-The_transformer_encoders_decoders.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/04-The_transformer_encoders_decoders.png" alt="img"></p>
 <p>普通的一半都是用RNN/LSTM为输入进行编码，然后用LSTM对编码结果进行解码。但是在Transformer中，encoder单元变成了self-attention，不再借助其他的模型。</p>
 <p>下面我们详细看encoder的结构和decoder的结构</p>
 <h2 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h2><p>一个Encoder是由Self-Attention和FFN组成：</p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/06-Transformer_encoder.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/06-Transformer_encoder.png" alt="img"></p>
 <p>encoder由 6 层相同的层组成，每一层分别由两部分组成：</p>
 <ul>
 <li>第一部分是 multi-head self-attention</li>
@@ -558,20 +576,20 @@
 </ul>
 <p>两个部分，都有一个残差连接(residual connection)，然后接着一个 Layer Normalization。</p>
 <h3 id="self-attention"><a href="#self-attention" class="headerlink" title="self-attention"></a>self-attention</h3><p>1、每个单词的embedding输入，乘以三个参数矩阵，得到三个向量：Query、Key、Value</p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/12-transformer_self_attention_vectors.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/12-transformer_self_attention_vectors.png" alt="img"></p>
 <p>如图所示，输入是1X4的向量，假设参数矩阵都是4x3矩阵，那么我们得到的q、k、v编码就是1X3的向量。而我们的目标就是要训练这三个参数矩阵。</p>
 <p>2、计算和每个单词的score</p>
 <p>在编码每个单词的时候，会计算它与句子中其他单词的得分，得到每个单词对于当前单词的关注程度。也就是将当前单词的query去遍历所有的key，得到cos相似度。</p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/13-transformer_self_attention_score.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/13-transformer_self_attention_score.png" alt="img"></p>
 <p>3、归一化和softmax得到概率，加权求平均得到每个词的表达向量</p>
 <p>上一步我们得到了当前单词与所有单词的相似度，我们对相似度做归一化，得到概率值。然后将概率值与value值相乘，也就是对所有的单词进行加权求平均。</p>
 <p>注意这里的归一化是层归一化，在每个样本上计算均值和方差，而不是BN那种在一批数据上对每个特征进行归一化！！</p>
-<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=LN%28x_i%29+%3D+%5Calpha%5Ctimes%5Cfrac%7Bx_i+-+%5Cmu_L%7D%7B%5Csqrt%7B%5Csigma_L%5E2+%2B+%5Cepsilon%7D%7D+%2B+%5Cbeta" alt="LN(x_i) = \alpha\times\frac{x_i - \mu_L}{\sqrt{\sigma_L^2 + \epsilon}} + \beta"></p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/15-self-attention-output.png" alt="img"></p>
+<p><img src="https://www.zhihu.com/equation?tex=LN%28x_i%29+%3D+%5Calpha%5Ctimes%5Cfrac%7Bx_i+-+%5Cmu_L%7D%7B%5Csqrt%7B%5Csigma_L%5E2+%2B+%5Cepsilon%7D%7D+%2B+%5Cbeta" alt="LN(x_i) = \alpha\times\frac{x_i - \mu_L}{\sqrt{\sigma_L^2 + \epsilon}} + \beta"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/15-self-attention-output.png" alt="img"></p>
 <p>所以我们可以用矩阵形式来描述self-attention：</p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/16-self-attention-matrix-calculation.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/16-self-attention-matrix-calculation.png" alt="img"></p>
 <p>公式：</p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/17-self-attention-matrix-calculation-2.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/17-self-attention-matrix-calculation-2.png" alt="img"></p>
 <p>详解这个公式：</p>
 <p>1、$Q*K^T$目的就是两两计算相似度。</p>
 <p>2、除以$\sqrt{d_k}$是因为Transformer使用scaled dot-product attention来计算，也就是加了一个缩放因子$\frac{1}{\sqrt(d_k)}$。$d_k$表示key的维度，默认使用64。解释：<strong>对于维度很大的时候，点积得到的结果很大，使得结果在softmax函数梯度很小的区域。加上这个缩放因子之后，就将值限定在softmax函数梯度比较大的区域了。</strong>下面我们来看一下为什么？</p>
@@ -579,7 +597,7 @@
 <p>$softmax(i)=\frac{e^{z_i}}{\sum_{j}e^{z_j}}$</p>
 <p>下面我们将softmax对$z_i$进行求偏导之后，发现是和sigmoid一样的二元函数，开口向下，并且无限接近x轴。所以如果不归一化，就回落在梯度比较小的区域了。</p>
 <p>具体的数学解释：假设q和k都是独立的随机变量，均值是0，方差是1，我们计算$qk=\sum_{i=1}^{d_k}q_ik_i$的均值是0，方差是$d_k$，因此我们需要除以$\sqrt{d_k}$来进行修正。</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554558854336.png" alt="1554558854336"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554558854336.png" alt="1554558854336"></p>
 </blockquote>
 <h3 id="multi-attention"><a href="#multi-attention" class="headerlink" title="multi-attention"></a>multi-attention</h3><p>多头注意力机制，在transformer模型中使用的是multi-attention替代了self-attention。其实就是多k，v注意力。</p>
 <p>主要从两个方向提升了attention的优点：</p>
@@ -587,28 +605,28 @@
 <li>让模型能够学习到句子中不同位置的信息</li>
 <li>attention layer可以有多个不同的表示子空间</li>
 </ul>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/18-transformer_attention_heads_qkv.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/18-transformer_attention_heads_qkv.png" alt="img"></p>
 <p>上图现实了两个multy-head attention的模型，思路是这样的，论文中输入单词的embedding维度是512，如果multi-attention的大小h设置为8，那么就相当于将词向量分成8份来考虑，每一份就是64维度大小的词向量。然后最后将每一份的输出做concate。</p>
 <p>1、多头注意力机制矩阵表示</p>
 <p>在模型中，通常采用8个头，也就是我们一共有8X3=24个参数矩阵。</p>
 <p>对于一个序列输入，就会有8个输出：$z_0…z_7$</p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/19-transformer_attention_heads_z.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/19-transformer_attention_heads_z.png" alt="img"></p>
 <p>接下来我们只要将这8个输出拼接起来，再乘以一个大的参数矩阵，就会融合到一个矩阵里。送给FFN进行计算。</p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/20-transformer_attention_heads_weight_matrix_o.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/20-transformer_attention_heads_weight_matrix_o.png" alt="img"></p>
 <p><strong>下面我们用一张图总结一下注意力机制：</strong></p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/21-transformer_multi-headed_self-attention-recap.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/21-transformer_multi-headed_self-attention-recap.png" alt="img"></p>
 <h3 id="FFN"><a href="#FFN" class="headerlink" title="FFN"></a>FFN</h3><p>Feed-Forward Network。对每个位置过两个线性层，其中使用ReLU作为激活函数。<br>$$<br>\rm{FFN}(x) = \rm{Linear}(\rm{ReLU}(\rm{Linear}(x))) = \rm{max}(0, xW_1 + b_1)W_2 + b_2<br>$$</p>
 <p>FFN的本质还是一维卷积。</p>
 <h3 id="positional-encoder"><a href="#positional-encoder" class="headerlink" title="positional encoder"></a>positional encoder</h3><p>加入这个的目的是为了提取序列顺序信息，因此考虑对序列中词语出现的位置进行编码。</p>
 <p>注意在词向量输入的时候，有一个postional encodeing的过程。这里主要目的就是给词向量加入位置信息：<br>$$<br>带位置信息的词向量 = 词向量 + 位置信息<br>$$<br>位置信息是通过计算位置的sin和cos值进行拼接得到的：<br>$$<br>对于偶数位置：\rm{PE}(pos, 2i) = \sin (\rm{pos} / 10000^{\frac{2i}{d}}) \<br>对于奇数位置：\rm{PE}(pos, \rm{2i+1}) = \cos (\rm{pos} / 10000^{\frac{2i}{d}})<br>$$<br>在偶数位置进行正弦编码，在奇数位置进行余弦编码。</p>
 <p>使用三角函数进行编码的原因是考虑了<strong>相对位置</strong>，比如词汇之间偏移k，PE(pos+k)可以表示维PE(pos)和PE(k)组合的形式，相对于有了表达相对位置的能力。</p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/24-transformer_positional_encoding_vectors.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/24-transformer_positional_encoding_vectors.png" alt="img"></p>
 <p>Transfomer对于Encoder部分的设计还加入了很多trick，比如：残差连接、层归一化、mask</p>
 <p>1、残差连接</p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/28-transformer_resideual_layer_norm.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/28-transformer_resideual_layer_norm.png" alt="img"></p>
 <p>可以看到每一层的输入都会连在两层之后，这是为了防止梯度退化，为了加快训练速度。（参考resnet的残差设计）</p>
 <p>2、层归一化</p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/29-transformer_resideual_layer_norm_2.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/29-transformer_resideual_layer_norm_2.png" alt="img"></p>
 <p>层归一化的设计可以让梯度更好的传播，防止了梯度消失的问题。</p>
 <p><strong>层归一化就是针对一个样本，所有的维度进行归一化。</strong>（批量归一化是针对每个维度，对搜友batch_size的数据进行归一化）</p>
 <p>不是用BN的原因：</p>
@@ -626,26 +644,26 @@
 <p>sequence mask在decoder中生效。为了使得decoder不能看见未来的信息。对于一个序列，在时间步是t的时候，我们的解码输出应该只能依赖于t时刻之前的输出，而不依赖于t之后的输出。但是因为transformer没有时间步的概念，是将所有的词一起输入的，因此需要在decoder的时候加上sequence mask来掩盖t时间步之后的信息。</p>
 <p>具体的做法是：产生一个上三角矩阵，上三角的值全为1，下三角和对角线值全为0，把这样的矩阵作用在每个序列上，就达到目的了。</p>
 <h2 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h2><p>decoder的设计与encoder类似，每个block的结构也大概相同。</p>
-<h3 id="单步"><a href="#单步" class="headerlink" title="单步"></a>单步</h3><p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/31-transformer_decoding_1.gif" alt="img"></p>
-<h3 id="多步"><a href="#多步" class="headerlink" title="多步"></a>多步</h3><p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/32-transformer_decoding_2.gif" alt="img"></p>
+<h3 id="单步"><a href="#单步" class="headerlink" title="单步"></a>单步</h3><p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/31-transformer_decoding_1.gif" alt="img"></p>
+<h3 id="多步"><a href="#多步" class="headerlink" title="多步"></a>多步</h3><p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/img/paper/transformer/32-transformer_decoding_2.gif" alt="img"></p>
 <p>分析整理：在面试时如果问道Transformer模型，主要介绍self-attention模型（输入、计算相似度、softmax、矩阵形式）、FFN的设计、位置信息的加入三个角度来介绍把。</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9wbG1zbWlsZS5naXRodWIuaW8vMjAxOC8wOC8yOS80OC1hdHRlbnRpb24taXMtYWxsLXlvdS1uZWVkLw==" title="https://plmsmile.github.io/2018/08/29/48-attention-is-all-you-need/">参考大佬的博客<i class="fa fa-external-link"></i></span></p>
 <h1 id="阿里爸爸对Transformer的改动"><a href="#阿里爸爸对Transformer的改动" class="headerlink" title="阿里爸爸对Transformer的改动"></a><span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3MvbGdHRFRDRjNxZzg0bmp2MkllSEM5QQ==" title="https://mp.weixin.qq.com/s/lgGDTCF3qg84njv2IeHC9A">阿里爸爸对Transformer的改动<i class="fa fa-external-link"></i></span></h1><p>1、改动了multi-head 的输出。</p>
 <p>原本的输出是将多个头的输出concat到一起，然后送入FFN中。但是阿里爸爸说这样不好，我们要对每个头的输出计算一个权重，所以它通过下面的公式来得到每个block的输出：</p>
-<p><img src="/uploads/loading.gif" data-original="https://mmbiz.qpic.cn/mmbiz_png/KmXPKA19gWickrFecuBfZJLrhwo7NbZhJtJBKRGznW2O3AJDDibt5Oa41G83K57N0icYq70w6caebdbQ4luqY9PtA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/KmXPKA19gWickrFecuBfZJLrhwo7NbZhJtJBKRGznW2O3AJDDibt5Oa41G83K57N0icYq70w6caebdbQ4luqY9PtA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
 <p>观察一下上面式子，$head_i$不变，然而对每个head的输出10X64维度，它又去乘以一个W矩阵，放大到512维，然后还乘以一个$k_i$，这个$k_i$是第一个权重。然后将这个结果送到FFN中，再对FFN的输出做一个attention。</p>
 <p>可以发现，这块的改动主要有两个：</p>
 <ul>
 <li>对每个head进行升维，然后计算一次attention</li>
 <li>将每个head送到FFN中，计算每个输出的attention</li>
 </ul>
-<p><img src="/uploads/loading.gif" data-original="https://mmbiz.qpic.cn/mmbiz_png/KmXPKA19gWickrFecuBfZJLrhwo7NbZhJBkJHDHQBWRiawibJiaR2hUKIsOWEajjqkrW9AkPbOmSNdLWxbblLssSvQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/KmXPKA19gWickrFecuBfZJLrhwo7NbZhJBkJHDHQBWRiawibJiaR2hUKIsOWEajjqkrW9AkPbOmSNdLWxbblLssSvQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
 <p>2、改动position的表达</p>
 <p>传统的tranformer直接给出了位置向量的公式，但是这个公式是绝对位置公式，阿里爸爸认为相对位置更能体现词语之间的关系。</p>
 <p>所以阿里爸爸将输入词序列建模成一个有向全连接图，</p>
-<p><img src="/uploads/loading.gif" data-original="https://mmbiz.qpic.cn/mmbiz_png/KmXPKA19gWickrFecuBfZJLrhwo7NbZhJKxdRxtX0ibptlbRbf0ubhC93arWLIou0ryQBLLdOgiaQR2bwwBjnrrJQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/KmXPKA19gWickrFecuBfZJLrhwo7NbZhJKxdRxtX0ibptlbRbf0ubhC93arWLIou0ryQBLLdOgiaQR2bwwBjnrrJQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
 <p>上图就是所有输入序列的有向全连接图，成对词之间会有两条有向边，每个有向边上编码了相对位置信息。</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554563797054.png" alt="1554563797054"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554563797054.png" alt="1554563797054"></p>
 
       
     </div>
@@ -680,7 +698,7 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>boris</li>
+    <strong>本文作者： </strong>sakura</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
@@ -704,8 +722,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/a/4199180110/" rel="next" title="Python实现BN层">
-                <i class="fa fa-chevron-left"></i> Python实现BN层
+              <a href="/a/3300736400/" rel="next" title="数组中几个数字之和为target系列问题">
+                <i class="fa fa-chevron-left"></i> 数组中几个数字之和为target系列问题
               </a>
             
           </div>
@@ -714,8 +732,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/a/3329557370/" rel="prev" title="最大似然估计和最大后验概率估计">
-                最大似然估计和最大后验概率估计 <i class="fa fa-chevron-right"></i>
+              <a href="/a/3606633551/" rel="prev" title="文本主题模型">
+                文本主题模型 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -776,9 +794,9 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
   
-  <p class="site-author-name" itemprop="name">boris</p>
+  <p class="site-author-name" itemprop="name">sakura</p>
   <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
 </div>
 
@@ -990,7 +1008,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-superpowers"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">boris</span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -1239,5 +1257,5 @@ window.addEventListener("message", function(e) {
 
   
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

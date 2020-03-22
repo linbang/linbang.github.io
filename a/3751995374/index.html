@@ -113,18 +113,18 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="用户行为数据">
 <meta property="og:url" content="http://www.lbblog.com/a/3751995374/index.html">
-<meta property="og:site_name" content="切克闹">
+<meta property="og:site_name" content="Sakuraの博客">
 <meta property="og:description" content="基于用户行为分析的推荐算法，也叫做协同过滤算法。 用户行为数据主要就是展现、点击数据，一般都保存在集群上。例如百度的一条给用户展现中会包含：cuid、nid、一二级分类、兴趣点等等信息。 用户行为数据非常重要，下面介绍基于用户行为信息的推荐算法。 1、长尾分布长尾分布有一个典型的例子：英文单词的词频，按照单词出现的频率从高到低排序，每个单词出现的频率和它在热门排行榜中的排名的常数次幂成反比。 用户">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552968614102.png">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552970293002.png">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552971069610.png">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552971765620.png">
 <meta property="og:updated_time" content="2020-02-09T11:12:58.785Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用户行为数据">
 <meta name="twitter:description" content="基于用户行为分析的推荐算法，也叫做协同过滤算法。 用户行为数据主要就是展现、点击数据，一般都保存在集群上。例如百度的一条给用户展现中会包含：cuid、nid、一二级分类、兴趣点等等信息。 用户行为数据非常重要，下面介绍基于用户行为信息的推荐算法。 1、长尾分布长尾分布有一个典型的例子：英文单词的词频，按照单词出现的频率从高到低排序，每个单词出现的频率和它在热门排行榜中的排名的常数次幂成反比。 用户">
-<meta name="twitter:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta name="twitter:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552968614102.png">
 
 
 
@@ -143,7 +143,7 @@
 </script>
 
   
-  <title>用户行为数据 | 切克闹</title>
+  <title>用户行为数据 | Sakuraの博客</title>
   
 
 
@@ -202,14 +202,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">切克闹</span>
+        <span class="site-title">Sakuraの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
     
       <a>
-        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
       </a>
     
   </div>
@@ -245,6 +245,24 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -365,13 +383,13 @@
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3751995374/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -534,7 +552,7 @@
 <h3 id="基于用户的协同过滤"><a href="#基于用户的协同过滤" class="headerlink" title="基于用户的协同过滤"></a>基于用户的协同过滤</h3><p>关键步骤：</p>
 <p>1）找到与目标用户兴趣相似的用户集合</p>
 <p>这一步就是计算用户之间的相似性，通过用户对物品的行为信息来计算。N(u)表示u用户正反馈的物品集合，N(v)表示v用户正反馈的物品集合，下面有两种公式来计算相似性：Jaccard公式和cos余弦相似度：</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552968614102.png" alt="1552968614102"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552968614102.png" alt="1552968614102"></p>
 <p>计算用户之间两两相似度非常麻烦，所以我们考虑使用倒排索引的办法。建立物品-&gt;用户字典，然后通过这个字典建立起一个NxN的矩阵，矩阵$w_{ij}$就是用户i和用户j的交集数量，这样就可以很容易的计算出分子。</p>
 <p>然后我们选取K个和目标用户最相似的用户，将他们喜欢的物品推荐给目标用户。</p>
 <p>2）找到相似用户喜欢的，且目标用户没有展示过的物品推荐给用户</p>
@@ -543,19 +561,19 @@
 <p><strong>判断推荐算法的好坏有三个指标：召回率和精准率、流行度、覆盖率</strong></p>
 <p>基于用户的协同过滤改进的主要方向就是从用户相似度计算这个角度改进。</p>
 <p>一个朴素的想法是考虑物品的泛性，比如《新华字典》这种书基本所有人都会买，《机器学习》这本书只有专业领域的人才会买，那么如果两个用户都买了这本书，这两个用户相似度肯定更高，因此我们考虑对物品加一个惩罚，越热门的物品我们试图让它的影响变小。</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552970293002.png" alt="1552970293002"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552970293002.png" alt="1552970293002"></p>
 <p>分子对每个物品加了一个权重，$\frac{1}{N(i)}$。所以这个物品被很多人都有过行为之后，就认为他对结果的贡献很小。</p>
 <h2 id="3、基于物品的协同过滤"><a href="#3、基于物品的协同过滤" class="headerlink" title="3、基于物品的协同过滤"></a>3、基于物品的协同过滤</h2><p>基于物品的协同过滤是对目标用户推荐它看过的物品的相似物品。因此关键就是计算物品之间的相似性，这里同样不利用物品本质属性来计算相似度，而是利用用户的点击行为来计算相似度，比如A物品和B物品相似是因为u用户同时看过A和B。</p>
 <p>ItemCF算法也分成两步：</p>
 <p>1）计算物品之间的相似度</p>
 <p>2）根据物品的相似度生成候选列表，结合用户历史行为后，形成推荐列表。</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552971069610.png" alt="1552971069610"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552971069610.png" alt="1552971069610"></p>
 <p>上图是一个简单的ItemCF的例子。</p>
 <p>同样的，我们一般对物品相似度算法进行加权修正。</p>
 <h2 id="ItemCF和UserCF比较"><a href="#ItemCF和UserCF比较" class="headerlink" title="ItemCF和UserCF比较"></a>ItemCF和UserCF比较</h2><p>1、usercf算法更偏社会化，看重用户之间的兴趣。itemcf偏重于单个用户的历史兴趣。</p>
 <p>2、在新闻推荐中，一般使用usercf。在电商、图书推荐中一般使用itemcf。因为新闻具有很强的时效性，从技术角度考虑，itemcf更新物品相似度表，每个物品更新了，这个表也需要更新，而现实中这个物品表一般一天更新一次，所以不适用于新闻推荐。</p>
 <p>3、冷启问题。itemcf面临物品冷启动，usercf面临用户冷启动。</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552971765620.png" alt="1552971765620"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552971765620.png" alt="1552971765620"></p>
 
       
     </div>
@@ -590,7 +608,7 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>boris</li>
+    <strong>本文作者： </strong>sakura</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
@@ -614,8 +632,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/a/334545937/" rel="next" title="Single Element in a Sorted Array">
-                <i class="fa fa-chevron-left"></i> Single Element in a Sorted Array
+              <a href="/a/3907716225/" rel="next" title="二分查找">
+                <i class="fa fa-chevron-left"></i> 二分查找
               </a>
             
           </div>
@@ -686,9 +704,9 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
   
-  <p class="site-author-name" itemprop="name">boris</p>
+  <p class="site-author-name" itemprop="name">sakura</p>
   <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
 </div>
 
@@ -900,7 +918,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-superpowers"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">boris</span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -1149,5 +1167,5 @@ window.addEventListener("message", function(e) {
 
   
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

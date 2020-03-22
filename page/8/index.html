@@ -111,13 +111,13 @@
   <meta name="description" content="无穷的远方，无数的人们，都与我有关。">
 <meta name="keywords" content="博客,机器学习,Java,Python">
 <meta property="og:type" content="website">
-<meta property="og:title" content="切克闹">
+<meta property="og:title" content="Sakuraの博客">
 <meta property="og:url" content="http://www.lbblog.com/page/8/index.html">
-<meta property="og:site_name" content="切克闹">
+<meta property="og:site_name" content="Sakuraの博客">
 <meta property="og:description" content="无穷的远方，无数的人们，都与我有关。">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="切克闹">
+<meta name="twitter:title" content="Sakuraの博客">
 <meta name="twitter:description" content="无穷的远方，无数的人们，都与我有关。">
 
 
@@ -137,7 +137,7 @@
 </script>
 
   
-  <title>切克闹</title>
+  <title>Sakuraの博客</title>
   
 
 
@@ -197,14 +197,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">切克闹</span>
+        <span class="site-title">Sakuraの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
     
       <a>
-        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
       </a>
     
   </div>
@@ -240,6 +240,24 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -357,16 +375,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3428873519/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3135569683/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -377,7 +395,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/a/3428873519/" class="post-title-link" itemprop="url">Tensorflow知识点整理</a>
+                <a href="/a/3135569683/" class="post-title-link" itemprop="url">Redis</a>
               
             
           </h2>
@@ -431,7 +449,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
                 
                 
@@ -456,8 +474,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/a/3428873519/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/a/3428873519/" itemprop="commentCount"></span>
+    <a href="/a/3135569683/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/a/3135569683/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -487,17 +505,43 @@
         
           
             <p>
-              1、介绍一下tensorflow计算图
-Tensorflow通过计算图的形式表述计算的变成系统，是一种有向图。每一个节点都是计算图上的一个Tensor，也就是张量。节点之间的边描述了节点之间的依赖关系和数学运算。
+              Redis主要用于高并发的状态。本质也是一个key-value数据库，但是它可以把数据库中常用的一些读写项放到内存中，加快速度。
 
 
 
-              
+名称
+类型
+数据存储选项
+查询类型
+附加功能
+
+
+
+Redis
+使用内存存储的非关系数据库
+字符串、列表、集合、散列表、有序集合
+每种数据类型专属的命令，以及批量操作和不完全的事务支持
+发布与订阅，主从复制，持久化，脚本
+
+
+memcached
+使用内存存储的键值缓存
+键值之间的映射
+创建、读取、删除、更新等命令
+多线程服务器，用于提升性能
+
+
+MySQL
+关系数据库
+每个数据库可以包含多个表，每个表可以包含多个行；可以处理多个表的视图；支持空间和第三方扩展
+SELECT、INSERT、UPDATE、DELETE、函数、存储过程
+支持ACID性质(需要使用I
+              ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/a/3428873519/#more" rel="contents">
+              <a class="btn" href="/a/3135569683/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -556,16 +600,16 @@ Tensorflow通过计算图的形式表述计算的变成系统，是一种有向�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/2321336202/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/175394686/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -576,7 +620,7 @@ Tensorflow通过计算图的形式表述计算的变成系统，是一种有向�
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/a/2321336202/" class="post-title-link" itemprop="url">Xgboost理解</a>
+                <a href="/a/175394686/" class="post-title-link" itemprop="url">数据库知识点</a>
               
             
           </h2>
@@ -630,7 +674,7 @@ Tensorflow通过计算图的形式表述计算的变成系统，是一种有向�
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
                 
                 
@@ -655,8 +699,8 @@ Tensorflow通过计算图的形式表述计算的变成系统，是一种有向�
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/a/2321336202/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/a/2321336202/" itemprop="commentCount"></span>
+    <a href="/a/175394686/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/a/175394686/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -686,16 +730,23 @@ Tensorflow通过计算图的形式表述计算的变成系统，是一种有向�
         
           
             <p>
-              xgboost，面试中问的最多的一个模型。简单的就不详细说了，比如boosting、和GBDT区别啊，如何实现并行化啊，level-wise生成啊之类的，这里记录一下xgboost的全过程，从总体理解这个算法。
-Xgboost理解模型xgboost的模型是常见的加法模型：$$\hat{y_i}=\sum_j{w_j}x_{ij}$$这里的预测值$\hat{y_i}$下面会有很多不同的解释，比如用做回归问题，或者加上sigmoid函数作为二分类问题等等。
-可以看到我们模型的学习目标就是$w_j$，而xgboost模型就是要学到这个参数。已经了解过模型过程就知道其实$w_j$是直接通过最优化的方法得到的。
-损失函数：损失函数+正则化项xgboost模型的损失函数包含两项，分别用于计算偏差和方差。
+              事务我们在写Java程序，遇到并发问题时，会想到用锁来解决。数据库遇到并发问题怎么解决呢？答案就是事务，事务的本质就是锁和并发的结合体。
+简单理解事务就是一串满足ACID的SQL命令，可以通过commit提交，可以通过rollback回滚
+事务的四大特性：
+1、原子性(Atomicity)
+原子性是指事务包含的所有操作要么全部成功，要么全部失败回滚。
+2、一致性(Consistency)
+在事务执行前后保持一致性状态，含义是数据库中的所有数据应满足数据库的完整性约束。
+3、隔离性（Isolation）
+用户并发访问、操作数据库时，数据库为各个用户开启的事务相互隔离。
+4、持久性（Durability）
+一旦事务提交，则其所做的修改将会永远保存到数据库中。即使系统发生崩溃，事务执行的结果也不能
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/a/2321336202/#more" rel="contents">
+              <a class="btn" href="/a/175394686/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -757,13 +808,13 @@ Xgboost理解模型xgboost的模型是常见的加法模型：$$\hat{y_i}=\sum_j
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/847058626/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -959,13 +1010,13 @@ BERT使用WordPiece工具进行分词，并插入特殊的分离符（[CLS],用�
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/904955189/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -1150,13 +1201,13 @@ BERT使用WordPiece工具进行分词，并插入特殊的分离符（[CLS],用�
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3848242945/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -1353,13 +1404,13 @@ BERT使用WordPiece工具进行分词，并插入特殊的分离符（[CLS],用�
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3157373585/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -1557,13 +1608,13 @@ BERT使用WordPiece工具进行分词，并插入特殊的分离符（[CLS],用�
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/4041399947/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -1766,13 +1817,13 @@ nums1 = [1, 2]nums2 = [3, 4]The median is (2 + 3)/2 = 2.5
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3303230784/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -1966,13 +2017,13 @@ nums1 = [1, 2]nums2 = [3, 4]The median is (2 + 3)/2 = 2.5
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/554301047/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -2166,13 +2217,13 @@ nums1 = [1, 2]nums2 = [3, 4]The median is (2 + 3)/2 = 2.5
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/2613091332/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -2378,9 +2429,9 @@ nums1 = [1, 2]nums2 = [3, 4]The median is (2 + 3)/2 = 2.5
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
   
-  <p class="site-author-name" itemprop="name">boris</p>
+  <p class="site-author-name" itemprop="name">sakura</p>
   <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
 </div>
 
@@ -2575,7 +2626,7 @@ nums1 = [1, 2]nums2 = [3, 4]The median is (2 + 3)/2 = 2.5
   <span class="with-love" id="animate">
     <i class="fa fa-superpowers"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">boris</span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -2820,5 +2871,5 @@ window.addEventListener("message", function(e) {
 
   
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

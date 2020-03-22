@@ -113,42 +113,42 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTR预估模型及其发展">
 <meta property="og:url" content="http://www.lbblog.com/a/1786543572/index.html">
-<meta property="og:site_name" content="切克闹">
+<meta property="og:site_name" content="Sakuraの博客">
 <meta property="og:description" content="CTR在个性化推荐、搜索、商业化等领域都有着非常关键的作用。本文主要介绍主流的CTR预估模型及其发展。 Embedding介绍embedding通常用来生成词向量，词向量是一个50~300维的稠密向量。正常在词袋模型中，我们通常使用one-hot来表征一个词语，但是这种方法产生的词向量太稀疏，而且多个词之间没有联系。因此才有了embedding的方法来讲稀疏的ont-hot相连变成稠密的词向量。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="https://yangxudong.github.io/ctr-models/embedding.png">
+<meta property="og:image" content="https://yangxudong.github.io/ctr-models/lr.jpg">
+<meta property="og:image" content="https://yangxudong.github.io/ctr-models/lr+gbdt.jpg">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=y%28X%29%3D%5Comega_0%2B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Comega_ix_i%7D%2B%5Csum_%7Bi%3D1%7D%5E%7Bn-1%7D%7B%5Csum_%7Bj%3Di%2B1%7D%5E%7Bn%7D%7B%5Comega_%7Bij%7Dx_ix_j%7D%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=W%5E%5Cstar%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D+%5Comega_%7B11%7D+%26+%5Comega_%7B12%7D+%26+...+%26+%5Comega_%7B1n%7D%5C%5C+%5Comega_%7B21%7D+%26+%5Comega_%7B22%7D+%26+...+%26+%5Comega_%7B2n%7D+%5C%5C+...+%26+...+%26+...+%26+...+%5C%5C+%5Comega_%7Bn1%7D+%26+%5Comega_%7Bn2%7D+%26+...+%26+%5Comega_%7Bnn%7D+%5Cend%7Bmatrix%7D+%5Cright%5D+%3DV%5ETV+%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D+V_1+%5C%5CV_2%5C%5C+...+%5C%5CV_n+%5Cend%7Bmatrix%7D+%5Cright%5D%5Ctimes+%5Cleft%5B+%5Cbegin%7Bmatrix%7D+V_1%2C+V_2%2C+...+%2CV_n+%5Cend%7Bmatrix%7D+%5Cright%5D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5C+%5C+%5C+%5C+%5C+%5C+%3D+%5Cleft%5B+%5Cbegin%7Bmatrix%7D+v_%7B11%7D+%26+v_%7B12%7D+%26+...+%26+v_%7B1k%7D+%5C%5C+v_%7B21%7D+%26+v_%7B22%7D+%26+...+%26+v_%7B2k%7D+%5C%5C+...+%26+...+%26+...+%26+...%5C%5C+v_%7Bn1%7D+%26+v_%7Bn2%7D+%26+...+%26+v_%7Bnk%7D+%5Cend%7Bmatrix%7D+%5Cright%5D+%5Ctimes+%5Cleft%5B+%5Cbegin%7Bmatrix%7D+v_%7B11%7D+%26+v_%7B21%7D+%26+...+%26+v_%7Bn1%7D+%5C%5C+v_%7B12%7D+%26+v_%7B22%7D+%26+...+%26+v_%7Bn2%7D+%5C%5C+...+%26+...+%26+...+%26+...%5C%5C+v_%7B1k%7D+%26+v_%7B2k%7D+%26+...+%26+v_%7Bnk%7D+%5Cend%7Bmatrix%7D+%5Cright%5D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Chat%7By%7D%28X%29%3A%3D%5Comega_0%2B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Comega_ix_i%7D%2B%5Csum_%7Bi%3D1%7D%5E%7Bn-1%7D%7B%5Csum_%7Bj%3Di%2B1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_j%3Ex_ix_j%7D%7D+">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%3Cv_i%2Cv_j%3E%3A%3D%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7Bv_%7Bi%2Cf%7D%5Ccdot+v_%7Bj%2Cf%7D%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cbegin%7Balign%2A%7D+%5Csum_%7Bi%3D1%7D%5E%7Bn-1%7D%7B%5Csum_%7Bj%3Di%2B1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_j%3Ex_ix_j%7D%7D+%26%3D+%5Cfrac%7B1%7D%7B2%7D%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_j%3Ex_ix_j%7D%7D+-+%5Cfrac%7B1%7D%7B2%7D+%7B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_i%3Ex_ix_i%7D%7D+%5C%5C+%26%3D+%5Cfrac%7B1%7D%7B2%7D+%5Cleft%28+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7Bv_%7Bi%2Cf%7Dv_%7Bj%2Cf%7Dx_ix_j%7D%7D%7D+-+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7Bv_%7Bi%2Cf%7Dv_%7Bi%2Cf%7Dx_ix_i%7D%7D+%5Cright%29+%5C%5C+%26%3D+%5Cfrac%7B1%7D%7B2%7D%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7B%5Cleft%5B+%5Cleft%28+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7Dx_i%7D+%5Cright%29+%5Ccdot+%5Cleft%28+%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7Bv_%7Bj%2Cf%7Dx_j%7D+%5Cright%29+-+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7D%5E2+x_i%5E2%7D+%5Cright%5D%7D+%5C%5C+%26%3D+%5Cfrac%7B1%7D%7B2%7D%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7B%5Cleft%5B+%5Cleft%28+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7Dx_i%7D+%5Cright%29%5E2+-+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7D%5E2+x_i%5E2%7D+%5Cright%5D%7D+%5Cend%7Balign%2A%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cbegin%7Bequation%7D+%5Cfrac%7B%5Cpartial+%5Chat%7By%7D%28x%29+%7D%7B%5Cpartial+%5Ctheta%7D+%3D+%5Cleft%5C%7B+%5Cbegin%7Barray%7D%7Blr%7D+1%2C+%26+if%5C+%5Ctheta%5C+is%5C+%5Comega_0+%5C%5C+x_i%2C+%26+if%5C+%5Ctheta%5C+is%5C+%5Comega_i%5C%5C+x_i%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7Bv_%7Bj%2Cf%7Dx_j+-+v_%7Bi%2Cf%7Dx_i%5E2%7D+%26+if%5C+%5Ctheta%5C+is%5C+v_%7Bi%2Cf%7D+%5Cend%7Barray%7D+%5Cright.+%5Cend%7Bequation%7D+">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4155986-21fa429e42108e99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/535/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4155986-d144aba541c68a34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/582/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4155986-366d825a661466a3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/538/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4155986-cd51e0bd97ab285d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp">
+<meta property="og:image" content="https://yangxudong.github.io/ctr-models/wdl.png">
+<meta property="og:image" content="https://nihil.top/wp-content/uploads/2018/08/1533869217679.png">
+<meta property="og:image" content="https://nihil.top/wp-content/uploads/2018/08/1533867372711.png">
+<meta property="og:image" content="https://yangxudong.github.io/ctr-models/fnn.jpg">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4155986-9867a7134749f48e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+<meta property="og:image" content="https://yangxudong.github.io/ctr-models/dnn-models.png">
+<meta property="og:image" content="https://yangxudong.github.io/ctr-models/comparison.png">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554085202129.png">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554085601259.png">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554086773725.png">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554087009142.png">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554087637628.png">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554967035844.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4155986-358cc3c6656a5408.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/654">
 <meta property="og:updated_time" content="2020-02-09T11:12:58.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CTR预估模型及其发展">
 <meta name="twitter:description" content="CTR在个性化推荐、搜索、商业化等领域都有着非常关键的作用。本文主要介绍主流的CTR预估模型及其发展。 Embedding介绍embedding通常用来生成词向量，词向量是一个50~300维的稠密向量。正常在词袋模型中，我们通常使用one-hot来表征一个词语，但是这种方法产生的词向量太稀疏，而且多个词之间没有联系。因此才有了embedding的方法来讲稀疏的ont-hot相连变成稠密的词向量。">
-<meta name="twitter:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta name="twitter:image" content="https://yangxudong.github.io/ctr-models/embedding.png">
 
 
 
@@ -167,7 +167,7 @@
 </script>
 
   
-  <title>CTR预估模型及其发展 | 切克闹</title>
+  <title>CTR预估模型及其发展 | Sakuraの博客</title>
   
 
 
@@ -226,14 +226,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">切克闹</span>
+        <span class="site-title">Sakuraの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
     
       <a>
-        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
       </a>
     
   </div>
@@ -269,6 +269,24 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -389,13 +407,13 @@
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/1786543572/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -542,9 +560,9 @@
         <p>CTR在个性化推荐、搜索、商业化等领域都有着非常关键的作用。本文主要介绍主流的CTR预估模型及其发展。</p>
 <h2 id="Embedding介绍"><a href="#Embedding介绍" class="headerlink" title="Embedding介绍"></a>Embedding介绍</h2><p>embedding通常用来生成词向量，词向量是一个50~300维的稠密向量。正常在词袋模型中，我们通常使用one-hot来表征一个词语，但是这种方法产生的词向量太稀疏，而且多个词之间没有联系。因此才有了embedding的方法来讲稀疏的ont-hot相连变成稠密的词向量。</p>
 <p>转化的方法主要有：word2vec、glove等模型。</p>
-<p><img src="/uploads/loading.gif" data-original="https://yangxudong.github.io/ctr-models/embedding.png" alt="embedding"></p>
+<p><img src="https://yangxudong.github.io/ctr-models/embedding.png" alt="embedding"></p>
 <p>在推荐领域，因为很多类别特征都非常稀疏，比如id、cate等，所以embedding在这里的应用其实是用来将one-hot特征映射到一个低维稠密向量上。</p>
-<h1 id="CTR常用模型介绍"><a href="#CTR常用模型介绍" class="headerlink" title="CTR常用模型介绍"></a>CTR常用模型介绍</h1><h2 id="1、LR"><a href="#1、LR" class="headerlink" title="1、LR"></a>1、LR</h2><p>LR（逻辑斯特回归）是线性模型，可以把他看作一个没有隐层的单节点神经网络模型。<br>$$<br>y=\frac{1}{1+e^{-(wx+b)}}<br>$$<br><img src="/uploads/loading.gif" data-original="https://yangxudong.github.io/ctr-models/lr.jpg" alt="lr"></p>
+<h1 id="CTR常用模型介绍"><a href="#CTR常用模型介绍" class="headerlink" title="CTR常用模型介绍"></a>CTR常用模型介绍</h1><h2 id="1、LR"><a href="#1、LR" class="headerlink" title="1、LR"></a>1、LR</h2><p>LR（逻辑斯特回归）是线性模型，可以把他看作一个没有隐层的单节点神经网络模型。<br>$$<br>y=\frac{1}{1+e^{-(wx+b)}}<br>$$<br><img src="https://yangxudong.github.io/ctr-models/lr.jpg" alt="lr"></p>
 <p>LR模型比较简单，可解释性强。但是因为LR是一个线性模型，无法学习分非线性只是，所以需要依赖特征工程。</p>
 <p>为了让LR学习到非线性关系，需要进行特征工程，主要方法：连续特征离散化、特征交叉。</p>
 <h4 id="特征离散化"><a href="#特征离散化" class="headerlink" title="特征离散化"></a>特征离散化</h4><p>特征离散化是指将连续特征划分为多个区间。从特征角度引入非线性，增强LR模型的拟合能力。同时离散化可以对噪声数据更好的鲁棒性，使得模型更加稳定，防止过拟合。</p>
@@ -557,27 +575,27 @@
 <p>通常的交叉方法就是人工评判，后续也可以用模型进行交叉，例如FM模型。</p>
 <h2 id="2、GBDT-LR"><a href="#2、GBDT-LR" class="headerlink" title="2、GBDT+LR"></a>2、GBDT+LR</h2><p>GBDT+LR是一种模型级联的方式，解决了LR特征不足的问题。</p>
 <p>思路：特征工程分为两个部分，一部分特征用于训练一个GBDT模型，把GBDT模型每棵树的叶子节点编号作为新的特征，加入到原始特征集中，然后用combine的全部特征训练LR。</p>
-<p><img src="/uploads/loading.gif" data-original="https://yangxudong.github.io/ctr-models/lr+gbdt.jpg" alt="lr+gbdt"></p>
+<p><img src="https://yangxudong.github.io/ctr-models/lr+gbdt.jpg" alt="lr+gbdt"></p>
 <p>这里使用了GBDT学习高阶非线性特征的特点，为LR引入了非线性。通常把一些连续值特征、值空间不大的类别特征送入GBDT中。</p>
 <p>这种方法也有明显的缺陷，GBDT和LR两个模型是分开的，梯度无法在中间传导，也就无法精确的更新参数。同时这个模型无法实时online训练。GBDT训练又会浪费很多时间，因此这个模型不太被使用。</p>
 <h2 id="3、FM模型"><a href="#3、FM模型" class="headerlink" title="3、FM模型"></a>3、FM模型</h2><p>在CTR预估中，我们往往会对类别categories变量进行one-hot处理，比如一个类别有500个取值，那么这个类别就变成了500个特征。这样的话，整个特征矩阵就会变得非常稀疏，在这种情况下，我们对所有特征进行交叉，得到：</p>
-<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=y%28X%29%3D%5Comega_0%2B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Comega_ix_i%7D%2B%5Csum_%7Bi%3D1%7D%5E%7Bn-1%7D%7B%5Csum_%7Bj%3Di%2B1%7D%5E%7Bn%7D%7B%5Comega_%7Bij%7Dx_ix_j%7D%7D" alt="y(X)=\omega_0+\sum_{i=1}^{n}{\omega_ix_i}+\sum_{i=1}^{n-1}{\sum_{j=i+1}^{n}{\omega_{ij}x_ix_j}}"></p>
+<p><img src="https://www.zhihu.com/equation?tex=y%28X%29%3D%5Comega_0%2B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Comega_ix_i%7D%2B%5Csum_%7Bi%3D1%7D%5E%7Bn-1%7D%7B%5Csum_%7Bj%3Di%2B1%7D%5E%7Bn%7D%7B%5Comega_%7Bij%7Dx_ix_j%7D%7D" alt="y(X)=\omega_0+\sum_{i=1}^{n}{\omega_ix_i}+\sum_{i=1}^{n-1}{\sum_{j=i+1}^{n}{\omega_{ij}x_ix_j}}"></p>
 <p>公式的前半部分就是普通LR，后半部分就是所有特征的组合。</p>
 <p>组合特征的参数一共有n(n-1)/2个，然而因为特征矩阵非常稀疏，每个$w_{ij}$需要大量的非0的特征进行训练，在稀疏矩阵中无法得到满足，所以这种方法训练出来的模型表达能力很差。</p>
 <p>那么FM模型的主要目标：<strong>解决数据稀疏的情况下，特征如何组合的问题</strong></p>
 <p>所有的二次项参数$w_{i,j}$ 可以看作一个对称矩阵$W$，那么整个矩阵就可以被分解为：$W=V^TV$，其中$V$的第$j$列$v_j$就是第$j$维特征的隐向量，换句话说，特征$x_i$和$x_j$的交叉项系数就是对应的隐向量的内积，$w_{i,j}=&lt;v_i,v_j&gt;$。这就是FM的核心思想。</p>
 <p>为了求出矩阵$W$，我们需要得到每个特征的隐向量，通常隐向量维度用k表示，k是一个超参数（k&lt;&lt;n）。转化的过程如下：</p>
-<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=W%5E%5Cstar%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D+%5Comega_%7B11%7D+%26+%5Comega_%7B12%7D+%26+...+%26+%5Comega_%7B1n%7D%5C%5C+%5Comega_%7B21%7D+%26+%5Comega_%7B22%7D+%26+...+%26+%5Comega_%7B2n%7D+%5C%5C+...+%26+...+%26+...+%26+...+%5C%5C+%5Comega_%7Bn1%7D+%26+%5Comega_%7Bn2%7D+%26+...+%26+%5Comega_%7Bnn%7D+%5Cend%7Bmatrix%7D+%5Cright%5D+%3DV%5ETV+%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D+V_1+%5C%5CV_2%5C%5C+...+%5C%5CV_n+%5Cend%7Bmatrix%7D+%5Cright%5D%5Ctimes+%5Cleft%5B+%5Cbegin%7Bmatrix%7D+V_1%2C+V_2%2C+...+%2CV_n+%5Cend%7Bmatrix%7D+%5Cright%5D" alt="W^\star=\left[ \begin{matrix} \omega_{11} &amp; \omega_{12} &amp; ... &amp; \omega_{1n}\\ \omega_{21} &amp; \omega_{22} &amp; ... &amp; \omega_{2n} \\ ... &amp; ... &amp; ... &amp; ... \\ \omega_{n1} &amp; \omega_{n2} &amp; ... &amp; \omega_{nn} \end{matrix} \right] =V^TV =\left[ \begin{matrix} V_1 \\V_2\\ ... \\V_n \end{matrix} \right]\times \left[ \begin{matrix} V_1, V_2, ... ,V_n \end{matrix} \right]"></p>
-<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=%5C+%5C+%5C+%5C+%5C+%5C+%3D+%5Cleft%5B+%5Cbegin%7Bmatrix%7D+v_%7B11%7D+%26+v_%7B12%7D+%26+...+%26+v_%7B1k%7D+%5C%5C+v_%7B21%7D+%26+v_%7B22%7D+%26+...+%26+v_%7B2k%7D+%5C%5C+...+%26+...+%26+...+%26+...%5C%5C+v_%7Bn1%7D+%26+v_%7Bn2%7D+%26+...+%26+v_%7Bnk%7D+%5Cend%7Bmatrix%7D+%5Cright%5D+%5Ctimes+%5Cleft%5B+%5Cbegin%7Bmatrix%7D+v_%7B11%7D+%26+v_%7B21%7D+%26+...+%26+v_%7Bn1%7D+%5C%5C+v_%7B12%7D+%26+v_%7B22%7D+%26+...+%26+v_%7Bn2%7D+%5C%5C+...+%26+...+%26+...+%26+...%5C%5C+v_%7B1k%7D+%26+v_%7B2k%7D+%26+...+%26+v_%7Bnk%7D+%5Cend%7Bmatrix%7D+%5Cright%5D" alt="\ \ \ \ \ \ = \left[ \begin{matrix} v_{11} &amp; v_{12} &amp; ... &amp; v_{1k} \\ v_{21} &amp; v_{22} &amp; ... &amp; v_{2k} \\ ... &amp; ... &amp; ... &amp; ...\\ v_{n1} &amp; v_{n2} &amp; ... &amp; v_{nk} \end{matrix} \right] \times \left[ \begin{matrix} v_{11} &amp; v_{21} &amp; ... &amp; v_{n1} \\ v_{12} &amp; v_{22} &amp; ... &amp; v_{n2} \\ ... &amp; ... &amp; ... &amp; ...\\ v_{1k} &amp; v_{2k} &amp; ... &amp; v_{nk} \end{matrix} \right]"></p>
+<p><img src="https://www.zhihu.com/equation?tex=W%5E%5Cstar%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D+%5Comega_%7B11%7D+%26+%5Comega_%7B12%7D+%26+...+%26+%5Comega_%7B1n%7D%5C%5C+%5Comega_%7B21%7D+%26+%5Comega_%7B22%7D+%26+...+%26+%5Comega_%7B2n%7D+%5C%5C+...+%26+...+%26+...+%26+...+%5C%5C+%5Comega_%7Bn1%7D+%26+%5Comega_%7Bn2%7D+%26+...+%26+%5Comega_%7Bnn%7D+%5Cend%7Bmatrix%7D+%5Cright%5D+%3DV%5ETV+%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D+V_1+%5C%5CV_2%5C%5C+...+%5C%5CV_n+%5Cend%7Bmatrix%7D+%5Cright%5D%5Ctimes+%5Cleft%5B+%5Cbegin%7Bmatrix%7D+V_1%2C+V_2%2C+...+%2CV_n+%5Cend%7Bmatrix%7D+%5Cright%5D" alt="W^\star=\left[ \begin{matrix} \omega_{11} &amp; \omega_{12} &amp; ... &amp; \omega_{1n}\\ \omega_{21} &amp; \omega_{22} &amp; ... &amp; \omega_{2n} \\ ... &amp; ... &amp; ... &amp; ... \\ \omega_{n1} &amp; \omega_{n2} &amp; ... &amp; \omega_{nn} \end{matrix} \right] =V^TV =\left[ \begin{matrix} V_1 \\V_2\\ ... \\V_n \end{matrix} \right]\times \left[ \begin{matrix} V_1, V_2, ... ,V_n \end{matrix} \right]"></p>
+<p><img src="https://www.zhihu.com/equation?tex=%5C+%5C+%5C+%5C+%5C+%5C+%3D+%5Cleft%5B+%5Cbegin%7Bmatrix%7D+v_%7B11%7D+%26+v_%7B12%7D+%26+...+%26+v_%7B1k%7D+%5C%5C+v_%7B21%7D+%26+v_%7B22%7D+%26+...+%26+v_%7B2k%7D+%5C%5C+...+%26+...+%26+...+%26+...%5C%5C+v_%7Bn1%7D+%26+v_%7Bn2%7D+%26+...+%26+v_%7Bnk%7D+%5Cend%7Bmatrix%7D+%5Cright%5D+%5Ctimes+%5Cleft%5B+%5Cbegin%7Bmatrix%7D+v_%7B11%7D+%26+v_%7B21%7D+%26+...+%26+v_%7Bn1%7D+%5C%5C+v_%7B12%7D+%26+v_%7B22%7D+%26+...+%26+v_%7Bn2%7D+%5C%5C+...+%26+...+%26+...+%26+...%5C%5C+v_%7B1k%7D+%26+v_%7B2k%7D+%26+...+%26+v_%7Bnk%7D+%5Cend%7Bmatrix%7D+%5Cright%5D" alt="\ \ \ \ \ \ = \left[ \begin{matrix} v_{11} &amp; v_{12} &amp; ... &amp; v_{1k} \\ v_{21} &amp; v_{22} &amp; ... &amp; v_{2k} \\ ... &amp; ... &amp; ... &amp; ...\\ v_{n1} &amp; v_{n2} &amp; ... &amp; v_{nk} \end{matrix} \right] \times \left[ \begin{matrix} v_{11} &amp; v_{21} &amp; ... &amp; v_{n1} \\ v_{12} &amp; v_{22} &amp; ... &amp; v_{n2} \\ ... &amp; ... &amp; ... &amp; ...\\ v_{1k} &amp; v_{2k} &amp; ... &amp; v_{nk} \end{matrix} \right]"></p>
 <p>所以FM的模型方程是：</p>
-<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=%5Chat%7By%7D%28X%29%3A%3D%5Comega_0%2B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Comega_ix_i%7D%2B%5Csum_%7Bi%3D1%7D%5E%7Bn-1%7D%7B%5Csum_%7Bj%3Di%2B1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_j%3Ex_ix_j%7D%7D+" alt="\hat{y}(X):=\omega_0+\sum_{i=1}^{n}{\omega_ix_i}+\sum_{i=1}^{n-1}{\sum_{j=i+1}^{n}{&lt;v_i,v_j&gt;x_ix_j}} "></p>
-<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=%3Cv_i%2Cv_j%3E%3A%3D%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7Bv_%7Bi%2Cf%7D%5Ccdot+v_%7Bj%2Cf%7D%7D" alt="&lt;v_i,v_j&gt;:=\sum_{f=1}^{k}{v_{i,f}\cdot v_{j,f}}"></p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Chat%7By%7D%28X%29%3A%3D%5Comega_0%2B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Comega_ix_i%7D%2B%5Csum_%7Bi%3D1%7D%5E%7Bn-1%7D%7B%5Csum_%7Bj%3Di%2B1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_j%3Ex_ix_j%7D%7D+" alt="\hat{y}(X):=\omega_0+\sum_{i=1}^{n}{\omega_ix_i}+\sum_{i=1}^{n-1}{\sum_{j=i+1}^{n}{&lt;v_i,v_j&gt;x_ix_j}} "></p>
+<p><img src="https://www.zhihu.com/equation?tex=%3Cv_i%2Cv_j%3E%3A%3D%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7Bv_%7Bi%2Cf%7D%5Ccdot+v_%7Bj%2Cf%7D%7D" alt="&lt;v_i,v_j&gt;:=\sum_{f=1}^{k}{v_{i,f}\cdot v_{j,f}}"></p>
 <p>在回归问题可以直接用均方误差损失函数进行梯度求导，在分类问题中，对输出加上个sigmoid函数就变成了二分类问题。</p>
 <p><strong>为什么FM模型是时间复杂度是线性的？</strong></p>
 <p>这个模型看起来时间复杂度是$O(K<em>N^2)$，怎么还比原来的高了呢？但是其实我们可以通过化简来优化时间复杂度，使其降低到$O(K</em>N)$。</p>
-<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=%5Cbegin%7Balign%2A%7D+%5Csum_%7Bi%3D1%7D%5E%7Bn-1%7D%7B%5Csum_%7Bj%3Di%2B1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_j%3Ex_ix_j%7D%7D+%26%3D+%5Cfrac%7B1%7D%7B2%7D%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_j%3Ex_ix_j%7D%7D+-+%5Cfrac%7B1%7D%7B2%7D+%7B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_i%3Ex_ix_i%7D%7D+%5C%5C+%26%3D+%5Cfrac%7B1%7D%7B2%7D+%5Cleft%28+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7Bv_%7Bi%2Cf%7Dv_%7Bj%2Cf%7Dx_ix_j%7D%7D%7D+-+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7Bv_%7Bi%2Cf%7Dv_%7Bi%2Cf%7Dx_ix_i%7D%7D+%5Cright%29+%5C%5C+%26%3D+%5Cfrac%7B1%7D%7B2%7D%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7B%5Cleft%5B+%5Cleft%28+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7Dx_i%7D+%5Cright%29+%5Ccdot+%5Cleft%28+%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7Bv_%7Bj%2Cf%7Dx_j%7D+%5Cright%29+-+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7D%5E2+x_i%5E2%7D+%5Cright%5D%7D+%5C%5C+%26%3D+%5Cfrac%7B1%7D%7B2%7D%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7B%5Cleft%5B+%5Cleft%28+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7Dx_i%7D+%5Cright%29%5E2+-+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7D%5E2+x_i%5E2%7D+%5Cright%5D%7D+%5Cend%7Balign%2A%7D" alt="\begin{align*} \sum_{i=1}^{n-1}{\sum_{j=i+1}^{n}{&lt;v_i,v_j&gt;x_ix_j}} &amp;= \frac{1}{2}\sum_{i=1}^{n}{\sum_{j=1}^{n}{&lt;v_i,v_j&gt;x_ix_j}} - \frac{1}{2} {\sum_{i=1}^{n}{&lt;v_i,v_i&gt;x_ix_i}} \\ &amp;= \frac{1}{2} \left( \sum_{i=1}^{n}{\sum_{j=1}^{n}{\sum_{f=1}^{k}{v_{i,f}v_{j,f}x_ix_j}}} - \sum_{i=1}^{n}{\sum_{f=1}^{k}{v_{i,f}v_{i,f}x_ix_i}} \right) \\ &amp;= \frac{1}{2}\sum_{f=1}^{k}{\left[ \left( \sum_{i=1}^{n}{v_{i,f}x_i} \right) \cdot \left( \sum_{j=1}^{n}{v_{j,f}x_j} \right) - \sum_{i=1}^{n}{v_{i,f}^2 x_i^2} \right]} \\ &amp;= \frac{1}{2}\sum_{f=1}^{k}{\left[ \left( \sum_{i=1}^{n}{v_{i,f}x_i} \right)^2 - \sum_{i=1}^{n}{v_{i,f}^2 x_i^2} \right]} \end{align*}"></p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Cbegin%7Balign%2A%7D+%5Csum_%7Bi%3D1%7D%5E%7Bn-1%7D%7B%5Csum_%7Bj%3Di%2B1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_j%3Ex_ix_j%7D%7D+%26%3D+%5Cfrac%7B1%7D%7B2%7D%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_j%3Ex_ix_j%7D%7D+-+%5Cfrac%7B1%7D%7B2%7D+%7B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%3Cv_i%2Cv_i%3Ex_ix_i%7D%7D+%5C%5C+%26%3D+%5Cfrac%7B1%7D%7B2%7D+%5Cleft%28+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7Bv_%7Bi%2Cf%7Dv_%7Bj%2Cf%7Dx_ix_j%7D%7D%7D+-+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7Bv_%7Bi%2Cf%7Dv_%7Bi%2Cf%7Dx_ix_i%7D%7D+%5Cright%29+%5C%5C+%26%3D+%5Cfrac%7B1%7D%7B2%7D%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7B%5Cleft%5B+%5Cleft%28+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7Dx_i%7D+%5Cright%29+%5Ccdot+%5Cleft%28+%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7Bv_%7Bj%2Cf%7Dx_j%7D+%5Cright%29+-+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7D%5E2+x_i%5E2%7D+%5Cright%5D%7D+%5C%5C+%26%3D+%5Cfrac%7B1%7D%7B2%7D%5Csum_%7Bf%3D1%7D%5E%7Bk%7D%7B%5Cleft%5B+%5Cleft%28+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7Dx_i%7D+%5Cright%29%5E2+-+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bv_%7Bi%2Cf%7D%5E2+x_i%5E2%7D+%5Cright%5D%7D+%5Cend%7Balign%2A%7D" alt="\begin{align*} \sum_{i=1}^{n-1}{\sum_{j=i+1}^{n}{&lt;v_i,v_j&gt;x_ix_j}} &amp;= \frac{1}{2}\sum_{i=1}^{n}{\sum_{j=1}^{n}{&lt;v_i,v_j&gt;x_ix_j}} - \frac{1}{2} {\sum_{i=1}^{n}{&lt;v_i,v_i&gt;x_ix_i}} \\ &amp;= \frac{1}{2} \left( \sum_{i=1}^{n}{\sum_{j=1}^{n}{\sum_{f=1}^{k}{v_{i,f}v_{j,f}x_ix_j}}} - \sum_{i=1}^{n}{\sum_{f=1}^{k}{v_{i,f}v_{i,f}x_ix_i}} \right) \\ &amp;= \frac{1}{2}\sum_{f=1}^{k}{\left[ \left( \sum_{i=1}^{n}{v_{i,f}x_i} \right) \cdot \left( \sum_{j=1}^{n}{v_{j,f}x_j} \right) - \sum_{i=1}^{n}{v_{i,f}^2 x_i^2} \right]} \\ &amp;= \frac{1}{2}\sum_{f=1}^{k}{\left[ \left( \sum_{i=1}^{n}{v_{i,f}x_i} \right)^2 - \sum_{i=1}^{n}{v_{i,f}^2 x_i^2} \right]} \end{align*}"></p>
 <p>使用梯度下降法求解参数，参数就是一维的$w$和二维的$v$。</p>
-<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=%5Cbegin%7Bequation%7D+%5Cfrac%7B%5Cpartial+%5Chat%7By%7D%28x%29+%7D%7B%5Cpartial+%5Ctheta%7D+%3D+%5Cleft%5C%7B+%5Cbegin%7Barray%7D%7Blr%7D+1%2C+%26+if%5C+%5Ctheta%5C+is%5C+%5Comega_0+%5C%5C+x_i%2C+%26+if%5C+%5Ctheta%5C+is%5C+%5Comega_i%5C%5C+x_i%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7Bv_%7Bj%2Cf%7Dx_j+-+v_%7Bi%2Cf%7Dx_i%5E2%7D+%26+if%5C+%5Ctheta%5C+is%5C+v_%7Bi%2Cf%7D+%5Cend%7Barray%7D+%5Cright.+%5Cend%7Bequation%7D+" alt="\begin{equation} \frac{\partial \hat{y}(x) }{\partial \theta} = \left\{ \begin{array}{lr} 1, &amp; if\ \theta\ is\ \omega_0 \\ x_i, &amp; if\ \theta\ is\ \omega_i\\ x_i\sum_{j=1}^{n}{v_{j,f}x_j - v_{i,f}x_i^2} &amp; if\ \theta\ is\ v_{i,f} \end{array} \right. \end{equation} "></p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Cbegin%7Bequation%7D+%5Cfrac%7B%5Cpartial+%5Chat%7By%7D%28x%29+%7D%7B%5Cpartial+%5Ctheta%7D+%3D+%5Cleft%5C%7B+%5Cbegin%7Barray%7D%7Blr%7D+1%2C+%26+if%5C+%5Ctheta%5C+is%5C+%5Comega_0+%5C%5C+x_i%2C+%26+if%5C+%5Ctheta%5C+is%5C+%5Comega_i%5C%5C+x_i%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%7Bv_%7Bj%2Cf%7Dx_j+-+v_%7Bi%2Cf%7Dx_i%5E2%7D+%26+if%5C+%5Ctheta%5C+is%5C+v_%7Bi%2Cf%7D+%5Cend%7Barray%7D+%5Cright.+%5Cend%7Bequation%7D+" alt="\begin{equation} \frac{\partial \hat{y}(x) }{\partial \theta} = \left\{ \begin{array}{lr} 1, &amp; if\ \theta\ is\ \omega_0 \\ x_i, &amp; if\ \theta\ is\ \omega_i\\ x_i\sum_{j=1}^{n}{v_{j,f}x_j - v_{i,f}x_i^2} &amp; if\ \theta\ is\ v_{i,f} \end{array} \right. \end{equation} "></p>
 <p>在计算$v_{i,f}$的梯度时候，只需要计算$\sum_{j=1}^{n}{v_{j,f}{x_j}}$就可以了，计算这个式子时间复杂度是$O(k*N)$，模型参数一共$nk+n+1$个。</p>
 <p>所以FM模型的时间复杂度是$O(kn)$，可以在线性时间内训练和预测。</p>
 <p><strong>为什么说FM解决了数据稀疏情况下特征组合问题呢？</strong></p>
@@ -603,13 +621,13 @@
 <p>2、FFM模型计算比较复杂，梯度求导麻烦，FM经过化简之后梯度计算相对简单。</p>
 <h2 id="5、DeepFM模型"><a href="#5、DeepFM模型" class="headerlink" title="5、DeepFM模型"></a>5、DeepFM模型</h2><p>因为为了保证线性计算时间的需求，所以FM只能学习到二阶组合特征，无法学习到高阶特征。为了学习到高阶特征，考虑使用神经网络，因为神经网络可以拟合任意函数。</p>
 <p>那么DeepFM就分成两个部分：神经网络部分和因子分解机部分，分别用来提取高阶特征和低阶特征。这两个部分共享同样的输入，DeepFM预测结果为：<br>$$<br>y=sigmoid(y_{FM}+y_{DNN})<br>$$<br>整体架构图为：</p>
-<p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/4155986-21fa429e42108e99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/535/format/webp" alt="img"></p>
-<h3 id="FM部分"><a href="#FM部分" class="headerlink" title="FM部分"></a>FM部分</h3><p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/4155986-d144aba541c68a34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/582/format/webp" alt="img"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4155986-21fa429e42108e99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/535/format/webp" alt="img"></p>
+<h3 id="FM部分"><a href="#FM部分" class="headerlink" title="FM部分"></a>FM部分</h3><p><img src="https://upload-images.jianshu.io/upload_images/4155986-d144aba541c68a34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/582/format/webp" alt="img"></p>
 <p>FM部分是一个因子分解机，和FM模型的输出一致<br>$$<br>y_{FM}=\langle w,x \rangle + \sum_{i=1}^d \sum_{j=i+1}^d \langle V_i,V_j \rangle x_i x_j<br>$$</p>
-<h3 id="神经网络部分"><a href="#神经网络部分" class="headerlink" title="神经网络部分"></a>神经网络部分</h3><p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/4155986-366d825a661466a3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/538/format/webp" alt="img"></p>
+<h3 id="神经网络部分"><a href="#神经网络部分" class="headerlink" title="神经网络部分"></a>神经网络部分</h3><p><img src="https://upload-images.jianshu.io/upload_images/4155986-366d825a661466a3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/538/format/webp" alt="img"></p>
 <p>神经网络部分是一个前馈神经网络，神经网络的输入是embedding之后的k维稠密向量，然后通过H个隐藏层去拟合高阶的特征。<br>$$<br>y_{DNN}=\sigma(W^{H+1} \cdot a^H + b^{H+1})<br>$$<br><strong>对于embedding的理解</strong></p>
 <p>对于embedding层的理解，我们可以认为$V_i$就是特征$x_i$的one-hot表示到embedidng层的权重。这里要注意与FM一样，分域进行embedding。</p>
-<p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/4155986-cd51e0bd97ab285d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt="img"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4155986-cd51e0bd97ab285d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt="img"></p>
 <p>比如我们现在有三个特征：性别、年龄、身高。进行one-hot之后，分别将这三个field特征embedidng成一个k维的向量，送到DNN中的就是3*k维向量。</p>
 <p>1、尽管每个fiels输入长度不同，输出长度都是k。</p>
 <p>2、在FM模型中的$V_i$现在作为embedding层的权重了。</p>
@@ -627,13 +645,13 @@
 <li>记忆能力：从历史数据中发现item或者特征之间的相关性—&gt;偏差</li>
 <li>泛化能力：相关性的传递，发现历史数据中没有的新特征组合—&gt;方差</li>
 </ul>
-<p><img src="/uploads/loading.gif" data-original="https://yangxudong.github.io/ctr-models/wdl.png" alt="wdl"></p>
+<p><img src="https://yangxudong.github.io/ctr-models/wdl.png" alt="wdl"></p>
 <h3 id="wide端"><a href="#wide端" class="headerlink" title="wide端"></a>wide端</h3><p>wide端对应的是线性模型，需要人工进行特征组合，人工进行特征工程。</p>
 <p>对于线性模型，可以使用L1正则化防止过拟合。</p>
 <h3 id="Deep端"><a href="#Deep端" class="headerlink" title="Deep端"></a>Deep端</h3><p>deep端对应的是深度学习模型，输入是特征值，然后对特征值进行embedding，送入MLP中。</p>
 <p>在训练时可以使用adagrade加快训练速度。</p>
-<p><img src="/uploads/loading.gif" data-original="https://nihil.top/wp-content/uploads/2018/08/1533869217679.png" alt="img"></p>
-<p><img src="/uploads/loading.gif" data-original="https://nihil.top/wp-content/uploads/2018/08/1533867372711.png" alt="img"></p>
+<p><img src="https://nihil.top/wp-content/uploads/2018/08/1533869217679.png" alt="img"></p>
+<p><img src="https://nihil.top/wp-content/uploads/2018/08/1533867372711.png" alt="img"></p>
 <p><strong>wide&amp;deep和deepFM有什么区别</strong></p>
 <p>1、输入不同：deepFM的两个子模型输入相同，都是特征的one-hot结果，并且共享embedding参数；wide&amp;deep两个子模型的输入不一样，wide端是经过特征工程的特征，deep端是原始特征然后经过embedding。</p>
 <p>2、wide端特征不同：deepFM是通过FM模型来对所有特征进行组合；wide&amp;deep是人工进行特征工程。</p>
@@ -643,7 +661,7 @@
 <li>用第一阶段的输出作为输入，训练MLP模型</li>
 </ul>
 <p>FNN模型就是用FM模型学习到的embedding向量初始化MLP，再由MLP完成最终学习，其模型结构如下：</p>
-<p><img src="/uploads/loading.gif" data-original="https://yangxudong.github.io/ctr-models/fnn.jpg" alt="fnn"></p>
+<p><img src="https://yangxudong.github.io/ctr-models/fnn.jpg" alt="fnn"></p>
 <ul>
 <li>输入层是一个经过one-hot的稀疏的矩阵，但是进行embedding的时候需要分域来进行embeding，将每个域embedding成k维向量。</li>
 <li>Dense Real Layer：假设未经one-hot有n个特征，那么这一层就有n*k+1个节点。第一个$w_0$是常数，后面每k个就是一个特征的one-hot结果。</li>
@@ -653,7 +671,7 @@
 <h2 id="8、PNN模型"><a href="#8、PNN模型" class="headerlink" title="8、PNN模型"></a>8、PNN模型</h2><p>主要思路是：embedding输入到MLP之后学习的交叉特征并不充分，提出了一种product layer的思想，基于乘法运算来体现交叉的DNN网络。</p>
 <p>之前的学习都是“+”的关系，也就是或。PNN认为在CTR预估中更多是是且，也就是乘的关系，比如“男生且喜欢游戏”。</p>
 <p>PNN模型也可以看作是两个模型的级联，首先通过一个低阶特征提取模型，输出是product layer的输出。第二个模型是MLP模型，输入就是低阶模型的输出，输出是CTR预估值。</p>
-<p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/4155986-9867a7134749f48e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="img"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4155986-9867a7134749f48e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="img"></p>
 <p>PNN的模型整体上和FNN类似，不同的是加入了Product Layer。</p>
 <h3 id="输出层"><a href="#输出层" class="headerlink" title="输出层"></a>输出层</h3><p>将上一层网络进行全连接，然后通过sgmoid函数转化到（0~1）区间中。<br>$$<br>y=\sigma(W_3l_2+b_3)<br>$$</p>
 <h3 id="L2层"><a href="#L2层" class="headerlink" title="L2层"></a>L2层</h3><p>l2层的每个节点都是l1层的全连接，并且激活函数使用Relu函数。<br>$$<br>l_2 = relu(W_2l_1+b_2)<br>$$</p>
@@ -666,16 +684,16 @@
 <p>一般情况用内积比较多，内积的计算量也比较少。在计算过程中，都巧妙的使用矩阵分解的方法，减小计算量。</p>
 <h3 id="Embedding层"><a href="#Embedding层" class="headerlink" title="Embedding层"></a>Embedding层</h3><p>这一层和DeepFM做的工作类似，都是按域将输入变换成k维的稠密向量。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>CTR预估模型从宽度向深度转变，相应的人工特征工程也在减少。越来越多的使用神经网络来做CTR预估：</p>
-<p><img src="/uploads/loading.gif" data-original="https://yangxudong.github.io/ctr-models/dnn-models.png" alt="img"></p>
+<p><img src="https://yangxudong.github.io/ctr-models/dnn-models.png" alt="img"></p>
 <p>四种主流的深度学习模型对比：</p>
-<p><img src="/uploads/loading.gif" data-original="https://yangxudong.github.io/ctr-models/comparison.png" alt="img"></p>
+<p><img src="https://yangxudong.github.io/ctr-models/comparison.png" alt="img"></p>
 <p>通过实验，一般情况下DeepFM模型可以取得最优的效果。</p>
 <h2 id="9、DIN模型"><a href="#9、DIN模型" class="headerlink" title="9、DIN模型"></a>9、DIN模型</h2><p>主要思路：深度兴趣网络，运用用户历史行为来提高CTR预估值。</p>
 <p>基于数据的两个特性：</p>
 <p>1、多样性：用户浏览兴趣具有多样性；</p>
 <p>2、局部激活性：与点击事件有关的并不是全部的历史数据，只和部分历史数据有关</p>
 <p>网络结构：</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554085202129.png" alt="1554085202129"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554085202129.png" alt="1554085202129"></p>
 <p>论文把特征分成四类：用户特征、用户行为特征、广告特征、上下文特征</p>
 <p>并没有进行特征交叉，用户行为特征是多值离散特征multi-hot，如果全部使用会很稀疏，因此这里用了一个比较好玩（无聊）的想法，就是我关注用户有过行为的物品。这么就带来一个问题，每个用户有过行为的物品数量不一致咋办？这里就用SUM Pooling进行加权，然后就得到了统一长度向量表征。</p>
 <p>根据论文中的意思，主要做的就是对user behaviors进行改进，这一部分本质是多值离散特征，比如兴趣点这种可能有很多个，传统的模型就是单纯的求max或者求average（参考DeepFM处理多值离散的方法），但是DIN认为这样不好，因为当前ad和历史记录肯定要去找相似的才更有说服力，因此这里就加了个Attention机制。</p>
@@ -683,14 +701,14 @@
 <p>我们下面来分析一下这个Attention是怎么做的？</p>
 <p>1、首先Q是待处理的Ad的embedding向量，K和V都是每个兴趣点的embedding向量。这里注意User Behaviors的输入其实是多值离散的[0,1,1,0,1,1…]这种的，也就是说只有M(M&lt;=N)个兴趣点是有具体的embedding向量的，其余的0对应的向量就是[0,0,0…0]，这部分向量计算出来的相似度也是0，所以不影响。</p>
 <p>2、看一下打分函数</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554085601259.png" alt="1554085601259"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554085601259.png" alt="1554085601259"></p>
 <p>这个打分函数还比较复杂，分解一下，两个向量计算外积，flatten之后与原始向量concat，然后进行PRelu激活，在走一个sigmoid输出一个相似性。对于0的情况，就需要落在Prelu的左边。</p>
 <p>3、两两计算相似度</p>
 <p>普通的Attention，我们都是计算softmax概率，突出当前item与历史所有的item中最相似的一个。但是这里使用的确实sigmoid，也就是说模型计算了两两的相似性，最后的权重没有做归一化。</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554086773725.png" alt="1554086773725"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554086773725.png" alt="1554086773725"></p>
 <p>论文中也提到了这点设计：</p>
 <blockquote>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554087009142.png" alt="1554087009142"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554087009142.png" alt="1554087009142"></p>
 </blockquote>
 <p>意思就是要保留用户的兴趣强度，这么个设计更好的挖掘用户的兴趣点。我的理解是：如果进行softmax，可能没有了物品类别的概念，只有了物品的概念。比如待计算的Ad是手机，兴趣点可能有：苹果手机、华为手机、小米手机、短袖、长袖。。等等，如果用传统的attention，只能捕捉到具体的是苹果手机or华为手机or小米手机，而使用它的设计，就能捕捉到手机相关，从而这三个权重都很高，虽然没有归一化，但是突出了物品类别的概念。</p>
 <p>经过上面的分析，这个模型的Attention结构就比较明了了，计算待下发的Ad与用户所有历史行为计算相似度(两两sigmoid)，然后做加权的sum pooling之后作为user behaviors的输出。</p>
@@ -698,9 +716,9 @@
 <p>下面看一下这个网络的一些trick：</p>
 <p>1、激活函数</p>
 <p>PRelu或者Dice，他们的导数信息为：</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554087637628.png" alt="1554087637628"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554087637628.png" alt="1554087637628"></p>
 <p>论文中说PRelu激活函数在0点位置不可导，所以对于每层输入分布不同的时候，不适用。所以提出了Dice激活函数。</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554967035844.png" alt="1554967035844"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554967035844.png" alt="1554967035844"></p>
 <p>这个激活函数乍一看长得很像sigmoid啊，E(s)和Var(s)分别是batch数据的均值和方差。主要目的是为了防止输入数据分布不同的情况，所以这个就是将输入数据变成同分布了而已。。emm。</p>
 <p>当E和V都是0的时候，退化成PRelu。</p>
 <p>2、正则化</p>
@@ -718,7 +736,7 @@
 <p>2、网络架构：核心是Embedding层和Attention层。embedding将所有的one-hot向量映射到低维稠密向量中。Attention计算两两相似度，得到用户行为特征的加权和作为输出。</p>
 <p>3、损失函数：交叉熵损失函数</p>
 <p>4、评价指标：GAUC，auc的改进。</p>
-<p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/4155986-358cc3c6656a5408.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/654" alt="img"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4155986-358cc3c6656a5408.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/654" alt="img"></p>
 <p>5、训练方法：反向dp</p>
 <p><strong>总结</strong></p>
 <p>1、用户有多个兴趣爱好，访问了多个good_id，shop_id。为了降低纬度并使得商品店铺间的算术运算有意义，我们先对其进行Embedding嵌入。那么我们如何对用户多种多样的兴趣建模那？使用Pooling对Embedding Vector求和或者求平均。同时这也解决了不同用户输入长度不同的问题，得到了一个固定长度的向量。这个向量就是用户表示，是用户兴趣的代表。</p>
@@ -765,7 +783,7 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>boris</li>
+    <strong>本文作者： </strong>sakura</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
@@ -861,9 +879,9 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
   
-  <p class="site-author-name" itemprop="name">boris</p>
+  <p class="site-author-name" itemprop="name">sakura</p>
   <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
 </div>
 
@@ -1075,7 +1093,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-superpowers"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">boris</span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -1324,5 +1342,5 @@ window.addEventListener("message", function(e) {
 
   
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

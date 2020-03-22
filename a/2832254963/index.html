@@ -113,19 +113,19 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="新冠肺炎预测">
 <meta property="og:url" content="http://www.lbblog.com/a/2832254963/index.html">
-<meta property="og:site_name" content="切克闹">
+<meta property="og:site_name" content="Sakuraの博客">
 <meta property="og:description" content="前言新冠病毒肆虐已经一个月了，截止到2020年2月13日零点，全国已经感染59883人，疑似16067，治愈5960人，死亡1368。作为一个数据工作者，也想用自己的方式干点啥（寒假在家太无聊），所以决定自己动手撸一遍模型来预测一下后面的走势。调查了一下传染病的模型，大部分都是基于动力学模型（微分方程），有点类似本科学的控制理论，因此本文我先基于SIR撸一个简单的预测模型。 SIR模型SIR模型是">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="https://ae01.alicdn.com/kf/H2d72c242f97842659cc049ce7df83707i.png">
+<meta property="og:image" content="https://ae01.alicdn.com/kf/Hef483944081e4015b299c8dc176041fcQ.png">
+<meta property="og:image" content="https://ae01.alicdn.com/kf/H79870a5c759a4ac7859753ab04b195fb2.png">
+<meta property="og:image" content="https://ae01.alicdn.com/kf/Hddcc2c943bb4400ea1e577572b508078J.png">
+<meta property="og:image" content="https://ae01.alicdn.com/kf/H526d661c780d4c00b3050c65225c66feC.png">
 <meta property="og:updated_time" content="2020-02-14T15:28:08.474Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="新冠肺炎预测">
 <meta name="twitter:description" content="前言新冠病毒肆虐已经一个月了，截止到2020年2月13日零点，全国已经感染59883人，疑似16067，治愈5960人，死亡1368。作为一个数据工作者，也想用自己的方式干点啥（寒假在家太无聊），所以决定自己动手撸一遍模型来预测一下后面的走势。调查了一下传染病的模型，大部分都是基于动力学模型（微分方程），有点类似本科学的控制理论，因此本文我先基于SIR撸一个简单的预测模型。 SIR模型SIR模型是">
-<meta name="twitter:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta name="twitter:image" content="https://ae01.alicdn.com/kf/H2d72c242f97842659cc049ce7df83707i.png">
 
 
 
@@ -144,7 +144,7 @@
 </script>
 
   
-  <title>新冠肺炎预测 | 切克闹</title>
+  <title>新冠肺炎预测 | Sakuraの博客</title>
   
 
 
@@ -203,14 +203,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">切克闹</span>
+        <span class="site-title">Sakuraの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
     
       <a>
-        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
       </a>
     
   </div>
@@ -246,6 +246,24 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -366,13 +384,13 @@
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/2832254963/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -501,7 +519,7 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>新冠病毒肆虐已经一个月了，截止到2020年2月13日零点，全国已经感染59883人，疑似16067，治愈5960人，死亡1368。<br><img src="/uploads/loading.gif" data-original="https://ae01.alicdn.com/kf/H2d72c242f97842659cc049ce7df83707i.png" alt><br>作为一个数据工作者，也想用自己的方式干点啥（寒假在家太无聊），所以决定自己动手撸一遍模型来预测一下后面的走势。调查了一下传染病的模型，大部分都是基于动力学模型（微分方程），有点类似本科学的控制理论，因此本文我先基于SIR撸一个简单的预测模型。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>新冠病毒肆虐已经一个月了，截止到2020年2月13日零点，全国已经感染59883人，疑似16067，治愈5960人，死亡1368。<br><img src="https://ae01.alicdn.com/kf/H2d72c242f97842659cc049ce7df83707i.png" alt><br>作为一个数据工作者，也想用自己的方式干点啥（寒假在家太无聊），所以决定自己动手撸一遍模型来预测一下后面的走势。调查了一下传染病的模型，大部分都是基于动力学模型（微分方程），有点类似本科学的控制理论，因此本文我先基于SIR撸一个简单的预测模型。</p>
 <h1 id="SIR模型"><a href="#SIR模型" class="headerlink" title="SIR模型"></a>SIR模型</h1><p>SIR模型是一个简单的描述传染病传播的数学模型，将人群分为以下几类：<br>1 易感人群（Susceptible）：指未得病者，但缺乏免疫能力，与感病者接触后容易受到感染。<br>2 感染人群（Infective）：指染上传染病的人，他可以传播给易感人群。<br>3 移除人群（Removed）：被移出系统的人。因病愈（具有免疫力）或死亡的人。这部分人不再参与感染和被感染过程。</p>
 <h2 id="SIR模型数学描述"><a href="#SIR模型数学描述" class="headerlink" title="SIR模型数学描述"></a>SIR模型数学描述</h2><ul>
 <li>环境中总人数：$N$</li>
@@ -598,19 +616,19 @@
 <ul>
 <li>n=2个时，也就是政府管控的非常严格，一个病人只能有两个密切接触者。在这个时候，患病人数比较少，基本都维持在个位数。</li>
 </ul>
-<p><img src="/uploads/loading.gif" data-original="https://ae01.alicdn.com/kf/Hef483944081e4015b299c8dc176041fcQ.png" alt></p>
+<p><img src="https://ae01.alicdn.com/kf/Hef483944081e4015b299c8dc176041fcQ.png" alt></p>
 <ul>
 <li>n=3时，一个病人有3个密切接触者。可以看到300多天时出现了顶峰，将近100w人感染。</li>
 </ul>
-<p><img src="/uploads/loading.gif" data-original="https://ae01.alicdn.com/kf/H79870a5c759a4ac7859753ab04b195fb2.png" alt></p>
+<p><img src="https://ae01.alicdn.com/kf/H79870a5c759a4ac7859753ab04b195fb2.png" alt></p>
 <ul>
 <li>n=4时，大概在200天左右达到巅峰，同时感染人数将近20%。</li>
 </ul>
-<p><img src="/uploads/loading.gif" data-original="https://ae01.alicdn.com/kf/Hddcc2c943bb4400ea1e577572b508078J.png" alt></p>
+<p><img src="https://ae01.alicdn.com/kf/Hddcc2c943bb4400ea1e577572b508078J.png" alt></p>
 <ul>
 <li>n=5时，政府几乎不管控。150天不到就发生了爆发，并且感染人数30%。</li>
 </ul>
-<p><img src="/uploads/loading.gif" data-original="https://ae01.alicdn.com/kf/H526d661c780d4c00b3050c65225c66feC.png" alt></p>
+<p><img src="https://ae01.alicdn.com/kf/H526d661c780d4c00b3050c65225c66feC.png" alt></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这次实验用了最简单的SIR模型，看懂了之后网上找了一些模型的开源实现。在求解部分使用了最小二乘推导。</p>
 <p>感觉真实的数据可能更恐怖，这个还是被美化的结果，所以还是老老实实在家呆着吧。</p>
 <p>这个模型感觉太简单了点，后面再研究研究更难的模型，看看能不能用深度网络来做。</p>
@@ -648,7 +666,7 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>boris</li>
+    <strong>本文作者： </strong>sakura</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
@@ -744,9 +762,9 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
   
-  <p class="site-author-name" itemprop="name">boris</p>
+  <p class="site-author-name" itemprop="name">sakura</p>
   <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
 </div>
 
@@ -958,7 +976,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-superpowers"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">boris</span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -1207,5 +1225,5 @@ window.addEventListener("message", function(e) {
 
   
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

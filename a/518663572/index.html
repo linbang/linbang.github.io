@@ -113,17 +113,17 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="python网络爬虫（三）">
 <meta property="og:url" content="http://www.lbblog.com/a/518663572/index.html">
-<meta property="og:site_name" content="切克闹">
+<meta property="og:site_name" content="Sakuraの博客">
 <meta property="og:description" content="前言前面章节介绍了requests库的使用，可以通过requests的get或者post方法获取url信息，实现了最简单的爬虫。但是获取到的只是string类型，还需要将其变成网页的各种元素，方便我们查找。这个变化的过程就用到了BeautifulSoup这个库，可以提取HTML文件中的数据。 BeautifulSoup安装和初步使用conda好像没法安装，我使用pip直接安装bs4： 1pip i">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="https://ae01.alicdn.com/kf/H60f0dca9ba5143b2b7e3ee95c79127d7R.png">
+<meta property="og:image" content="https://ae01.alicdn.com/kf/H6d062201a5da418ba6c4aeeccad54a67G.png">
+<meta property="og:image" content="https://ae01.alicdn.com/kf/Hcf08ca26200e447da8a023bc8a65df84L.png">
 <meta property="og:updated_time" content="2020-02-16T15:12:21.033Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python网络爬虫（三）">
 <meta name="twitter:description" content="前言前面章节介绍了requests库的使用，可以通过requests的get或者post方法获取url信息，实现了最简单的爬虫。但是获取到的只是string类型，还需要将其变成网页的各种元素，方便我们查找。这个变化的过程就用到了BeautifulSoup这个库，可以提取HTML文件中的数据。 BeautifulSoup安装和初步使用conda好像没法安装，我使用pip直接安装bs4： 1pip i">
-<meta name="twitter:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta name="twitter:image" content="https://ae01.alicdn.com/kf/H60f0dca9ba5143b2b7e3ee95c79127d7R.png">
 
 
 
@@ -142,7 +142,7 @@
 </script>
 
   
-  <title>python网络爬虫（三） | 切克闹</title>
+  <title>python网络爬虫（三） | Sakuraの博客</title>
   
 
 
@@ -201,14 +201,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">切克闹</span>
+        <span class="site-title">Sakuraの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
     
       <a>
-        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
       </a>
     
   </div>
@@ -244,6 +244,24 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -364,13 +382,13 @@
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/518663572/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -534,10 +552,10 @@
 <p>一般情况下，使用第一个和第二个解析器就足够了。</p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>网页元素都是由标签组成的，<xx attrs:...>内容</xx>。我们获取的时候，可以直接使用.name,.attrs,.string等来获取想要的元素内容。</p>
 <p>BeautifulSoup是将网页所有元素解析成树状，每个节点都是一个python对象。</p>
-<p><img src="/uploads/loading.gif" data-original="https://ae01.alicdn.com/kf/H60f0dca9ba5143b2b7e3ee95c79127d7R.png" alt></p>
-<p><img src="/uploads/loading.gif" data-original="https://ae01.alicdn.com/kf/H6d062201a5da418ba6c4aeeccad54a67G.png" alt></p>
+<p><img src="https://ae01.alicdn.com/kf/H60f0dca9ba5143b2b7e3ee95c79127d7R.png" alt></p>
+<p><img src="https://ae01.alicdn.com/kf/H6d062201a5da418ba6c4aeeccad54a67G.png" alt></p>
 <p>一个简单的HTML是树形的，有三种遍历方式。比如：</p>
-<p><img src="/uploads/loading.gif" data-original="https://ae01.alicdn.com/kf/Hcf08ca26200e447da8a023bc8a65df84L.png" alt></p>
+<p><img src="https://ae01.alicdn.com/kf/Hcf08ca26200e447da8a023bc8a65df84L.png" alt></p>
 <p>1、下行遍历</p>
 <table>
 <thead>
@@ -706,7 +724,7 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>boris</li>
+    <strong>本文作者： </strong>sakura</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
@@ -802,9 +820,9 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
   
-  <p class="site-author-name" itemprop="name">boris</p>
+  <p class="site-author-name" itemprop="name">sakura</p>
   <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
 </div>
 
@@ -1016,7 +1034,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-superpowers"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">boris</span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -1265,5 +1283,5 @@ window.addEventListener("message", function(e) {
 
   
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

@@ -113,15 +113,15 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="圆圈中最后一个数字">
 <meta property="og:url" content="http://www.lbblog.com/a/3856212076/index.html">
-<meta property="og:site_name" content="切克闹">
+<meta property="og:site_name" content="Sakuraの博客">
 <meta property="og:description" content="题目0, 1, … , n-1 这 n 个数字排成一个圈圈，从数字 0 开始每次从圆圏里删除第 m 个数字。求出这个圈圈里剩下的最后一个数字。 思路思路一：环链表，时间复杂度o(n*m)，空间复杂度o(n)我们创建总共有n个节点的环形链表，然后每次在这个环形链表中删除第m个节点。 12345678910111213141516171819202122232425262728293031public">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="http://wiki.jikexueyuan.com/project/for-offer/images/63.png">
 <meta property="og:updated_time" content="2020-02-09T11:12:59.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="圆圈中最后一个数字">
 <meta name="twitter:description" content="题目0, 1, … , n-1 这 n 个数字排成一个圈圈，从数字 0 开始每次从圆圏里删除第 m 个数字。求出这个圈圈里剩下的最后一个数字。 思路思路一：环链表，时间复杂度o(n*m)，空间复杂度o(n)我们创建总共有n个节点的环形链表，然后每次在这个环形链表中删除第m个节点。 12345678910111213141516171819202122232425262728293031public">
-<meta name="twitter:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta name="twitter:image" content="http://wiki.jikexueyuan.com/project/for-offer/images/63.png">
 
 
 
@@ -140,7 +140,7 @@
 </script>
 
   
-  <title>圆圈中最后一个数字 | 切克闹</title>
+  <title>圆圈中最后一个数字 | Sakuraの博客</title>
   
 
 
@@ -199,14 +199,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">切克闹</span>
+        <span class="site-title">Sakuraの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
     
       <a>
-        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
       </a>
     
   </div>
@@ -242,6 +242,24 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -362,13 +380,13 @@
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3856212076/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -533,7 +551,7 @@
 <h3 id="思路二：数学法，时间复杂度o-n-，空间复杂度o-1"><a href="#思路二：数学法，时间复杂度o-n-，空间复杂度o-1" class="headerlink" title="思路二：数学法，时间复杂度o(n)，空间复杂度o(1)"></a>思路二：数学法，时间复杂度o(n)，空间复杂度o(1)</h3><p>首先我们定义一个关于 n 和 m 的方程时，表示每次在 n 个数字 0，1， … ，n-1中每次删除第 m 个数字最后剩下的数字。</p>
 <p>在这 n个数字中， 第一个被删除的数字是(m-1)%n。为了简单起见，我们把(m- 1)%n 记为 k，那么删除k之后剩下的 n-1 个数字为 0，1，… ，k-1，k+1，… ，n-1，并且下一次删除从数字 k+1 开始计数。相当于在剩下的序列中， k+1 排在最前面，从而形成 k+1，… ，n- 1，0，I，… ，k-1 。该序列最后剩下的数字也应该是关于 n 和 m 的函数。由于这个序列的规律和前面最初的序列不一样（最初的序列是从 0 开始的连续序列），因此该函数不同于前面的函数，记为 f’(n-1,m)。最初序列最后剩下的数字 f(n, m）一定是删除一个数字之后的序列最后剩下的数字，即 f(n, m)=f’(n-1, m）。</p>
 <p>接下来我们把剩下的这 n-1 个数字的序列 k-1， …，n-1，0，1，… ，k-1 做一个映射，映射的结果是形成一个从 0 到 n-2 的序列： 　　</p>
-<p><img src="/uploads/loading.gif" data-original="http://wiki.jikexueyuan.com/project/for-offer/images/63.png" alt="img"></p>
+<p><img src="http://wiki.jikexueyuan.com/project/for-offer/images/63.png" alt="img"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">LastRemaining_Solution</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ( n &lt; <span class="number">1</span> || m &lt; <span class="number">1</span> ) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> ( n == <span class="number">1</span> ) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> (LastRemaining_Solution(n-<span class="number">1</span>,m) + m )% n ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -570,7 +588,7 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>boris</li>
+    <strong>本文作者： </strong>sakura</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
@@ -677,9 +695,9 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
   
-  <p class="site-author-name" itemprop="name">boris</p>
+  <p class="site-author-name" itemprop="name">sakura</p>
   <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
 </div>
 
@@ -891,7 +909,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-superpowers"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">boris</span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -1140,5 +1158,5 @@ window.addEventListener("message", function(e) {
 
   
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

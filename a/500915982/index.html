@@ -113,16 +113,16 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="单链表翻转题目总结">
 <meta property="og:url" content="http://www.lbblog.com/a/500915982/index.html">
-<meta property="og:site_name" content="切克闹">
+<meta property="og:site_name" content="Sakuraの博客">
 <meta property="og:description" content="1、Reverse Nodes in k-Group题目Given a linked list, reverse the nodes of a linked list k at a time and return its modified list. k is a positive integer and is less than or equal to the length of the lin">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="https://images0.cnblogs.com/blog/666138/201409/150559160033269.jpg">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552647099304.png">
 <meta property="og:updated_time" content="2020-02-09T11:12:59.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单链表翻转题目总结">
 <meta name="twitter:description" content="1、Reverse Nodes in k-Group题目Given a linked list, reverse the nodes of a linked list k at a time and return its modified list. k is a positive integer and is less than or equal to the length of the lin">
-<meta name="twitter:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta name="twitter:image" content="https://images0.cnblogs.com/blog/666138/201409/150559160033269.jpg">
 
 
 
@@ -141,7 +141,7 @@
 </script>
 
   
-  <title>单链表翻转题目总结 | 切克闹</title>
+  <title>单链表翻转题目总结 | Sakuraの博客</title>
   
 
 
@@ -200,14 +200,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">切克闹</span>
+        <span class="site-title">Sakuraの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
     
       <a>
-        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
       </a>
     
   </div>
@@ -243,6 +243,24 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -363,13 +381,13 @@
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/500915982/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -549,7 +567,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Given 1-&gt;2-&gt;3-&gt;4, you should return the list as 2-&gt;1-&gt;4-&gt;3.</span><br></pre></td></tr></table></figure>
 
 <h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>这个就是Reverse Nodes in k-Group的简化版本。我们只考虑两两翻转的情况，同样的我们需要考虑边界的情况。</p>
-<p><img src="/uploads/loading.gif" data-original="https://images0.cnblogs.com/blog/666138/201409/150559160033269.jpg" alt="img"></p>
+<p><img src="https://images0.cnblogs.com/blog/666138/201409/150559160033269.jpg" alt="img"></p>
 <p>思路就和上面的图差不多，我们只需要将各个节点用标号代替就可以了。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">swapPairs</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        dummy.next = head;</span><br><span class="line">        ListNode cur = head;</span><br><span class="line">        ListNode res = dummy;</span><br><span class="line">        <span class="keyword">while</span> ( cur != <span class="keyword">null</span> &amp;&amp; cur.next != <span class="keyword">null</span> )&#123;</span><br><span class="line">            ListNode next = cur.next;</span><br><span class="line">            ListNode after = cur.next.next;</span><br><span class="line">            next.next = cur;</span><br><span class="line">            dummy.next = next;</span><br><span class="line">            cur.next = after;</span><br><span class="line">            dummy = cur;</span><br><span class="line">            cur = after;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -559,7 +577,7 @@
 
 <h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><h4 id="思路一：栈，时间复杂度O-n-，空间复杂度O-n"><a href="#思路一：栈，时间复杂度O-n-，空间复杂度O-n" class="headerlink" title="思路一：栈，时间复杂度O(n)，空间复杂度O(n)"></a>思路一：栈，时间复杂度O(n)，空间复杂度O(n)</h4><p>利用栈的先进后出的思想，将每个链表顺序保存在栈中，然后再一次pop出来。</p>
 <h4 id="思路二：递归，时间复杂度O-n-，空间复杂度O-1"><a href="#思路二：递归，时间复杂度O-n-，空间复杂度O-1" class="headerlink" title="思路二：递归，时间复杂度O(n)，空间复杂度O(1)"></a>思路二：递归，时间复杂度O(n)，空间复杂度O(1)</h4><p>利用递归的思想。</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552647099304.png" alt="1552647099304"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552647099304.png" alt="1552647099304"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ( head == <span class="keyword">null</span> || head.next==<span class="keyword">null</span> ) <span class="keyword">return</span> head;</span><br><span class="line">        ListNode newhead = reverseList(head.next);  <span class="comment">//newhead是新链表的头节点</span></span><br><span class="line">        head.next.next = head; <span class="comment">// 将前一个节点指向当前节点</span></span><br><span class="line">        head.next = <span class="keyword">null</span>;  <span class="comment">//将关系断开，否则会空指</span></span><br><span class="line">        <span class="keyword">return</span> newhead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>注意如果递归很深会引起栈溢出。</p>
@@ -609,7 +627,7 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>boris</li>
+    <strong>本文作者： </strong>sakura</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
@@ -652,8 +670,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/a/877314321/" rel="prev" title="二维数组旋转90度">
-                二维数组旋转90度 <i class="fa fa-chevron-right"></i>
+              <a href="/a/3868444383/" rel="prev" title="Rectangle Area">
+                Rectangle Area <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -714,9 +732,9 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
   
-  <p class="site-author-name" itemprop="name">boris</p>
+  <p class="site-author-name" itemprop="name">sakura</p>
   <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
 </div>
 
@@ -928,7 +946,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-superpowers"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">boris</span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -1177,5 +1195,5 @@ window.addEventListener("message", function(e) {
 
   
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

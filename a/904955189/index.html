@@ -113,15 +113,15 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="聚类算法">
 <meta property="og:url" content="http://www.lbblog.com/a/904955189/index.html">
-<meta property="og:site_name" content="切克闹">
+<meta property="og:site_name" content="Sakuraの博客">
 <meta property="og:description" content="聚类算法面试种比较常见，下面总结一下几种聚类算法：K-means、DBSCAN、谱聚类。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1042406/201612/1042406-20161222112847323-1346197243.png">
 <meta property="og:updated_time" content="2020-02-09T11:12:58.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聚类算法">
 <meta name="twitter:description" content="聚类算法面试种比较常见，下面总结一下几种聚类算法：K-means、DBSCAN、谱聚类。">
-<meta name="twitter:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/1042406/201612/1042406-20161222112847323-1346197243.png">
 
 
 
@@ -140,7 +140,7 @@
 </script>
 
   
-  <title>聚类算法 | 切克闹</title>
+  <title>聚类算法 | Sakuraの博客</title>
   
 
 
@@ -199,14 +199,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">切克闹</span>
+        <span class="site-title">Sakuraの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
     
       <a>
-        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
       </a>
     
   </div>
@@ -242,6 +242,24 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -362,13 +380,13 @@
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/904955189/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -542,7 +560,7 @@
 <p>4、密度可达：对于两个样本$x_i$和$x_j$，如果由样本序列$x_i,p_1…p_n,x_j$，并且$p_{t+1}$由$p_t$密度直达，那么我们称$x_i$和$x_j$密度可达。</p>
 <p>5、密度相连：对于两个样本和，如果存在核心对象$x_k$，使得$x_i$和$x_j$都密度可达，那么$x_i$和$x_j$密度相连。</p>
 <h2 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h2><p>由密度可达关系得到的最大密度相连的样本集合，就是要找的一个簇。</p>
-<p><img src="/uploads/loading.gif" data-original="https://images2015.cnblogs.com/blog/1042406/201612/1042406-20161222112847323-1346197243.png" alt="img"></p>
+<p><img src="https://images2015.cnblogs.com/blog/1042406/201612/1042406-20161222112847323-1346197243.png" alt="img"></p>
 <p>图中红色的就是核心对象，所有核心对象能串在一起的，与核心对象密度可达的，都归到一个簇中。</p>
 <p>在每次寻找的时候，先选择一个没有类别的核心对象作为种子，然后找到与这个核心对象所有密度可达的样本集合作为一个簇。然后下一轮继续这样的寻找。</p>
 <p>对于异常点，也就是离群点，DBSCAN认为是噪音数据。</p>
@@ -581,7 +599,7 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>boris</li>
+    <strong>本文作者： </strong>sakura</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
@@ -677,9 +695,9 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
   
-  <p class="site-author-name" itemprop="name">boris</p>
+  <p class="site-author-name" itemprop="name">sakura</p>
   <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
 </div>
 
@@ -891,7 +909,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-superpowers"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">boris</span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -1140,5 +1158,5 @@ window.addEventListener("message", function(e) {
 
   
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

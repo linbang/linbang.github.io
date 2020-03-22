@@ -113,37 +113,37 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="从seq2seq到attention">
 <meta property="og:url" content="http://www.lbblog.com/a/1933089106/index.html">
-<meta property="og:site_name" content="切克闹">
+<meta property="og:site_name" content="Sakuraの博客">
 <meta property="og:description" content="seq2seq问题：根据一个输入序列x，来生成一个输出序列y，但是x和y长度有可能不一致。seq2seq有很多应用，比如“翻译、问答等” 为了解决seq2seq问题，有人提出了encoder-decoder模型，也就是编码-解码器。所谓编码，就是将输入序列转化成一个固定长度的向量，解码就是将整个固定长度的向量再转化成输出序列。 Encoder-Decoder模型简介encoder-decoder模">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="https://caicai.science/images/attention/Encoder-Decoder%E6%A1%86%E6%9E%B6.png">
+<meta property="og:image" content="https://caicai.science/images/attention/e&d1.png">
+<meta property="og:image" content="https://caicai.science/images/attention/e&d%20stru1.png">
+<meta property="og:image" content="https://caicai.science/images/attention/e&d%20stru2.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1667471-458e7ba0fbeaa902.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/547/format/webp">
+<meta property="og:image" content="https://camo.githubusercontent.com/242210d7d0151cae91107ee63bff364a860db5dd/687474703a2f2f6936342e74696e797069632e636f6d2f333031333674652e706e67">
+<meta property="og:image" content="https://img-blog.csdn.net/20180712141049652?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1BJUElYSVU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-fd14a131ddc9ae0e3400c0c1d5615d1c_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-2c472c77c6097f894c45daffe9d83933_hd.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-63c198430238fd55e31344bb61d053dc_hd.jpg">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=max_%7Be_%7B1%7D%5E%7BN%7D%7DP%28e_%7B1%7D%2C...%2Ce_%7BN%7D%7CF%29+%3D+max%5Cleft%5C%7B+%7Bs%28v%2C3%29%7Cv+%3D+1%2C...%2CV%7D+%5Cright%5C%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=s%28v+%3D+j%2Cn%29+%3D+max%5Cleft%5C%7B+s%28v+%3D+i%2Cn-1%29%2At%28i%2Cj%2Cn%29%7Ci+%3D+1%2C...%2CV+%5Cright%5C%7D">
+<meta property="og:image" content="http://img.blog.csdn.net/20160120181841922">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552031019190.png">
+<meta property="og:image" content="https://img-blog.csdn.net/20180605170242610?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMDU4NTI2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20170617154800989?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdGhyaXZpbmdfZmNs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1551877002174.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181118204726420.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQxMDgwMDQ=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdn.net/2018082211021619?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhaGFqaW5idQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180822114615980?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhaGFqaW5idQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180822121624356?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhaGFqaW5idQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="http://ir.dlut.edu.cn/Uploads/ue/image/20180415/6365939388560934338467218.jpg">
+<meta property="og:image" content="http://ir.dlut.edu.cn/Uploads/ue/image/20180415/6365939392357981008571663.jpg">
 <meta property="og:updated_time" content="2020-02-09T11:12:58.705Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从seq2seq到attention">
 <meta name="twitter:description" content="seq2seq问题：根据一个输入序列x，来生成一个输出序列y，但是x和y长度有可能不一致。seq2seq有很多应用，比如“翻译、问答等” 为了解决seq2seq问题，有人提出了encoder-decoder模型，也就是编码-解码器。所谓编码，就是将输入序列转化成一个固定长度的向量，解码就是将整个固定长度的向量再转化成输出序列。 Encoder-Decoder模型简介encoder-decoder模">
-<meta name="twitter:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta name="twitter:image" content="https://caicai.science/images/attention/Encoder-Decoder%E6%A1%86%E6%9E%B6.png">
 
 
 
@@ -162,7 +162,7 @@
 </script>
 
   
-  <title>从seq2seq到attention | 切克闹</title>
+  <title>从seq2seq到attention | Sakuraの博客</title>
   
 
 
@@ -221,14 +221,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">切克闹</span>
+        <span class="site-title">Sakuraの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
     
       <a>
-        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
       </a>
     
   </div>
@@ -264,6 +264,24 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -384,13 +402,13 @@
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/1933089106/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -537,22 +555,22 @@
         <p>seq2seq问题：根据一个输入序列x，来生成一个输出序列y，但是x和y长度有可能不一致。seq2seq有很多应用，比如“翻译、问答等”</p>
 <p>为了解决seq2seq问题，有人提出了encoder-decoder模型，也就是编码-解码器。所谓编码，就是将输入序列转化成一个固定长度的向量，解码就是将整个固定长度的向量再转化成输出序列。</p>
 <h1 id="Encoder-Decoder模型"><a href="#Encoder-Decoder模型" class="headerlink" title="Encoder-Decoder模型"></a>Encoder-Decoder模型</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>encoder-decoder模型是一种深度网络的架构，也是一种模型思想：</p>
-<p><img src="/uploads/loading.gif" data-original="https://caicai.science/images/attention/Encoder-Decoder%E6%A1%86%E6%9E%B6.png" alt="Encoder-Decoderæ¡æ¶"></p>
+<p><img src="https://caicai.science/images/attention/Encoder-Decoder%E6%A1%86%E6%9E%B6.png" alt="Encoder-Decoderæ¡æ¶"></p>
 <h2 id="Encoder分析"><a href="#Encoder分析" class="headerlink" title="Encoder分析"></a>Encoder分析</h2><p>给定句子对&lt;X,Y&gt;，我们的目标是给定输入句子X，通过Encoder-Decoder模型来翻译成目标句子Y。X和Y都是由各自的单词序列组成<br>$$<br>X = &lt;x_1,x_2,x_3,x_4,x_5&gt;\<br>Y = &lt;y_1,y_2,y_3&gt;<br>$$<br>我们用Encoder对输入语句X进行编码，经过函数变换成中间语义向量C：</p>
-<p><img src="/uploads/loading.gif" data-original="https://caicai.science/images/attention/e&d1.png" alt="e&amp;d1"></p>
+<p><img src="https://caicai.science/images/attention/e&d1.png" alt="e&amp;d1"></p>
 <p>注意这里h1…h5可以是RNN、LSTM、GRU等循环神经网络结构。</p>
 <h2 id="Decoder分析"><a href="#Decoder分析" class="headerlink" title="Decoder分析"></a>Decoder分析</h2><p>得到中间语义向量c之后，使用decoder进行解码。decoder根据中间状态向量c和已经生成的历史信息$y_1…y_{i-1}$来预测$y_i$：<br>$$<br>y_t = \mathop{argmax} P(y_t)=\prod_{t=1}^Tp(y_t|{y_1,\ldots,y_{t-1}},C)\<br>y_t = g({y_1,\ldots,y_{t-1}},C)<br>$$<br>根据decoder的输入，我们由两种形式：</p>
 <p>1、第一种是将c作为第一时刻的输入。</p>
-<p><img src="/uploads/loading.gif" data-original="https://caicai.science/images/attention/e&d%20stru1.png" alt="e&amp;d stru1"></p>
+<p><img src="https://caicai.science/images/attention/e&d%20stru1.png" alt="e&amp;d stru1"></p>
 <p>2、第二种是将c作为每一个时刻的输入。</p>
-<p><img src="/uploads/loading.gif" data-original="https://caicai.science/images/attention/e&d%20stru2.png" alt="e&amp;d stru2"></p>
+<p><img src="https://caicai.science/images/attention/e&d%20stru2.png" alt="e&amp;d stru2"></p>
 <p><em>Encoder-Decoder</em> 模型是使用非常广泛的深度学习模型框架，与其说 <em>Encoder-Decoder</em> 是一种模型，不如称其为一种通用框架。因为 <em>Encoder</em> 和 <em>Decoder</em> 具体使用什么模型是根据任务而定义的。在自然语言处理研究中通常使用 <em>LSTM</em> 或者是 <em>GRU</em> 。</p>
 <h1 id="seq2seq模型"><a href="#seq2seq模型" class="headerlink" title="seq2seq模型"></a>seq2seq模型</h1><p>seq2seq是encoder-decoder框架在NLP中的应用，适用于机器翻译和对话等功能。</p>
 <p>一种比较常见的seq2seq模型：</p>
-<p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/1667471-458e7ba0fbeaa902.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/547/format/webp" alt="img"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1667471-458e7ba0fbeaa902.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/547/format/webp" alt="img"></p>
 <p>中间语义向量c只作为decoder的第一个输入。decoder在t适合是由$h_t$和$y_{t-1}$决定的。</p>
 <p>注意这里encoder和decoder都采用LSTM结构，每句话末尾要加上“<eos>”作为标志。</eos></p>
-<p><img src="/uploads/loading.gif" data-original="https://camo.githubusercontent.com/242210d7d0151cae91107ee63bff364a860db5dd/687474703a2f2f6936342e74696e797069632e636f6d2f333031333674652e706e67" alt="seq2seq"></p>
+<p><img src="https://camo.githubusercontent.com/242210d7d0151cae91107ee63bff364a860db5dd/687474703a2f2f6936342e74696e797069632e636f6d2f333031333674652e706e67" alt="seq2seq"></p>
 <p>seq2seq有encoder和decoder组成，一般都用LSTM来作为cell。</p>
 <p><strong>encoder</strong>负责将输入序列压缩成指定长度的隐藏语义向量，获取语义向量的最简单的方法就是将最有一个输入的隐状态作为语义向量C。当然后续获取C的方法还有：对最后一个隐含状态做变换、所有输入序列的隐含状态最变换等等。</p>
 <p><strong>decoder</strong>负责根据语义向量生成制定序列。我们以机器翻译为例来描述一下decoder的过程：</p>
@@ -561,7 +579,7 @@
 <p>3、如此循环，直到输出结尾符号<eos>。</eos></p>
 <p>所以整个decoder过程是贪心的，每次选取当前状态下的最佳结果，直到结束。贪心法计算代价低，但是容易收敛到局部最优，因此在贪心法基础上提出了Beam search改进算法。对于贪心法每次只选取一个当前最优的答案，但是对于Beam search每次选取beam size（8~12）个最好的结果，然后分别输入到下一步的解码器中，同样取下一步的beam size个最好结果。可以看出beam size越大，搜索空间越大，结果也会越好。</p>
 <p>同时在解码过程中堆叠RNN、增加dropout、与编码器之间建立残差连接等方法也比较多。</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdn.net/20180712141049652?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1BJUElYSVU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="è¿éåå¾çæè¿°"></p>
+<p><img src="https://img-blog.csdn.net/20180712141049652?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1BJUElYSVU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="è¿éåå¾çæè¿°"></p>
 <p>seq2seq网络需要获取encoder的每个cell状态（return_sequences=True）</p>
 <p><strong>beam search在seq2seq中的应用</strong></p>
 <p>在seq2seq中，beam search只用在预测中，因为在训练中每个decoder输出都是有正确答案的，不需用beam search加大输出准确率。</p>
@@ -576,36 +594,36 @@
 </ol>
 <p>我们以机器翻译为例：“我是中国人”—&gt;“i am chinese”，假设beam size=2，也就是在每个状态取前两个概率最大的结果。</p>
 <p>第一步：</p>
-<p><img src="/uploads/loading.gif" data-original="https://pic1.zhimg.com/80/v2-fd14a131ddc9ae0e3400c0c1d5615d1c_hd.jpg" alt="img"></p>
+<p><img src="https://pic1.zhimg.com/80/v2-fd14a131ddc9ae0e3400c0c1d5615d1c_hd.jpg" alt="img"></p>
 <p>根据语义编码c，我们挑选出i和am作为候选集。然后我们要做的就是把i输入到下一步，得到y2的概率分布；然后把am作为下一个decoder输入也算一遍y2的概率分布。</p>
 <p>第二步:</p>
 <p>我们将i作为decoder输入结果如下：</p>
-<p><img src="/uploads/loading.gif" data-original="https://pic4.zhimg.com/80/v2-2c472c77c6097f894c45daffe9d83933_hd.jpg" alt="img"></p>
+<p><img src="https://pic4.zhimg.com/80/v2-2c472c77c6097f894c45daffe9d83933_hd.jpg" alt="img"></p>
 <p>我们将am作为decoder输入结果如下：</p>
-<p><img src="/uploads/loading.gif" data-original="https://pic1.zhimg.com/80/v2-63c198430238fd55e31344bb61d053dc_hd.jpg" alt="img"></p>
+<p><img src="https://pic1.zhimg.com/80/v2-63c198430238fd55e31344bb61d053dc_hd.jpg" alt="img"></p>
 <p>所以在第二步，我们就得到2<em>3=6中可能的路径，下面对所有路径进行打分：<br>$$<br>“i,i”=0.4</em>0.3    “i,am”=0.4<em>0.6    “i,Chinese”=0.4</em>0.1\<br>“am,i”=0.5<em>0.3   “am,am”=0.5</em>0.3   “am,chinese”=0.5*0.4<br>$$<br>同样我们取打分最高的两个：i am 和 am chinese，然后后面不断重复整个过程，直到遇到结束符为止。最后就会得到2个全部路径中打分最高的序列。</p>
 <p><strong>viterbi搜索在seq2seq中的应用</strong></p>
 <p>viterbi是一种动态规划的思想来求解最优的路径，在第n步，假设前n-1步的每个节点都已经找到了最优的结果，那么就可以获得第n步每个节点的最优结果。</p>
 <p>递推公式：</p>
 <p>1、$s(v,n)$表示以$v$结尾的最大概率的sequence的概率；</p>
 <p>2、$t(v_1,v_2,n)$表示第n-1步的$v_1$到第n步的$v_2$的概率，也就是转移概率，在概率图中就是$v_1$和$v_2$路径上的概率值。</p>
-<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=max_%7Be_%7B1%7D%5E%7BN%7D%7DP%28e_%7B1%7D%2C...%2Ce_%7BN%7D%7CF%29+%3D+max%5Cleft%5C%7B+%7Bs%28v%2C3%29%7Cv+%3D+1%2C...%2CV%7D+%5Cright%5C%7D" alt="max_{e_{1}^{N}}P(e_{1},...,e_{N}|F) = max\left\{ {s(v,3)|v = 1,...,V} \right\}"></p>
-<p><img src="/uploads/loading.gif" data-original="https://www.zhihu.com/equation?tex=s%28v+%3D+j%2Cn%29+%3D+max%5Cleft%5C%7B+s%28v+%3D+i%2Cn-1%29%2At%28i%2Cj%2Cn%29%7Ci+%3D+1%2C...%2CV+%5Cright%5C%7D" alt="s(v = j,n) = max\left\{ s(v = i,n-1)*t(i,j,n)|i = 1,...,V \right\}"></p>
+<p><img src="https://www.zhihu.com/equation?tex=max_%7Be_%7B1%7D%5E%7BN%7D%7DP%28e_%7B1%7D%2C...%2Ce_%7BN%7D%7CF%29+%3D+max%5Cleft%5C%7B+%7Bs%28v%2C3%29%7Cv+%3D+1%2C...%2CV%7D+%5Cright%5C%7D" alt="max_{e_{1}^{N}}P(e_{1},...,e_{N}|F) = max\left\{ {s(v,3)|v = 1,...,V} \right\}"></p>
+<p><img src="https://www.zhihu.com/equation?tex=s%28v+%3D+j%2Cn%29+%3D+max%5Cleft%5C%7B+s%28v+%3D+i%2Cn-1%29%2At%28i%2Cj%2Cn%29%7Ci+%3D+1%2C...%2CV+%5Cright%5C%7D" alt="s(v = j,n) = max\left\{ s(v = i,n-1)*t(i,j,n)|i = 1,...,V \right\}"></p>
 <p>因为是动态规划的方法，所以verbit需要计算一个$V<em>N$的矩阵，时间复杂度是$O(V^2</em>N)$。空间复杂度是$O(V*N)$。</p>
 <p><strong>encoder-decoder</strong>模型虽然经典，但是局限性非常大。主要的局限性在于通过encoder将序列信息压缩到一个固定长度的向量C中。有两个弊端:</p>
 <p>1、语义向量无法完全表示整个序列信息。</p>
 <p>2、先输入的内容携带的信息会被后输入的信息稀释掉。输入序列越长，稀释越严重，所以解码准确性降低。</p>
 <h1 id="Attention模型"><a href="#Attention模型" class="headerlink" title="Attention模型"></a>Attention模型</h1><p><strong>Attention表示对于某个输出时刻y，它在输入x上的各个部分的注意力，注意力就是加权的权重</strong></p>
 <p>相比较之前的encoder-decoder模型，attention模型最大的区别在于它不再要求编码器将所有输入信息编码进一个定长的向量C中，相反，此时编码器需要将输入编码成一个向量的序列，而在解码的时候，每一步都会选择性的从向量序列中挑选一个子集进行处理。这样，在产生每一个输出的时候，都能够做到充分利用输入序列携带的信息。</p>
-<p><img src="/uploads/loading.gif" data-original="http://img.blog.csdn.net/20160120181841922" alt="æ­¤å¤è¾å¥å¾ççæè¿°"></p>
+<p><img src="http://img.blog.csdn.net/20160120181841922" alt="æ­¤å¤è¾å¥å¾ççæè¿°"></p>
 <p>对于attention模型，一般在编码部分使用BiRNN（双向RNN），在解码部分使用attention。</p>
 <h2 id="Attention机制在seq2seq中的应用"><a href="#Attention机制在seq2seq中的应用" class="headerlink" title="Attention机制在seq2seq中的应用"></a>Attention机制在seq2seq中的应用</h2><p>因为seq2seq模型主要解决的就是机器翻译问题，所以我们还是以机器翻译场景来看理解。</p>
 <p>attention在seq2seq中的应用主要目的是解决encoder部分将语义压缩到一个固定向量长度C而导致的语义信息丢失问题。</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552031019190.png" alt="1552031019190"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552031019190.png" alt="1552031019190"></p>
 <p>这是论文中经典的图，我们的场景是：输入序列是$X_1,X_2…X_T$，现在对于输出的第t个时间步，我们要预测出第t时间步应该输出什么单词，用数学公式就是：<br>$$<br>p(y_i|y1…y_{t-1},X)=g(y_{t-1},s_{t-1},c_i)<br>$$<br>当前时间步的输出，取决于上一个时间步的输出$y_{i-1}$，上一个时间步的细胞状态$s_{i-1}$，当前时间步的输入语义向量$c_i$。下面我们重点就是理解如何获取当前时间步的输入语义向量。</p>
 <p>根据论文中的图，我们可以发现当前时间步的语义输入向量$c_i$是由所有的输入X共同加权决定的，也就是：<br>$$<br>c_i=\sum_{j=1}^{T_x}\alpha_{ij}h_j<br>$$<br>其中$h_j$是encoder的每个时间步的输出向量，这里要用一个w矩阵将向量变成一个值。 关键就是求出$\alpha_{ij}$：<br>$$<br>\alpha_{ij}=\frac {\exp (e_{ij})} {\sum_{k=1}^{T_x} \exp(e_{ik})}<br>$$<br>其中，$e_{ij}=a(s_{i-1},h_j)$。这个值就叫做attention score，取决于输出的前一个隐藏状态和当前的第j个输入。</p>
 <p>计算这个score普遍由三种方法：</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdn.net/20180605170242610?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMDU4NTI2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="è¿éåå¾çæè¿°"></p>
+<p><img src="https://img-blog.csdn.net/20180605170242610?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMDU4NTI2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="è¿éåå¾çæè¿°"></p>
 <ul>
 <li>第一种是普通的点积，得到一个值；</li>
 <li>第二种是加权计算，W可以认为是一个对角矩阵，大小是nXn</li>
@@ -616,13 +634,13 @@
 <h2 id="Attention机制在文本分类中应用"><a href="#Attention机制在文本分类中应用" class="headerlink" title="Attention机制在文本分类中应用"></a>Attention机制在文本分类中应用</h2><p>attention是一种思想，不仅仅在seq2seq的模型中使用，在文本分类问题中也有比较多的应用。下面就以文本分类任务为例，说一下attention机制的用法。</p>
 <h3 id="文本分类问题"><a href="#文本分类问题" class="headerlink" title="文本分类问题"></a>文本分类问题</h3><p>在文本分类中，可以将RNN最后一个时刻的输出作为文本的表示，也可以综合考虑每个时刻的输出，将他们合并为一个向量。通常使用双向RNN网络，每个时刻的输出向量可以理解为这个时刻输入词的上下文语境中对当前任务的贡献。</p>
 <p>下图是一个BiRNN网络。</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdn.net/20170617154800989?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdGhyaXZpbmdfZmNs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="BIRNN"></p>
+<p><img src="https://img-blog.csdn.net/20170617154800989?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdGhyaXZpbmdfZmNs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="BIRNN"></p>
 <h3 id="Attention在文本分类中意义"><a href="#Attention在文本分类中意义" class="headerlink" title="Attention在文本分类中意义"></a>Attention在文本分类中意义</h3><p>假设是情感分类的场景，对于上面的BiRNN模型，文本的表示就是将所有时刻输出相加取平均，认为没个词对于文本贡献相等。但是实际中，地名、人名这些词比重很小，而情感类型的词占的比重应该很大。</p>
 <p>所以在合并这些向量的时候，直观上我们希望给情感词汇加上更大的权重，加权平均。假设$t$时刻输出是$h_t$，权值是$\alpha_t$，那么合并后可以表示为：<br>$$<br>s = \sum_{t}\alpha_th_t<br>$$<br>通过这样的形式，模型就会重点关注某些词，降低其他词的影响，这就是attention机制。直观分析这种机制会使得文本分类更加合理。</p>
 <h3 id="Attention原理"><a href="#Attention原理" class="headerlink" title="Attention原理"></a>Attention原理</h3><p>从上面的分析，我们现在目标就是如何分配权重，也就是$\alpha_t$如何获取。</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1551877002174.png" alt="1551877002174"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1551877002174.png" alt="1551877002174"></p>
 <p>这篇论文中是对文章进行分类，所以分别从word和sentence两个角度来考虑，采用级联的形式。简单起见，我们单纯对句子进行分类，也就是只考虑下半部分。</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdnimg.cn/20181118204726420.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQxMDgwMDQ=,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°"></p>
+<p><img src="https://img-blog.csdnimg.cn/20181118204726420.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQxMDgwMDQ=,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°"></p>
 <p>从论文中我们也清晰的看到attention的关键在于三个式子：<br>$$<br>u_t = \tanh (W_w h_t + b_w)   \tag1 \<br>$$</p>
 <p>$$<br>\alpha_t = \frac {\exp (u_t^T u_w)} {\sum_t \exp (u_t^T u_w)}  \tag2<br>$$</p>
 <p>$$<br>v = \sum_t \alpha_t h_t  \tag3<br>$$</p>
@@ -637,11 +655,11 @@
 <li>更加特殊的attention：self attention、key-value attention、multi-head attention</li>
 </ul>
 <h3 id="soft-attention"><a href="#soft-attention" class="headerlink" title="soft attention"></a>soft attention</h3><p>soft attention就是我们上面讲的方法，对于$\alpha$的选择是将其进行softmax，求的概率分布。</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdn.net/2018082211021619?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhaGFqaW5idQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="è¿éåå¾çæè¿°"></p>
+<p><img src="https://img-blog.csdn.net/2018082211021619?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhaGFqaW5idQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="è¿éåå¾çæè¿°"></p>
 <h3 id="hard-attention"><a href="#hard-attention" class="headerlink" title="hard  attention"></a>hard  attention</h3><p>soft是对每个单词都找到一个对应的权重，但是hard attention的思想是在输入单词中只找到某几个特定的单词，然后将这些单词向量与目标单词进行对其，其他的将概率设为0。</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdn.net/20180822114615980?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhaGFqaW5idQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="è¿éåå¾çæè¿°"></p>
+<p><img src="https://img-blog.csdn.net/20180822114615980?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhaGFqaW5idQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="è¿éåå¾çæè¿°"></p>
 <h3 id="local-attention"><a href="#local-attention" class="headerlink" title="local attention"></a>local attention</h3><p>local attention介于soft和hard之间，因为soft需要对所有输入都进行计算，计算量比较大，因此local的思想就是只考虑窗口内的encoder的输出，其余的为0，在窗口内使用softmax方式转化为概率。</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdn.net/20180822121624356?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhaGFqaW5idQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="è¿éåå¾çæè¿°"></p>
+<p><img src="https://img-blog.csdn.net/20180822121624356?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhaGFqaW5idQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="è¿éåå¾çæè¿°"></p>
 <p><strong>传统attention的实现</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> backend <span class="keyword">as</span> K</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> initializers, regularizers, constraints</span><br><span class="line"><span class="keyword">from</span> keras.engine.topology <span class="keyword">import</span> Layer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Attention</span><span class="params">(Layer)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, step_dim,</span></span></span><br><span class="line"><span class="function"><span class="params">                 W_regularizer=None, b_regularizer=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                 W_constraint=None, b_constraint=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                 bias=True, **kwargs)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Keras Layer that implements an Attention mechanism for temporal data.</span></span><br><span class="line"><span class="string">        Supports Masking.</span></span><br><span class="line"><span class="string">        Follows the work of Raffel et al. [https://arxiv.org/abs/1512.08756]</span></span><br><span class="line"><span class="string">        # Input shape</span></span><br><span class="line"><span class="string">            3D tensor with shape: `(samples, steps, features)`.</span></span><br><span class="line"><span class="string">        # Output shape</span></span><br><span class="line"><span class="string">            2D tensor with shape: `(samples, features)`.</span></span><br><span class="line"><span class="string">        :param kwargs:</span></span><br><span class="line"><span class="string">        Just put it on top of an RNN Layer (GRU/LSTM/SimpleRNN) with return_sequences=True.</span></span><br><span class="line"><span class="string">        The dimensions are inferred based on the output shape of the RNN.</span></span><br><span class="line"><span class="string">        Example:</span></span><br><span class="line"><span class="string">            # 1</span></span><br><span class="line"><span class="string">            model.add(LSTM(64, return_sequences=True))</span></span><br><span class="line"><span class="string">            model.add(Attention())</span></span><br><span class="line"><span class="string">            # next add a Dense layer (for classification/regression) or whatever...</span></span><br><span class="line"><span class="string">            # 2</span></span><br><span class="line"><span class="string">            hidden = LSTM(64, return_sequences=True)(words)</span></span><br><span class="line"><span class="string">            sentence = Attention()(hidden)</span></span><br><span class="line"><span class="string">            # next add a Dense layer (for classification/regression) or whatever...</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.supports_masking = <span class="literal">True</span></span><br><span class="line">        self.init = initializers.get(<span class="string">'glorot_uniform'</span>)</span><br><span class="line"></span><br><span class="line">        self.W_regularizer = regularizers.get(W_regularizer)</span><br><span class="line">        self.b_regularizer = regularizers.get(b_regularizer)</span><br><span class="line"></span><br><span class="line">        self.W_constraint = constraints.get(W_constraint)</span><br><span class="line">        self.b_constraint = constraints.get(b_constraint)</span><br><span class="line"></span><br><span class="line">        self.bias = bias</span><br><span class="line">        self.step_dim = step_dim</span><br><span class="line">        self.features_dim = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        super(Attention, self).__init__(**kwargs)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, input_shape)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> len(input_shape) == <span class="number">3</span></span><br><span class="line"></span><br><span class="line">        self.W = self.add_weight((input_shape[<span class="number">-1</span>],),</span><br><span class="line">                                 initializer=self.init,</span><br><span class="line">                                 name=<span class="string">'&#123;&#125;_W'</span>.format(self.name),</span><br><span class="line">                                 regularizer=self.W_regularizer,</span><br><span class="line">                                 constraint=self.W_constraint)</span><br><span class="line">        self.features_dim = input_shape[<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> self.bias:</span><br><span class="line">            self.b = self.add_weight((input_shape[<span class="number">1</span>],),</span><br><span class="line">                                     initializer=<span class="string">'zero'</span>,</span><br><span class="line">                                     name=<span class="string">'&#123;&#125;_b'</span>.format(self.name),</span><br><span class="line">                                     regularizer=self.b_regularizer,</span><br><span class="line">                                     constraint=self.b_constraint)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.b = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        self.built = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">compute_mask</span><span class="params">(self, input, input_mask=None)</span>:</span></span><br><span class="line">        <span class="comment"># do not pass the mask to the next layers</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(self, x, mask=None)</span>:</span></span><br><span class="line">        features_dim = self.features_dim</span><br><span class="line">        step_dim = self.step_dim</span><br><span class="line"></span><br><span class="line">        <span class="comment">#这里对每一个时间步的输出1X128,通过乘以一个矩阵，变成一个数值。</span></span><br><span class="line">        e = K.reshape(K.dot(K.reshape(x, (<span class="number">-1</span>, features_dim)), K.reshape(self.W, (features_dim, <span class="number">1</span>))), (<span class="number">-1</span>, step_dim))  <span class="comment"># e = K.dot(x, self.W)</span></span><br><span class="line">        <span class="keyword">if</span> self.bias:</span><br><span class="line">            e += self.b</span><br><span class="line">        e = K.tanh(e)</span><br><span class="line"></span><br><span class="line">        a = K.exp(e)</span><br><span class="line">        <span class="comment"># apply mask after the exp. will be re-normalized next</span></span><br><span class="line">        <span class="keyword">if</span> mask <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="comment"># cast the mask to floatX to avoid float64 upcasting in theano</span></span><br><span class="line">            a *= K.cast(mask, K.floatx())</span><br><span class="line">        <span class="comment"># in some cases especially in the early stages of training the sum may be almost zero</span></span><br><span class="line">        <span class="comment"># and this results in NaN's. A workaround is to add a very small positive number ε to the sum.</span></span><br><span class="line">        a /= K.cast(K.sum(a, axis=<span class="number">1</span>, keepdims=<span class="literal">True</span>) + K.epsilon(), K.floatx())</span><br><span class="line">        a = K.expand_dims(a)</span><br><span class="line"></span><br><span class="line">        c = K.sum(a * x, axis=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> c</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">compute_output_shape</span><span class="params">(self, input_shape)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> input_shape[<span class="number">0</span>], self.features_dim</span><br></pre></td></tr></table></figure>
 
@@ -652,12 +670,12 @@
 <p>google attention的三个最重要的组件：key、value和query，attention层的定义：<br>$$<br>Attention(Q,K,V)=softmax(\frac{QK^T}{\sqrt{d_k}})*V<br>$$<br>可以这么理解：对于query，每次搜索所有的key，然后计算query与key的相似度，然后取softmax，用概率乘以V然后加权取平均。</p>
 <p>分母的意思是进行缩放，$d_k$指的是单词的数量，比如512。这是为了防止$QK^T$值比较大，落在了softmax的两端，这样输出只有0/1。</p>
 <h4 id="vanilla-attention"><a href="#vanilla-attention" class="headerlink" title="vanilla attention"></a>vanilla attention</h4><p>google将attention抽象成一个query和一系列的&lt;key, value&gt;，最终得到一个attention value的过程。这里的query就相当于前一个时间步的细胞状态$s_{i-1}$，key和value都是来自于encoder中的输入，然后计算query和每个$key_i$的相似度，并于$value_i$相乘，然后求和。</p>
-<p><img src="/uploads/loading.gif" data-original="http://ir.dlut.edu.cn/Uploads/ue/image/20180415/6365939388560934338467218.jpg" alt="img"></p>
+<p><img src="http://ir.dlut.edu.cn/Uploads/ue/image/20180415/6365939388560934338467218.jpg" alt="img"></p>
 <p>计算query与key相似度由很多种办法、点积、相乘、mlp等多种方法都可以。attention模型抽象为query、key和value之间的相似度计算，（在NLP种，key=value=词向量）总共由三个阶段：</p>
 <p>1、query与$key_i$使用特定的相似函数进行计算相似度，得到$s_i$；</p>
 <p>2、对$s_i$进行softmax归一化得到概率$\alpha_i$；</p>
 <p>3、将$\alpha_i$与$value_i$对应相乘再求和，就得到了当前query对应的attention value。</p>
-<p><img src="/uploads/loading.gif" data-original="http://ir.dlut.edu.cn/Uploads/ue/image/20180415/6365939392357981008571663.jpg" alt="img"></p>
+<p><img src="http://ir.dlut.edu.cn/Uploads/ue/image/20180415/6365939392357981008571663.jpg" alt="img"></p>
 <p>前面讲的这么多，我们总结一下：query来自解码层，key-value来自编码层的attention，也就是传统的attention叫做基本的attention-&gt;vanilla attention。</p>
 <h4 id="self-attention-1"><a href="#self-attention-1" class="headerlink" title="self attention"></a>self attention</h4><p>query、key、value都来自于编码层的attention叫做self attention。</p>
 <p>所以self attention其实是将编码层的rnn换成了self attention层。self attention的关键是不借助RNN、CNN，对于$y_t$的计算直接由当前的输入和全部的向量得到：<br>$$<br>y_t=f(x_t,X,X)<br>$$<br>也就是直接将$x_t$与原来每个词进行比较，最后算出$y_t$。</p>
@@ -696,7 +714,7 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>boris</li>
+    <strong>本文作者： </strong>sakura</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
@@ -792,9 +810,9 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
   
-  <p class="site-author-name" itemprop="name">boris</p>
+  <p class="site-author-name" itemprop="name">sakura</p>
   <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
 </div>
 
@@ -1006,7 +1024,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-superpowers"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">boris</span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -1255,5 +1273,5 @@ window.addEventListener("message", function(e) {
 
   
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

@@ -113,24 +113,24 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="BERT模型学习">
 <meta property="og:url" content="http://www.lbblog.com/a/847058626/index.html">
-<meta property="og:site_name" content="切克闹">
+<meta property="og:site_name" content="Sakuraの博客">
 <meta property="og:description" content="先放上大佬的论文：BERT BERT模型核心思想由两个： 1、Transformer结构。Transformer结构抛弃的原有的双向RNN的机制，直接采用了self-attention层，具体参见Transformer模型一文。 2、无监督的预训练。BERT模型需要预训练，也是要获取单词的embedding向量，获取的方式是无监督学习，有两个目标：给定全文，预测丢失的单词（Masking）；预测下">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190104205150778.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11011890-86e5bdc486ec5a65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/882/format/webp">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190104205921416.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdn.net/20181021135717183?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NTIxNTU0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11011890-ecad7a7a29879245.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190104210941529.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190104211045644.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190104211237465.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/paper/bert/bert-contexualized-embeddings.png">
+<meta property="og:image" content="http://plm-images.oss-cn-hongkong.aliyuncs.com/paper/bert/bert-feature-extraction-contextualized-embeddings.png">
 <meta property="og:updated_time" content="2020-02-09T11:12:58.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BERT模型学习">
 <meta name="twitter:description" content="先放上大佬的论文：BERT BERT模型核心思想由两个： 1、Transformer结构。Transformer结构抛弃的原有的双向RNN的机制，直接采用了self-attention层，具体参见Transformer模型一文。 2、无监督的预训练。BERT模型需要预训练，也是要获取单词的embedding向量，获取的方式是无监督学习，有两个目标：给定全文，预测丢失的单词（Masking）；预测下">
-<meta name="twitter:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190104205150778.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70">
 
 
 
@@ -149,7 +149,7 @@
 </script>
 
   
-  <title>BERT模型学习 | 切克闹</title>
+  <title>BERT模型学习 | Sakuraの博客</title>
   
 
 
@@ -208,14 +208,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">切克闹</span>
+        <span class="site-title">Sakuraの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
     
       <a>
-        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
       </a>
     
   </div>
@@ -251,6 +251,24 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -371,13 +389,13 @@
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/847058626/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -534,10 +552,10 @@
 <p>句子B：At the store, i bought fresh strawberries.</p>
 </blockquote>
 <p>实际输入序列为：[CLS] i went to the store . [SEP] at the store , i bought fresh straw ##berries . [SEP]</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdnimg.cn/20190104205150778.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190104205150778.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°"></p>
 <p>2、随机making</p>
 <p>通过随机maskeing来生成满足第一个预训练任务的数据，此处随机选取15%的词汇进行屏蔽。在这些选中的词汇中，10%用其他词替代，10%保留原词，80%用mask代替。最后这项任务的masked token被输入到词汇表上的softmax中。</p>
-<p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/11011890-86e5bdc486ec5a65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/882/format/webp" alt="img"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11011890-86e5bdc486ec5a65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/882/format/webp" alt="img"></p>
 <p>3、下一句预测</p>
 <p>很多NLP的下游任务，都基于理解两个句子之间的关系。为了训练一个理解句子之间语言关系的模型，预先训练一个二值化的下一句预测任务。简单来说，当选择句子A和B作为训练样本时，B有50%的可能时A的下一个句子，也有50%的可能时来自语料库中的随机句子。例如：</p>
 <ul>
@@ -547,11 +565,11 @@
 </li>
 </ul>
 <p>可以看到这其实是一个二分类的问题。可以在语料库中随机选择NotNext的语句。</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdnimg.cn/20190104205921416.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190104205921416.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°"></p>
 <p>4、输入词向量</p>
 <p>词向量有三个部分组成：token embeddings，segmentation embeddings，position embeddings的总和</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdn.net/20181021135717183?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NTIxNTU0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
-<p><img src="/uploads/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/11011890-ecad7a7a29879245.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt="img"></p>
+<p><img src="https://img-blog.csdn.net/20181021135717183?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NTIxNTU0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11011890-ecad7a7a29879245.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt="img"></p>
 <p>具体如下：</p>
 <ul>
 <li><p>使用WordPiece嵌入（Wu et al., 2016）和30,000个token的词汇表。用##表示分词。、</p>
@@ -566,20 +584,20 @@
 </li>
 </ul>
 <p>5、模型训练</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdnimg.cn/20190104210941529.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190104210941529.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°"></p>
 <p>可以看到，在结合了三个向量作为输入之后，全部的输入向量就进到了<a href>Transformer</a>模型中。</p>
 <p>Transformer模型一般采取“深而窄”的思想，深度可以达到12层，每一层都用multi-attention有16个头。同时加入了残差学习的思想和layer_norm层进行归一化。</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdnimg.cn/20190104211045644.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190104211045644.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°"></p>
 <p>6、模型输出</p>
 <p>最后一层模型的输出可以根据自己的任务不同进行微调。</p>
-<p><img src="/uploads/loading.gif" data-original="https://img-blog.csdnimg.cn/20190104211237465.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190104211237465.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d5aXNmaXNo,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°"></p>
 <h2 id="使用BERT"><a href="#使用BERT" class="headerlink" title="使用BERT"></a>使用BERT</h2><p>1、基于finetune</p>
 <p>一般情况，我们只需要定制最后一层的输出形式，就可以得到需要的分类、翻译、对话等等任务。</p>
 <p>2、基于特征</p>
 <p>这个思路是获取词向量，BERT模型每一层都有contextualized embeddings这个参数。</p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/paper/bert/bert-contexualized-embeddings.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/paper/bert/bert-contexualized-embeddings.png" alt="img"></p>
 <p>效果最好的是拼接最后四层的词向量</p>
-<p><img src="/uploads/loading.gif" data-original="http://plm-images.oss-cn-hongkong.aliyuncs.com/paper/bert/bert-feature-extraction-contextualized-embeddings.png" alt="img"></p>
+<p><img src="http://plm-images.oss-cn-hongkong.aliyuncs.com/paper/bert/bert-feature-extraction-contextualized-embeddings.png" alt="img"></p>
 
       
     </div>
@@ -614,7 +632,7 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>boris</li>
+    <strong>本文作者： </strong>sakura</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
@@ -648,8 +666,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/a/2321336202/" rel="prev" title="Xgboost理解">
-                Xgboost理解 <i class="fa fa-chevron-right"></i>
+              <a href="/a/175394686/" rel="prev" title="数据库知识点">
+                数据库知识点 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -710,9 +728,9 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
   
-  <p class="site-author-name" itemprop="name">boris</p>
+  <p class="site-author-name" itemprop="name">sakura</p>
   <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
 </div>
 
@@ -924,7 +942,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-superpowers"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">boris</span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -1173,5 +1191,5 @@ window.addEventListener("message", function(e) {
 
   
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

@@ -113,16 +113,16 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis">
 <meta property="og:url" content="http://www.lbblog.com/a/3135569683/index.html">
-<meta property="og:site_name" content="切克闹">
+<meta property="og:site_name" content="Sakuraの博客">
 <meta property="og:description" content="Redis主要用于高并发的状态。本质也是一个key-value数据库，但是它可以把数据库中常用的一些读写项放到内存中，加快速度。    名称 类型 数据存储选项 查询类型 附加功能    Redis 使用内存存储的非关系数据库 字符串、列表、集合、散列表、有序集合 每种数据类型专属的命令，以及批量操作和不完全的事务支持 发布与订阅，主从复制，持久化，脚本   memcached 使用内存存储的键值">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="https://redisbook.readthedocs.io/en/latest/_images/graphviz-241c988b86bb9bed6bf26537e654baaab4eef77b.svg">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554905960686.png">
 <meta property="og:updated_time" content="2020-02-09T11:12:58.775Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis">
 <meta name="twitter:description" content="Redis主要用于高并发的状态。本质也是一个key-value数据库，但是它可以把数据库中常用的一些读写项放到内存中，加快速度。    名称 类型 数据存储选项 查询类型 附加功能    Redis 使用内存存储的非关系数据库 字符串、列表、集合、散列表、有序集合 每种数据类型专属的命令，以及批量操作和不完全的事务支持 发布与订阅，主从复制，持久化，脚本   memcached 使用内存存储的键值">
-<meta name="twitter:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta name="twitter:image" content="https://redisbook.readthedocs.io/en/latest/_images/graphviz-241c988b86bb9bed6bf26537e654baaab4eef77b.svg">
 
 
 
@@ -141,7 +141,7 @@
 </script>
 
   
-  <title>Redis | 切克闹</title>
+  <title>Redis | Sakuraの博客</title>
   
 
 
@@ -200,14 +200,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">切克闹</span>
+        <span class="site-title">Sakuraの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
     
       <a>
-        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
       </a>
     
   </div>
@@ -243,6 +243,24 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -363,13 +381,13 @@
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3135569683/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -558,7 +576,7 @@
 <p><span class="exturl" data-url="aHR0cDovL3d3dy5yZWRpcy5jbi9jb21tYW5kcy5odG1s" title="http://www.redis.cn/commands.html">http://www.redis.cn/commands.html<i class="fa fa-external-link"></i></span></p>
 <p><strong>发布与订阅</strong></p>
 <p>发布订阅(pub/sub)是一种消息通信模式，主要的目的是解耦消息发布者和消息订阅者之间的耦合，这点和设计模式中的观察者模式比较相似。pub/sub不仅仅解决发布者和订阅者之间代码级别耦合也解决两者在物理部署上的耦合。Redis作为一个pub/sub的server，在订阅者和发布者之间起到了消息路由的功能。订阅者可以通过subscribe和psubscribe命令向 redis server订阅自己感兴趣的消息类型，redis将消息类型称为通道(channel)。当发布者通过publish命令向 redis server发送二进制字符串消息(binary string message)时，订阅该消息类型的全部client都会收到此消息。这里消息的传递是多对多的，一个client可以订阅多个channel，也可以向多个channel发送消息。</p>
-<p><img src="/uploads/loading.gif" data-original="https://redisbook.readthedocs.io/en/latest/_images/graphviz-241c988b86bb9bed6bf26537e654baaab4eef77b.svg" alt="img"> </p>
+<p><img src="https://redisbook.readthedocs.io/en/latest/_images/graphviz-241c988b86bb9bed6bf26537e654baaab4eef77b.svg" alt="img"> </p>
 <p>常用的函数：</p>
 <ul>
 <li>r.publish(channel_name,message)：发送者在channel_name频道发送信息</li>
@@ -598,7 +616,7 @@
 </ul>
 <p>两者组合使用：在 redis 实例重启时，会使用 bgsave 持久化文件重新构建内存，再使用 aof 重放近期的操作指令来实现完整恢复重启之前的状态。</p>
 <p><strong>注意的是REDIS是个单线程服务，会有阻塞的问题</strong>。</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554905960686.png" alt="1554905960686"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554905960686.png" alt="1554905960686"></p>
 <p>参考文献：</p>
 <p><span class="exturl" data-url="aHR0cDovL2xhd3RlY2gwOTAyLmNvbS9jYXRlZ29yaWVzL1JlZGlzLw==" title="http://lawtech0902.com/categories/Redis/">http://lawtech0902.com/categories/Redis/<i class="fa fa-external-link"></i></span></p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZHBhaS5naXRlZS5pby8yMDE4LzA0LzE4LzIwMTgtMDQtMTgtMi8=" title="https://cloudpai.gitee.io/2018/04/18/2018-04-18-2/">https://cloudpai.gitee.io/2018/04/18/2018-04-18-2/<i class="fa fa-external-link"></i></span></p>
@@ -828,7 +846,7 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>boris</li>
+    <strong>本文作者： </strong>sakura</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
@@ -852,8 +870,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/a/412478700/" rel="next" title="CNN网络发展">
-                <i class="fa fa-chevron-left"></i> CNN网络发展
+              <a href="/a/175394686/" rel="next" title="数据库知识点">
+                <i class="fa fa-chevron-left"></i> 数据库知识点
               </a>
             
           </div>
@@ -862,8 +880,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/a/103728309/" rel="prev" title="最大子数组系列问题">
-                最大子数组系列问题 <i class="fa fa-chevron-right"></i>
+              <a href="/a/2321336202/" rel="prev" title="Xgboost理解">
+                Xgboost理解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -915,9 +933,9 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
   
-  <p class="site-author-name" itemprop="name">boris</p>
+  <p class="site-author-name" itemprop="name">sakura</p>
   <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
 </div>
 
@@ -1112,7 +1130,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-superpowers"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">boris</span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -1361,5 +1379,5 @@ window.addEventListener("message", function(e) {
 
   
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

@@ -113,16 +113,16 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="协同过滤理解">
 <meta property="og:url" content="http://www.lbblog.com/a/3157373585/index.html">
-<meta property="og:site_name" content="切克闹">
+<meta property="og:site_name" content="Sakuraの博客">
 <meta property="og:description" content="推荐算法种类很多，应用最广的就是协同过滤类别的推荐算法。本文总结一些协同过滤的推荐算法。 协同过滤一般都有n个用户，m个物品，只有部分用户和部分物品之间是由评分数据的，其他部分都是空白。我们要用已有的部分系数数据来预测那些空白的物品和数据之间的评分，然后将评分最高的推荐给用户。 协同过滤分为三类： 一、基于用户的协同过滤 考虑用户与用户之间的相似度，只要找出相似用户最喜欢的商品，并预测目标用户与对">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
-<meta property="og:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta property="og:image" content="http://img.blog.csdn.net/20170315213518604?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQmFpSHVhWGl1MTIz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="c:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552396384908.png">
 <meta property="og:updated_time" content="2020-02-09T11:12:58.751Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="协同过滤理解">
 <meta name="twitter:description" content="推荐算法种类很多，应用最广的就是协同过滤类别的推荐算法。本文总结一些协同过滤的推荐算法。 协同过滤一般都有n个用户，m个物品，只有部分用户和部分物品之间是由评分数据的，其他部分都是空白。我们要用已有的部分系数数据来预测那些空白的物品和数据之间的评分，然后将评分最高的推荐给用户。 协同过滤分为三类： 一、基于用户的协同过滤 考虑用户与用户之间的相似度，只要找出相似用户最喜欢的商品，并预测目标用户与对">
-<meta name="twitter:image" content="http://www.lbblog.com/uploads/loading.gif">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170315213518604?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQmFpSHVhWGl1MTIz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -141,7 +141,7 @@
 </script>
 
   
-  <title>协同过滤理解 | 切克闹</title>
+  <title>协同过滤理解 | Sakuraの博客</title>
   
 
 
@@ -200,14 +200,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">切克闹</span>
+        <span class="site-title">Sakuraの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
     
       <a>
-        <img class="custom-logo-image" src="/uploads/loading.gif" data-original="/uploads/avatar.png" alt="切克闹">
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
       </a>
     
   </div>
@@ -243,6 +243,24 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -363,13 +381,13 @@
     <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3157373585/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="boris">
+      <meta itemprop="name" content="sakura">
       <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切克闹">
+      <meta itemprop="name" content="Sakuraの博客">
     </span>
 
     
@@ -521,7 +539,7 @@
 <p>二、基于物品的协同过滤</p>
 <p>考虑物品与物品之间的相似度，如果目标用户对某个商品评分高，那么就给他推荐另外的和这个物品非常相关的物品。</p>
 <p>前面两者都考虑了计算相似度，在特征空间中计算相似度基本用距离作为度量，常见的有：</p>
-<p><img src="/uploads/loading.gif" data-original="http://img.blog.csdn.net/20170315213518604?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQmFpSHVhWGl1MTIz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="è¿éåå¾çæè¿°"></p>
+<p><img src="http://img.blog.csdn.net/20170315213518604?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQmFpSHVhWGl1MTIz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="è¿éåå¾çæè¿°"></p>
 <p>但是上述的两种方法面临典型的问题就是矩阵稀疏的问题。</p>
 <p>三、基于模型的协同过滤</p>
 <p>基于模型的协同过滤就考虑使用机器学习的思想进行建模，主流的方法有：关联算法、聚类算法、分类算法、回归算法、矩阵分解、神经网络等等。</p>
@@ -535,7 +553,7 @@
 <p>回归算法处理评分问题更加自然，因为评分是一个连续值，常用的回归模型，比如线性回归、回归树等都可以做回归模型</p>
 <p>4、用矩阵分解做协同过滤</p>
 <p>用矩阵分解做协同过滤的思路比较抽象，主要是解决填写“评分表”的功能，比如下面这个用户-物品评分表：</p>
-<p><img src="/uploads/loading.gif" data-original="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552396384908.png" alt="1552396384908"></p>
+<p><img src="C:%5CUsers%5Cboris%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1552396384908.png" alt="1552396384908"></p>
 <p>下面就考虑如何通过矩阵分解来填写这个表。因为这个表是稀疏的，所以传统的SVD方法无法适用于这个表。所以又有了很多简化的版本。比如FunkSVD、SVD++等。</p>
 <h2 id="FunkSVD"><a href="#FunkSVD" class="headerlink" title="FunkSVD"></a>FunkSVD</h2><p>下面简单介绍一下FunkSVD的思想。</p>
 <p>传统的SVD做矩阵分解的时候，分解成三个矩阵，非常耗时，因此FunkSVD想分成两个矩阵：P和Q。<br>$$<br>M_{m \times n}=P_{m \times k}^TQ_{k \times n}<br>$$<br>这里采用线性回归的思想，我们的目标是让用户的评分和用矩阵乘积得到的评分残差尽可能小，所以损失函数就是均方误差损失函数，然后通过梯度下降算法得到最终的P和Q。</p>
@@ -582,7 +600,7 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>boris</li>
+    <strong>本文作者： </strong>sakura</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
@@ -678,9 +696,9 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="/uploads/loading.gif" data-original="/uploads/logo.png" alt="boris">
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
   
-  <p class="site-author-name" itemprop="name">boris</p>
+  <p class="site-author-name" itemprop="name">sakura</p>
   <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
 </div>
 
@@ -892,7 +910,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-superpowers"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">boris</span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -1141,5 +1159,5 @@ window.addEventListener("message", function(e) {
 
   
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>
