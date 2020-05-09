@@ -275,7 +275,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">130</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">131</span></a>
 
   </li>
         
@@ -375,7 +375,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3135569683/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3291038922/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sakura">
@@ -395,7 +395,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/a/3135569683/" class="post-title-link" itemprop="url">Redis</a>
+                <a href="/a/3291038922/" class="post-title-link" itemprop="url">Stacking方法</a>
               
             
           </h2>
@@ -449,7 +449,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
 
                 
                 
@@ -474,8 +474,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/a/3135569683/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/a/3135569683/" itemprop="commentCount"></span>
+    <a href="/a/3291038922/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/a/3291038922/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -505,43 +505,18 @@
         
           
             <p>
-              Redis主要用于高并发的状态。本质也是一个key-value数据库，但是它可以把数据库中常用的一些读写项放到内存中，加快速度。
+              stacking就是用初始数据学习到若干个基分类器，然后将几个分类器的预测结果作为新的训练集，再学习一个新的学习器。
 
-
-
-名称
-类型
-数据存储选项
-查询类型
-附加功能
-
-
-
-Redis
-使用内存存储的非关系数据库
-字符串、列表、集合、散列表、有序集合
-每种数据类型专属的命令，以及批量操作和不完全的事务支持
-发布与订阅，主从复制，持久化，脚本
-
-
-memcached
-使用内存存储的键值缓存
-键值之间的映射
-创建、读取、删除、更新等命令
-多线程服务器，用于提升性能
-
-
-MySQL
-关系数据库
-每个数据库可以包含多个表，每个表可以包含多个行；可以处理多个表的视图；支持空间和第三方扩展
-SELECT、INSERT、UPDATE、DELETE、函数、存储过程
-支持ACID性质(需要使用I
+上图就是1个基分类器stacking的过程，我们来分布解析一下。
+1、选择基分类器，比如我们经常会选择xgboost、svm、gbdt、lr、rf这五个基分类器，第二层模型一般采用lr分类器。
+2、对于每个基分类器，我们采用k=5的交叉验证，这样就得到了全部数据的预测结果；同时每次验证的时候都对testdata进行预测，将5个结果取平均。假设我们训练数据有10000个，测试数据有2500个，那么一个基分类器的输出就是：$[110000]和[12500]$。
+3、对于5个基分类器，都是第2步中的办法，然后将5个输出都按列concat，这样我们最终的结果就是$[10005]$组
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/a/3135569683/#more" rel="contents">
+              <a class="btn" href="/a/3291038922/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -600,7 +575,7 @@ SELECT、INSERT、UPDATE、DELETE、函数、存储过程
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/175394686/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3428873519/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sakura">
@@ -620,7 +595,7 @@ SELECT、INSERT、UPDATE、DELETE、函数、存储过程
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/a/175394686/" class="post-title-link" itemprop="url">数据库知识点</a>
+                <a href="/a/3428873519/" class="post-title-link" itemprop="url">Tensorflow知识点整理</a>
               
             
           </h2>
@@ -674,7 +649,7 @@ SELECT、INSERT、UPDATE、DELETE、函数、存储过程
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
 
                 
                 
@@ -699,8 +674,8 @@ SELECT、INSERT、UPDATE、DELETE、函数、存储过程
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/a/175394686/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/a/175394686/" itemprop="commentCount"></span>
+    <a href="/a/3428873519/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/a/3428873519/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -730,23 +705,215 @@ SELECT、INSERT、UPDATE、DELETE、函数、存储过程
         
           
             <p>
-              事务我们在写Java程序，遇到并发问题时，会想到用锁来解决。数据库遇到并发问题怎么解决呢？答案就是事务，事务的本质就是锁和并发的结合体。
-简单理解事务就是一串满足ACID的SQL命令，可以通过commit提交，可以通过rollback回滚
-事务的四大特性：
-1、原子性(Atomicity)
-原子性是指事务包含的所有操作要么全部成功，要么全部失败回滚。
-2、一致性(Consistency)
-在事务执行前后保持一致性状态，含义是数据库中的所有数据应满足数据库的完整性约束。
-3、隔离性（Isolation）
-用户并发访问、操作数据库时，数据库为各个用户开启的事务相互隔离。
-4、持久性（Durability）
-一旦事务提交，则其所做的修改将会永远保存到数据库中。即使系统发生崩溃，事务执行的结果也不能
+              1、介绍一下tensorflow计算图
+Tensorflow通过计算图的形式表述计算的变成系统，是一种有向图。每一个节点都是计算图上的一个Tensor，也就是张量。节点之间的边描述了节点之间的依赖关系和数学运算。
+
+
+
+              
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/a/3428873519/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/2321336202/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sakura">
+      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
+      <meta itemprop="image" content="/uploads/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sakuraの博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/a/2321336202/" class="post-title-link" itemprop="url">Xgboost理解</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-14 09:57:10" itemprop="dateCreated datePublished" datetime="2019-03-14T09:57:10+08:00">2019-03-14</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-09 19:12:58" itemprop="dateModified" datetime="2020-02-09T19:12:58+08:00">2020-02-09</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/a/2321336202/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/a/2321336202/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              xgboost，面试中问的最多的一个模型。简单的就不详细说了，比如boosting、和GBDT区别啊，如何实现并行化啊，level-wise生成啊之类的，这里记录一下xgboost的全过程，从总体理解这个算法。
+Xgboost理解模型xgboost的模型是常见的加法模型：$$\hat{y_i}=\sum_j{w_j}x_{ij}$$这里的预测值$\hat{y_i}$下面会有很多不同的解释，比如用做回归问题，或者加上sigmoid函数作为二分类问题等等。
+可以看到我们模型的学习目标就是$w_j$，而xgboost模型就是要学到这个参数。已经了解过模型过程就知道其实$w_j$是直接通过最优化的方法得到的。
+损失函数：损失函数+正则化项xgboost模型的损失函数包含两项，分别用于计算偏差和方差。
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/a/175394686/#more" rel="contents">
+              <a class="btn" href="/a/2321336202/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2201,203 +2368,11 @@ nums1 = [1, 2]nums2 = [3, 4]The median is (2 + 3)/2 = 2.5
   </article>
 
     
-        
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/2613091332/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="sakura">
-      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
-      <meta itemprop="image" content="/uploads/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sakuraの博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/a/2613091332/" class="post-title-link" itemprop="url">降维算法的比较</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-12 15:52:33" itemprop="dateCreated datePublished" datetime="2019-03-12T15:52:33+08:00">2019-03-12</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-02-09 19:12:58" itemprop="dateModified" datetime="2020-02-09T19:12:58+08:00">2020-02-09</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-          
-
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/a/2613091332/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/a/2613091332/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在进行特征工程的时候，我们经常会将类别变量one-hot，这样就可能引起维度灾难，导致特征维度太多。因此往往需要对大量的特征进行降维。</p>
-<p>降维的主要方法有：PCA、LDA</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/a/2613091332/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2442,7 +2417,7 @@ nums1 = [1, 2]nums2 = [3, 4]The median is (2 + 3)/2 = 2.5
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">130</span>
+          <span class="site-state-item-count">131</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2634,7 +2609,7 @@ nums1 = [1, 2]nums2 = [3, 4]The median is (2 + 3)/2 = 2.5
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">319k</span>
+    <span title="站点总字数">322k</span>
   
 
   

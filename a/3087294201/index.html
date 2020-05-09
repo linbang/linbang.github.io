@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/logo.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/uploads/logo.png?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+
+
+
+  
+  
+    
+      
+    
+    
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css?v=1.0.2">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="推荐系统主要解决的是信息过载的问题，目标是从海量物品筛选出不同用户各自喜欢的物品，从而为每个用户提供个性化的推荐，实现“千人千面”。本文主要对推荐系统进行概述。 概述在一个海量物料的系统中迅速的找到用户喜欢的物料是非常困难的，推荐系统很难一次性计算出用户喜好的物品，并且同时满足请求时延、准确性、多样性等评价指标。为了解决上述问题，推荐系统逐渐演变成分层的架构，最经典的就是召回+排序这样的架构。目">
+<meta name="keywords" content="博客,机器学习,Java,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐系统">
+<meta property="og:url" content="http://www.lbblog.com/a/3087294201/index.html">
+<meta property="og:site_name" content="Sakuraの博客">
+<meta property="og:description" content="推荐系统主要解决的是信息过载的问题，目标是从海量物品筛选出不同用户各自喜欢的物品，从而为每个用户提供个性化的推荐，实现“千人千面”。本文主要对推荐系统进行概述。 概述在一个海量物料的系统中迅速的找到用户喜欢的物料是非常困难的，推荐系统很难一次性计算出用户喜好的物品，并且同时满足请求时延、准确性、多样性等评价指标。为了解决上述问题，推荐系统逐渐演变成分层的架构，最经典的就是召回+排序这样的架构。目">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.lbblog.com/images/image-20200423133410738.png">
+<meta property="og:image" content="http://www.lbblog.com/images/image-20200423222253518.png">
+<meta property="og:image" content="http://www.lbblog.com/images/v2-1c0c206bbe480d618c3f59704bcd3e7b_720w-1587704409938.jpg">
+<meta property="og:image" content="http://www.lbblog.com/images/v2-79f10fab12c1e74d02e3d1c2908e180e_720w.jpg">
+<meta property="og:updated_time" content="2020-04-25T14:27:28.970Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="推荐系统">
+<meta name="twitter:description" content="推荐系统主要解决的是信息过载的问题，目标是从海量物品筛选出不同用户各自喜欢的物品，从而为每个用户提供个性化的推荐，实现“千人千面”。本文主要对推荐系统进行概述。 概述在一个海量物料的系统中迅速的找到用户喜欢的物料是非常困难的，推荐系统很难一次性计算出用户喜好的物品，并且同时满足请求时延、准确性、多样性等评价指标。为了解决上述问题，推荐系统逐渐演变成分层的架构，最经典的就是召回+排序这样的架构。目">
+<meta name="twitter:image" content="http://www.lbblog.com/images/image-20200423133410738.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://www.lbblog.com/a/3087294201/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>推荐系统 | Sakuraの博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sakuraの博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+      <a>
+        <img class="custom-logo-image" src="/uploads/avatar.png" alt="Sakuraの博客">
+      </a>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">131</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-favorite">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/favorite/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>个人随笔</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">21</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">25</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3087294201/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sakura">
+      <meta itemprop="description" content="无穷的远方，无数的人们，都与我有关。">
+      <meta itemprop="image" content="/uploads/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sakuraの博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">推荐系统
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-04-23 13:00:13" itemprop="dateCreated datePublished" datetime="2020-04-23T13:00:13+08:00">2020-04-23</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-04-25 22:27:28" itemprop="dateModified" datetime="2020-04-25T22:27:28+08:00">2020-04-25</time>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+               <!--  阅读次数：  -->
+               本文已被戳过 <span class="busuanzi-value" id="busuanzi_value_page_pv"></span> 次了
+              </span>
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/a/3087294201/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/a/3087294201/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">3k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">3 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p> 推荐系统主要解决的是信息过载的问题，目标是从海量物品筛选出不同用户各自喜欢的物品，从而为每个用户提供个性化的推荐，实现“千人千面”。本文主要对推荐系统进行概述。</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>在一个海量物料的系统中迅速的找到用户喜欢的物料是非常困难的，推荐系统很难一次性计算出用户喜好的物品，并且同时满足请求时延、准确性、多样性等评价指标。为了解决上述问题，推荐系统逐渐演变成分层的架构，最经典的就是<strong>召回+排序</strong>这样的架构。目前也有一些公司在此基础上开发出<strong>召回+排序+重排</strong>的三个阶段。</p>
+<p><img src="../../images/image-20200423133410738.png" alt="image-20200423133410738"></p>
+<p>召回阶段是指从上百万个物料库中迅速的找到几万个和用户喜好相关的物品，这一阶段看重的时速度，在工程实践中通常分为多路召回。</p>
+<p>排序阶段是指从上万个召回的物品中最终确定下发给用户的几十个物品，这一阶段看重的准确性，在深度学习发展的今天往往采用比较复杂的模型。</p>
+<p>重排序是指将确定的物品以一个最好的序列进行下发，这一阶段看重的是用户体验，包括多样性、广告感受等因素，通常使用listwise等深度学习模型。</p>
+<h1 id="推荐流程"><a href="#推荐流程" class="headerlink" title="推荐流程"></a>推荐流程</h1><h2 id="召回-recall"><a href="#召回-recall" class="headerlink" title="召回(recall)"></a>召回(recall)</h2><p>召回主要根据item和user的特征，从海量的物料库中快速的得到一些用户感兴趣的待选item，这个过程往往是多路并发的，也叫做多路找回。比如对于新闻召回而言，多路可能包括：用户感兴趣的召回队列、热点新闻队列、时效性新闻队列等，通过这样的多路召回丰富多样性。</p>
+<p>召回的方法有很多，包括传统的协同过滤，基于深度学习的向量召回，还有现在比较新颖的异构网络的召回等，这里大概的介绍一些召回方法。后续会在论文分析中逐渐介绍一些召回方法。</p>
+<h3 id="传统召回方法"><a href="#传统召回方法" class="headerlink" title="传统召回方法"></a>传统召回方法</h3><p> 协同过滤(CF)可分为基于用户的协同过滤、 基于物品的协同过滤，基于模型的协同过滤（比如MF矩阵分解等）。以基于item的协同过滤为例，其主要思想是：根据两个item被同时点击的频率来计算这两个item之间的相似度，然后推荐用户历史行为中各个item的相似相关item。</p>
+<p>  <img src="../../images/image-20200423222253518.png" alt="image-20200423222253518"></p>
+<p>在CF中，用m×n的矩阵表示用户对物品的喜好情况，一般用打分表示用户对物品的喜好程度，分数越高表示越喜欢这个物品，0表示没有买过该物品。图中行表示一个用户，列表示一个物品，Uij表示用户i对物品j的打分情况。CF分为两个过程：</p>
+<ul>
+<li>预测过程：填充u-i矩阵，预测用户对没购买过的商品的可能打分</li>
+<li>推荐过程：根据u-i评分矩阵来推荐用户可能喜欢的TOP-N个物品</li>
+</ul>
+<p>对于传统的user_based CF算法和item_based CF算法，都属于memory CF算法，其核心就是填充完u-i的评分矩阵，也就是预测过程。我们以基于item的协同过滤为例。首先要计算任意两个item的相似度，这里可以使用余弦距离、pearson关联度等来表征。然后对用户未打分物品进行分数预测，可以使用加权求和等方式。最后每一行都填充完毕，取每一行分数最高的N个商品作为召回的结果就可以了。</p>
+<p>基于模型的CF算法，就是在预测的过程中，对矩阵进行低秩分解，比如使用SVD等方法，将每个item用一个低维的向量表示，然后就可以计算相似度等工作了。</p>
+<p>虽然基于用户的协同过滤召回方法具有简单、性能较高，因此在实际的推荐场景中用途十分广泛。不过也是有天然的缺陷：召回结果的候选集item限定在用户的历史行为类目中，并且难以结合候选item的Side Information（比如brand，品类一些id信息），导致其推荐结果存在发现性弱、对长尾商品的效果差等问题，容易导致推荐系统出现“越推越窄”的问题，制约了推荐系统的可持续发展。 </p>
+<h3 id="基于深度学习的向量召回"><a href="#基于深度学习的向量召回" class="headerlink" title="基于深度学习的向量召回"></a>基于深度学习的向量召回</h3><p>向量召回是目前很多大厂使用的主流方法，其核心思想是将user和item都用向量来表示，然后通过KNN方法（facebook的faiss）来找到相似度最高的top-N个候选结果。</p>
+<p> <img src="../../images/v2-1c0c206bbe480d618c3f59704bcd3e7b_720w-1587704409938.jpg" alt="img"> </p>
+<p>上图是基于深度学习的embedding召回的大体思路，分为离线训练和在线执行两个阶段。离线训练是天级别训练，主要目的是将user和item表征在同一个向量空间下，然后存储起来待使用。在线执行阶段主要是通过Faiss技术针对每个user_id都能够迅速的找到最近邻的top-N个item。</p>
+<p>比较经典的论文包括Youtube的单塔和双塔召回模型，后续会有文章详细介绍这些常用的召回模型。</p>
+<h3 id="基于图的召回"><a href="#基于图的召回" class="headerlink" title="基于图的召回"></a>基于图的召回</h3><p>基于图的召回是未来召回领域发展的一个重要方向，因为在实际场景中，用户-商品天然的构成了图的关系，在这种关系中，尤其以异构图为重点。而基于图的召回基本的基本思想如下：</p>
+<ul>
+<li>根据复杂的关系构造异构网络</li>
+<li>对异构网络进行表征学习，得到每个node的embedding向量，存储备用</li>
+<li>线上serving阶段计算top-N个最近邻商品</li>
+</ul>
+<p>因此基于图的召回核心是对异构网络进行表征学习。在这个领域目前有很多的论文，比较经典的包括阿里的 Graph Embedding with Side information、GraphSage、HAN等模型。</p>
+<h2 id="排序-ranking"><a href="#排序-ranking" class="headerlink" title="排序(ranking)"></a>排序(ranking)</h2><p>排序过程是推荐系统中最重要的一个阶段，在这个阶段需要对每个商品计算出CTR，也就是可能被点击的概率。通过CTR对商品进行精确打分，进而从召回的商品中再次缩减，选出高质量的内容，因此排序模型看中的是准确性。</p>
+<p>传统的排序模型往往是以ctr作为优化目标，希望用户尽可能点击。但是后来发现单纯的以ctr为优化目标可能会导致低俗内容高优先级，因此通常还会加入浏览时常等目标综合优化。</p>
+<p>排序模型有很多，从上古时代的LR到中古时代的GBDT+LR到近现代的DeepFM到现代的DIN、DIEN等，有着充足的发展历程，后续会单独介绍排序模型的演进。</p>
+<h2 id="重排序-rerank"><a href="#重排序-rerank" class="headerlink" title="重排序(rerank)"></a>重排序(rerank)</h2><p>重排序最近几年提出的，因为排序阶段只重视CTR，而忽略了用户的综合体验。因此在重拍阶段，主要是以增强用户体验为主要目的对下发的序列进行重排序，得到一个最优的下发序列。</p>
+<p>在这个阶段，以前的做法都是基于强规则来做，比如使用各种策略对下发队列进行去重、打散、强插等操作，来增加推荐结果的多样性，提升用户感知。</p>
+<p>但是随着技术的发展，重拍已经逐渐模型化。但是存在很大的问题就是无法确定优化目标和损失函数。比如用户感知、多样性等很难用指标进行量化。在我的实习经历中，接触到的使用listwise模型来进行重排，其优化目标是：是否会处罚下一次刷新、list总点击次数、list总浏览时常这三个目标进行多目标优化。</p>
+<p>Listwise模型是跟在精排后面的，作为最后一个下发给用户的模块。因为输入的序列都是有序的，因此一般情况可以考虑使用RNN这个结构来进行建模。</p>
+<p> <img src="../../images/v2-79f10fab12c1e74d02e3d1c2908e180e_720w.jpg" alt="img"> </p>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><h2 id="冷启动问题"><a href="#冷启动问题" class="headerlink" title="冷启动问题"></a>冷启动问题</h2><p>冷启动是新的用户或者新的商品到系统时，之前没有被曝光，因此没有历史数据，在这种情况下，商品很难被召回，用户也很难被精准推荐。</p>
+<h3 id="用户冷启动"><a href="#用户冷启动" class="headerlink" title="用户冷启动"></a>用户冷启动</h3><p>1、利用用户注册时候的人口统计学特征，比如年龄、性别、地理位置等。</p>
+<p>2、利用用户注册时的标签，比如在用户注册时需要用户点击感兴趣的内容等。</p>
+<h3 id="物品冷启动"><a href="#物品冷启动" class="headerlink" title="物品冷启动"></a>物品冷启动</h3><p>物品冷启动，没用用户的行为特征，就无法进行基于ItemCF的推荐了。</p>
+<p>这个时候要使用物品固有属性，新闻的话像一二级分类、兴趣点等等，然后计算物品固有属性之间的相似度，然后进行基于物品相似的推荐。</p>
+<h2 id="长尾问题"><a href="#长尾问题" class="headerlink" title="长尾问题"></a>长尾问题</h2><p>长尾问题是推荐系统常见问题，指的是80%的商品曝光集中在20%的头部商品中，而剩下的绝大部分商品因为曝光数据少导致很难下发给用户。而这80%的商品正式个性化推荐的重点。</p>
+<p>解决长尾问题可以通过调整评价指标，比如在优化目标中加入覆盖率指标。或者优化召回阶段的方法，增加召回商品的覆盖率。</p>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>sakura</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://www.lbblog.com/a/3087294201/" title="推荐系统">http://www.lbblog.com/a/3087294201/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLW5kLzQuMC9kZWVkLnpo"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/a/2200663004/" rel="next" title="基金">
+                <i class="fa fa-chevron-left"></i> 基金
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+  
+    
+    <div class="comments" id="comments"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+    <img class="site-author-image" itemprop="image" src="/uploads/logo.png" alt="sakura">
+  
+  <p class="site-author-name" itemprop="name">sakura</p>
+  <div class="site-description motion-element" itemprop="description">无穷的远方，无数的人们，都与我有关。</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmJhbmc=" title="GitHub &rarr; https://github.com/linbang"><i class="fa fa-fw fa-github"></i>GitHub</span>
+      </span>
+    
+  </div>
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#推荐流程"><span class="nav-number">2.</span> <span class="nav-text">推荐流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#召回-recall"><span class="nav-number">2.1.</span> <span class="nav-text">召回(recall)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#传统召回方法"><span class="nav-number">2.1.1.</span> <span class="nav-text">传统召回方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于深度学习的向量召回"><span class="nav-number">2.1.2.</span> <span class="nav-text">基于深度学习的向量召回</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于图的召回"><span class="nav-number">2.1.3.</span> <span class="nav-text">基于图的召回</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序-ranking"><span class="nav-number">2.2.</span> <span class="nav-text">排序(ranking)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重排序-rerank"><span class="nav-number">2.3.</span> <span class="nav-text">重排序(rerank)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见问题"><span class="nav-number">3.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#冷启动问题"><span class="nav-number">3.1.</span> <span class="nav-text">冷启动问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户冷启动"><span class="nav-number">3.1.1.</span> <span class="nav-text">用户冷启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#物品冷启动"><span class="nav-number">3.1.2.</span> <span class="nav-text">物品冷启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#长尾问题"><span class="nav-number">3.2.</span> <span class="nav-text">长尾问题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <span class="exturl" data-url="aHR0cDovL3d3dy5iZWlhbi5taWl0Lmdvdi5jbg=="> </span>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-superpowers"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sakura</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">322k</span>
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      您是到访本站的第 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 位小伙伴
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      本站已被戳过 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次了
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <script size="300" alpha="0.6" zindex="-1" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js"></script>
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.2.0"></script>
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+    
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'cyUjg3FlHz4rMmsmVW4azCse-gzGzoHsz',
+    appKey: 'gAlBR1oAWAptwvtKqeJmNy2j',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+  
+
+</body>
+</html>
