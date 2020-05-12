@@ -628,8 +628,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/a/412478700/" rel="next" title="CNN网络发展">
-                <i class="fa fa-chevron-left"></i> CNN网络发展
+              <a href="/a/3291038922/" rel="next" title="Stacking方法">
+                <i class="fa fa-chevron-left"></i> Stacking方法
               </a>
             
           </div>
@@ -638,8 +638,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/a/175394686/" rel="prev" title="数据库知识点">
-                数据库知识点 <i class="fa fa-chevron-right"></i>
+              <a href="/a/554300514/" rel="prev" title="GRU理解">
+                GRU理解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1079,6 +1079,60 @@
 
 
   
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
 
 
 

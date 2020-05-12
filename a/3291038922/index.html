@@ -605,8 +605,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/a/2321336202/" rel="next" title="Xgboost理解">
-                <i class="fa fa-chevron-left"></i> Xgboost理解
+              <a href="/a/3428873519/" rel="next" title="Tensorflow知识点整理">
+                <i class="fa fa-chevron-left"></i> Tensorflow知识点整理
               </a>
             
           </div>
@@ -615,8 +615,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/a/554300514/" rel="prev" title="GRU理解">
-                GRU理解 <i class="fa fa-chevron-right"></i>
+              <a href="/a/1122992658/" rel="prev" title="GBDT的理解">
+                GBDT的理解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1056,6 +1056,60 @@
 
 
   
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
 
 
 

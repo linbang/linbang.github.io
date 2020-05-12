@@ -676,8 +676,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/a/573762139/" rel="next" title="二叉树的下一个节点">
-                <i class="fa fa-chevron-left"></i> 二叉树的下一个节点
+              <a href="/a/1290613645/" rel="next" title="数组中最长递增子序列">
+                <i class="fa fa-chevron-left"></i> 数组中最长递增子序列
               </a>
             
           </div>
@@ -686,8 +686,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/a/337428921/" rel="prev" title="二叉树的序列化和反序列化">
-                二叉树的序列化和反序列化 <i class="fa fa-chevron-right"></i>
+              <a href="/a/2999504913/" rel="prev" title="构造二叉树">
+                构造二叉树 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1127,6 +1127,60 @@
 
 
   
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
 
 
 

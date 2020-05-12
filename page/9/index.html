@@ -375,7 +375,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/3303230784/">
+    <link itemprop="mainEntityOfPage" href="http://www.lbblog.com/a/554301047/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sakura">
@@ -395,7 +395,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/a/3303230784/" class="post-title-link" itemprop="url">操作系统常见面试题</a>
+                <a href="/a/554301047/" class="post-title-link" itemprop="url">计算机网络常见面试题</a>
               
             
           </h2>
@@ -449,7 +449,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机网络/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a></span>
 
                 
                 
@@ -474,8 +474,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/a/3303230784/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/a/3303230784/" itemprop="commentCount"></span>
+    <a href="/a/554301047/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/a/554301047/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -503,20 +503,20 @@
 
       
         
-          <h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><p>进程：系统进行资源分配的最小单位</p>
-<p>线程：是进程的一个执行实体，只拥有自己的栈。</p>
-<p>线程由进程创建，一个进程可以创建多个线程，这些线程之间可以并发执行，并且共享进程的资源。</p>
-<p>进程和线程都有通信。</p>
-<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>系统首先会创建一些线程，他们的集合就叫做线程池。线程池中保存着很多空闲的线程，任务来了之后系统会启动一个线程跑任务，结束之后线程不会死亡，而是在线程池中变成空闲状态，等待下一个任务。</p>
-<h3 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h3><p>多线程任务，系统会不断的启动和关闭线程，这些线程可能会抢占系统空间而导致阻塞，成本比较高。使用线程池可以减少资源浪费。</p>
-<h3 id="四种线程池"><a href="#四种线程池" class="headerlink" title="四种线程池"></a>四种线程池</h3><p>1、正规线程池：有指定线程数的线程池，线程数量固定，自己设定。</p>
-<p>2、缓存线程池：线程数量很大，空闲的线程超过60s没有被使用就被回收</p>
-<p>3、单线程线程池：只有一个线程，先到先服务</p>
-<p>4、定时线程池：周期性的执行任务</p>
+          <h2 id="TCP协议三次握手和四次挥手"><a href="#TCP协议三次握手和四次挥手" class="headerlink" title="TCP协议三次握手和四次挥手"></a>TCP协议三次握手和四次挥手</h2><p>因为TCP协议提供可靠的连接服务，所以需要进行三次握手和四次挥手来建立和释放连接。</p>
+<h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><p>目的：<strong>防止已失效的连接请求突然又送到了服务器端</strong>。</p>
+<p>具体来说，假设只有两次握手，client某次发送的请求因为节点延迟，很晚才送到server，server以为是正常的请求，因此就发送确认报文到client，同意建立连接，然后就开始等待client的信息。但是其实client真实没法发送请求，所以就不会给server发送任何信息，造成server资源白白浪费。</p>
+<p>建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。</p>
+<p>第一个包：客户端—-&gt;服务端，请求建立连接，并发送一个随机值J。</p>
+<p>第二个包：服务端—-&gt;客户端，客户端接受请求之后，返回J+1，并且再加上一个随机值K</p>
+<p>第三个包：客户端—-&gt;服务端，客户端接受之后，返回K+1.</p>
+<h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h3><p>其实是两次释放连接的过程。</p>
+<p>加入A和B要释放连接，A发送一个释放报文给B，B收到后回复确认收到。这个时候A不发数据，但是仍然接受从B发送的数据，这叫做半关闭。B发送完数据之后，再发送一个释放连接报文给A，A收到后回复确认收到。这就是四次挥手的全过程，所以是4次。</p>
+<p><strong>UDP是不可靠的连接，所以UDP没有上面的过程</strong></p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/a/3303230784/#more" rel="contents">
+              <a class="btn" href="/a/554301047/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2804,6 +2804,84 @@ public boolean add(E e) &#123;    ensureCapacityInternal(size + 1);  // Incremen
 
 
   
+  
+
+  
+  
+    
+      
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
 
 
 

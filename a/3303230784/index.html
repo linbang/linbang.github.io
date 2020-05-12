@@ -647,8 +647,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/a/2613091332/" rel="next" title="降维算法的比较">
-                <i class="fa fa-chevron-left"></i> 降维算法的比较
+              <a href="/a/554301047/" rel="next" title="计算机网络常见面试题">
+                <i class="fa fa-chevron-left"></i> 计算机网络常见面试题
               </a>
             
           </div>
@@ -657,8 +657,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/a/554301047/" rel="prev" title="计算机网络常见面试题">
-                计算机网络常见面试题 <i class="fa fa-chevron-right"></i>
+              <a href="/a/4041399947/" rel="prev" title="Median of Two Sorted Arrays">
+                Median of Two Sorted Arrays <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1098,6 +1098,60 @@
 
 
   
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
 
 
 
